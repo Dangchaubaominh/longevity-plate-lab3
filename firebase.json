@@ -1,5 +1,1 @@
-{
-  "storage": {
-    "rules": "firebase/storage.rules"
-  }
-}
+{"storage":{"rules":"firebase/storage.rules"},"flutter":{"platforms":{"android":{"default":{"projectId":"longevity-plate","appId":"1:581640648798:android:b65a816c691a0aae83dccf","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"longevity-plate","configurations":{"android":"1:581640648798:android:b65a816c691a0aae83dccf"}}}}}}
