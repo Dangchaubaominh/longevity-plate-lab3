@@ -1,0 +1,16 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Mỗi người dùng chỉ đọc và tạo báo cáo trong thư mục uid của chính mình.
+    match /reports/{uid}/{fileName} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.contentType == 'application/pdf'
+        && request.resource.size < 5 * 1024 * 1024;
+    }
+
+    // Mọi đường dẫn khác đều bị từ chối vì không có match nào cho phép.
+  }
+}
