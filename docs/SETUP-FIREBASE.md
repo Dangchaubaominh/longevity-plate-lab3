@@ -5,13 +5,22 @@ Các bước này cần tài khoản Google của bạn nên phải tự thực 
 ## 1. Cài công cụ
 
 1. Android Studio, gồm Android SDK, Platform Tools và một emulator có Google Play. Google Sign-In và FCM cần Google Play Services.
-2. JDK 17. Android Studio có sẵn bản đi kèm. Kiểm tra bằng `flutter doctor`.
-3. Firebase CLI: <https://firebase.google.com/docs/cli>
-4. FlutterFire CLI:
+2. JDK đi kèm Android Studio là đủ, Flutter tự tìm thấy. Kiểm tra bằng `flutter doctor`.
+3. Thêm `C:\src\flutter\bin` vào PATH, hoặc đường dẫn Flutter trên máy bạn. Các lệnh dưới đây và FlutterFire CLI đều cần `flutter` và `dart` trong PATH.
+4. Firebase CLI: <https://firebase.google.com/docs/cli>
+5. FlutterFire CLI:
 
 ```bash
 dart pub global activate flutterfire_cli
 ```
+
+Build lần đầu mất khoảng 15 phút vì Gradle tự tải NDK, CMake và các Android SDK Platform còn thiếu. Có thể thử build trước khi cấu hình Firebase:
+
+```bash
+flutter run --dart-define=USE_FAKE_SERVICES=true
+```
+
+Nếu `flutter doctor` báo thiếu `cmdline-tools`, cài "Android SDK Command-line Tools" trong SDK Manager của Android Studio rồi chạy `flutter doctor --android-licenses`.
 
 ## 2. Tạo dự án và kết nối app
 
@@ -33,11 +42,14 @@ flutterfire configure --platforms=android --android-package-name=com.longevitypl
 ## 3. Đăng nhập Google
 
 1. Console, Authentication, Sign-in method, bật Google.
-2. Lấy SHA-1 và SHA-256 của khóa debug:
+2. Lấy SHA-1 và SHA-256 của khóa debug. Mỗi máy có một khóa debug riêng, nên mỗi thành viên nhóm đều phải thêm SHA của máy mình. `gradlew` chỉ có sau lần build Android đầu tiên và cần `JAVA_HOME`. Trong PowerShell:
 
-```bash
-cd android && ./gradlew signingReport
+```powershell
+$env:JAVA_HOME = 'C:\Program Files\Android\Android Studio\jbr'
+cd android; .\gradlew.bat :app:signingReport
 ```
+
+Lấy các giá trị ở mục `Variant: debug`.
 
 3. Console, Project settings, app Android, thêm hai giá trị SHA.
 4. Chạy lại `flutterfire configure` để lấy `google-services.json` mới. Tệp này phải có OAuth client của web, vì `google_sign_in` đọc `default_web_client_id` từ đó.
