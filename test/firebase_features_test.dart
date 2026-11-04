@@ -179,7 +179,7 @@ void main() {
 
       await app.tapBack();
       expect(app.path, '/home');
-      expect(find.text('Chào Mai'), findsOneWidget);
+      expect(find.text('Chào Trần Thị Mai'), findsOneWidget);
     });
 
     testWidgets('chưa đăng nhập: giữ tin, đăng nhập xong mới đi tới', (

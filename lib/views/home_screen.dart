@@ -33,7 +33,7 @@ class _HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<HomeViewModel>();
-    final name = context.select<SessionViewModel, String>((s) => s.shortName);
+    final name = context.select<SessionViewModel, String>((s) => s.greetingName);
     return Scaffold(
       appBar: const RootAppBar(),
       body: switch (vm.state) {

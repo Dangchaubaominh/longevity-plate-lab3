@@ -25,10 +25,11 @@ class SessionViewModel extends ChangeNotifier {
   String? get message => _message;
   bool get isOnboarded => _user != null && _s.goals.isOnboarded(_user!.uid);
 
-  /// Tên gọi ở màn Hôm nay. Tên người Việt đặt tên riêng ở cuối.
-  String get shortName {
+  /// Tên gọi ở màn Hôm nay. Thứ tự họ tên trên tài khoản Google không cố định
+  /// nên hiển thị đủ, không tách tên riêng.
+  String get greetingName {
     final name = _user?.displayName?.trim();
-    return name == null || name.isEmpty ? 'bạn' : name.split(RegExp(r'\s+')).last;
+    return name == null || name.isEmpty ? 'bạn' : name;
   }
 
   void _onUser(AppUser? user) {
