@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -43,11 +44,28 @@ class FirebaseAuthService implements AuthService {
     } on GoogleSignInException catch (e) {
       if (e.code == GoogleSignInExceptionCode.canceled ||
           e.code == GoogleSignInExceptionCode.interrupted) {
+        // Mất mạng lúc chọn tài khoản cũng trả về canceled, nên phải kiểm tra mạng.
+        if (!await _hasNetwork()) {
+          throw const AppFailure('network-request-failed');
+        }
         throw const SignInCancelled();
       }
       throw AppFailure('google_${e.code.name}', e.description);
     } on FirebaseAuthException catch (e) {
       throw AppFailure(e.code, e.message);
+    }
+  }
+
+  Future<bool> _hasNetwork() async {
+    try {
+      final addresses = await InternetAddress.lookup(
+        'identitytoolkit.googleapis.com',
+      ).timeout(const Duration(seconds: 3));
+      return addresses.isNotEmpty;
+    } on SocketException {
+      return false;
+    } on TimeoutException {
+      return false;
     }
   }
 
