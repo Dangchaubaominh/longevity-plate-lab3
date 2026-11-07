@@ -46,18 +46,17 @@ class AccountViewModel extends ChangeNotifier with SafeNotifier {
     notifyListeners();
   }
 
-  /// Kết quả mong đợi là bị từ chối, nghĩa là storage.rules đang có tác dụng.
+  /// Kết quả mong đợi là bị từ chối, nghĩa là server báo cáo đang kiểm tra quyền.
   Future<void> probeForeignReport() async {
     probing = true;
     probeResult = null;
     notifyListeners();
     final code = await _s.storage.probeForeignReport();
-    // Tệp thử không tồn tại: object-not-found nghĩa là rules đã cho phép đọc.
-    probeResult = code == 'allowed' || code == 'object-not-found'
-        ? 'CẢNH BÁO: rules cho phép đọc thư mục của UID khác. Hãy kiểm tra lại storage.rules.'
+    probeResult = code == 'allowed'
+        ? 'CẢNH BÁO: server cấp link báo cáo của UID khác. Hãy kiểm tra lại server báo cáo.'
         : code == 'unauthorized'
         ? 'Bị từ chối đúng như mong đợi (unauthorized).'
-        : 'Kết quả khác: $code. Kiểm tra mạng và Firebase Console.';
+        : 'Kết quả khác: $code. Kiểm tra mạng và server báo cáo.';
     probing = false;
     notifyListeners();
   }

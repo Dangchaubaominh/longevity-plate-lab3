@@ -70,6 +70,16 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
+  Future<String?> idToken() async {
+    try {
+      return await _auth.currentUser?.getIdToken();
+    } on FirebaseAuthException catch (e) {
+      // Token hết hạn mà mất mạng thì không làm mới được, ví dụ network-request-failed.
+      throw AppFailure(e.code, e.message);
+    }
+  }
+
+  @override
   Future<void> signOut() async {
     await _ensureGoogleInit();
     // Đăng xuất cả Google để lần sau được chọn lại tài khoản.

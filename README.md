@@ -1,6 +1,6 @@
 # Longevity Plate
 
-App Flutter cho Lab 3: ghi nhận bữa ăn, lên kế hoạch tuần và đọc kiến thức ăn uống, xây dựng từ thiết kế Lab 2 và kết hợp 6 dịch vụ Firebase.
+App Flutter cho Lab 3: ghi nhận bữa ăn, lên kế hoạch tuần và đọc kiến thức ăn uống, xây dựng từ thiết kế Lab 2. App dùng 5 dịch vụ Firebase, còn phần lưu tệp dùng Cloudinary thay cho Cloud Storage vì Cloud Storage cần gói Blaze. Giảng viên đã cho phép thay thế này.
 
 Nội dung trong app là minh họa, không phải tư vấn y tế.
 
@@ -29,7 +29,7 @@ Chạy với Firebase thật trên Android: làm theo [docs/SETUP-FIREBASE.md](d
 - 3 luồng của Lab 2 trên 9 màn, kèm trạng thái tải, rỗng và lỗi
 - 3 màn thêm cho Lab 3: Đăng nhập, Tài khoản, Thông báo
 - Đăng nhập Google, chặn truy cập, tách dữ liệu theo tài khoản
-- Xuất báo cáo PDF 7 ngày và tải lên Cloud Storage, có tiến độ
+- Xuất báo cáo PDF 7 ngày và tải lên Cloudinary qua server báo cáo, có tiến độ
 - Thông báo FCM ở 3 trạng thái app, có lịch sử trong app
 - Analytics với 17 sự kiện, Crashlytics với lỗi non-fatal và custom key
 - Remote Config điều khiển số bài ở thư viện và mục món gợi ý
@@ -44,4 +44,4 @@ Chạy với Firebase thật trên Android: làm theo [docs/SETUP-FIREBASE.md](d
 | [docs/design-traceability.md](docs/design-traceability.md) | Đối chiếu màn hình và khác biệt so với Lab 2 |
 | [docs/SETUP-FIREBASE.md](docs/SETUP-FIREBASE.md) | Cấu hình Firebase, cách kiểm tra từng dịch vụ |
 | [docs/test-cases.md](docs/test-cases.md) | Test tự động, ca thủ công, ca ARTEMIS, danh sách bằng chứng |
-| [firebase/storage.rules](firebase/storage.rules) | Quy tắc bảo mật Cloud Storage |
+| [server/README.md](server/README.md) | Server báo cáo trên Cloudflare Workers, giữ vai trò của storage.rules |

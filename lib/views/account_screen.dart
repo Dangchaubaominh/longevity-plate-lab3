@@ -189,7 +189,7 @@ class _DemoArea extends StatelessWidget {
                   },
             child: const Text('Sao chép token'),
           ),
-          const _DemoHeading('Cloud Storage'),
+          const _DemoHeading('Lưu trữ báo cáo (Cloudinary)'),
           OutlinedButton(
             key: const Key('storage-probe'),
             onPressed: vm.probing ? null : vm.probeForeignReport,

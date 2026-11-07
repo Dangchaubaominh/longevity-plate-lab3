@@ -1,6 +1,6 @@
 # Kiến trúc
 
-App dùng MVVM với Provider. View không gọi Firebase SDK, chỉ `lib/services/firebase/` mới import các gói Firebase.
+App dùng MVVM với Provider. View không gọi Firebase SDK, chỉ `lib/services/firebase/` mới import các gói Firebase. Phần lưu báo cáo nằm ở `lib/services/cloud/`, gọi server báo cáo và Cloudinary qua HTTP.
 
 ```mermaid
 flowchart LR
@@ -8,9 +8,12 @@ flowchart LR
   VM --> I["Interface<br/>service_interfaces.dart"]
   VM --> R["Repository<br/>repositories.dart"]
   I --> F["Firebase<br/>lib/services/firebase"]
+  I --> C["Lưu báo cáo<br/>lib/services/cloud"]
   I --> FK["Giả lập<br/>fake_services.dart"]
   R --> P["SharedPreferences<br/>khóa theo uid"]
   F --> SDK["Firebase SDK"]
+  C --> W["Server báo cáo<br/>server/"]
+  C --> CL["Cloudinary"]
 ```
 
 ## Thư mục
@@ -21,7 +24,9 @@ flowchart LR
 | `lib/core` | Ngày giờ, xử lý chữ, kiểm tra route thông báo |
 | `lib/models`, `lib/data` | Model và nội dung minh họa |
 | `lib/services` | Interface, repository, tạo PDF, bản giả lập |
-| `lib/services/firebase` | Hiện thực cho 6 dịch vụ Firebase |
+| `lib/services/firebase` | Hiện thực cho 5 dịch vụ Firebase |
+| `lib/services/cloud` | Tải báo cáo lên Cloudinary qua server báo cáo |
+| `server` | Server báo cáo chạy trên Cloudflare Workers, xem [server/README.md](../server/README.md) |
 | `lib/viewmodels` | Trạng thái và logic từng màn |
 | `lib/views` | Giao diện |
 
@@ -37,12 +42,12 @@ flowchart LR
 
 **Giả lập lỗi có kiểm soát.** Dữ liệu local hiếm khi lỗi thật, nên `FaultInjector` cho phép bật lỗi một lần từ Khu vực trình diễn. Lỗi đi qua đúng nhánh xử lý thật và "Thử lại" sẽ thành công.
 
-## Sáu dịch vụ Firebase
+## Sáu dịch vụ của đề
 
 | Dịch vụ | Interface | ViewModel dùng | Xử lý lỗi |
 |---|---|---|---|
 | Authentication + Google | `AuthService` | `SessionViewModel` | Phân biệt hủy, mất mạng, thiếu cấu hình. Hủy không ghi Crashlytics |
-| Cloud Storage | `ReportStorageService` | `ReportViewModel`, `AccountViewModel` | Báo lỗi và có Thử lại. Giới hạn thử lại của SDK còn 30 giây |
+| Lưu trữ tệp (Cloudinary thay Cloud Storage) | `ReportStorageService` | `ReportViewModel`, `AccountViewModel` | Báo lỗi và có Thử lại. Mỗi lần gọi mạng chờ tối đa 30 giây |
 | Cloud Messaging | `MessagingService` | `NotificationsViewModel` | Từ chối quyền có banner hướng dẫn. Route lạ về S12 |
 | Analytics | `AnalyticsService` | Hầu hết ViewModel, router | Xem [analytics-plan.md](analytics-plan.md) |
 | Crashlytics | `CrashService` | Mọi nhánh `catch` | Non-fatal kèm `reason`, user ID và custom key `route` |
@@ -75,15 +80,42 @@ Handler nền chạy ở isolate khác và chưa biết `uid`, nên ghi vào hà
 
 Dữ liệu `route` đến từ bên ngoài nên phải qua `resolvePushRoute`. Chỉ các tab, S12, bài viết và công thức có thật mới được đi tới.
 
-## Cloud Storage
+## Lưu trữ báo cáo trên Cloudinary
 
-Báo cáo PDF lưu tại `reports/{uid}/meal-report-<timestamp>.pdf`. [storage.rules](../firebase/storage.rules) chỉ cho chủ `uid` đọc và tạo tệp PDF dưới 5 MB, mọi đường dẫn khác bị từ chối.
+Từ 03/02/2026, Firebase Cloud Storage cần gói Blaze, mà nhóm không có tài khoản thanh toán. Giảng viên cho phép thay bằng Cloudinary hoặc AWS S3, và nhóm chọn Cloudinary vì gói miễn phí không cần thẻ.
 
-Download URL có token nên ai có đường dẫn đều mở được, kể cả không qua rules. Đề yêu cầu hiển thị URL nên app giữ tính năng này. Không nên chia sẻ URL của báo cáo chứa dữ liệu thật.
+Cloudinary không biết ai đang đăng nhập Firebase. Vì vậy, một server nhỏ trong [server/](../server/README.md) giữ khóa bí mật của Cloudinary và kiểm tra quyền thay cho storage.rules. App không bao giờ có khóa bí mật này.
+
+```mermaid
+sequenceDiagram
+  participant A as App
+  participant S as Server báo cáo
+  participant C as Cloudinary
+  A->>S: POST /reports/sign, kèm ID token và tên tệp
+  S->>S: Kiểm tra ID token, lấy uid
+  S-->>A: Tham số đã ký cho reports/<uid>/
+  A->>C: Tải PDF lên kèm chữ ký
+  C-->>A: Đã lưu, kiểu authenticated
+  A->>S: POST /reports/url, kèm ID token và publicId
+  S-->>A: Link tải hạn 15 phút, chỉ khi publicId thuộc uid
+```
+
+| Quy tắc trong storage.rules cũ | Nay nằm ở |
+|---|---|
+| Chỉ chủ `uid` được tạo tệp | Server chỉ ký cho `reports/<uid trong token>/`, không dùng uid do app gửi |
+| Chỉ chủ `uid` được đọc | Tệp kiểu `authenticated` không mở được bằng đường dẫn thường. Server chỉ cấp link cho tệp của uid trong token, uid khác bị trả 403 |
+| Chỉ nhận PDF | `allowed_formats=pdf` nằm trong chữ ký, Cloudinary đọc nội dung tệp để kiểm tra |
+| Dưới 5 MB | Không có giới hạn riêng. Áp dụng giới hạn kích thước tệp của gói Cloudinary |
+| Không ghi đè tệp cũ | `overwrite=false` nằm trong chữ ký |
+
+Đề yêu cầu đưa `firebase/storage.rules` vào repo (trang 10). Vì đã bỏ Firebase Storage nên tệp đó cũng bỏ, và các quy tắc tương đương nằm trong [server/src/index.js](../server/src/index.js).
+
+Tiến độ tải lên được tính theo số byte đã đưa cho http client, nên chỉ gần đúng với số byte đã đi qua mạng. Link tải hết hạn sau 15 phút. Muốn mở lại báo cáo sau thời gian đó thì phải xuất lại.
 
 ## Giới hạn đã biết
 
 - Dữ liệu không đồng bộ giữa các thiết bị.
+- Xuất báo cáo cần server báo cáo đang chạy. Server lỗi hoặc thiếu `REPORT_API_URL` khi build thì app báo lỗi và cho Thử lại.
 - Không có server gửi FCM. Kiểm thử bằng công cụ gửi thử trên Firebase Console.
 - `getToken()` đã bị đánh dấu deprecated ở `firebase_messaging` 17. App vẫn dùng vì form gửi thử cần registration token. Cần chuyển sang `register()` và `onRegistered` nếu có backend.
 - Khu vực trình diễn hiện ở mọi bản build để phục vụ lab. Bản phát hành thật phải ẩn đi.

@@ -46,6 +46,9 @@ class FakeAuthService implements AuthService {
     _user = null;
     _controller.add(null);
   }
+
+  @override
+  Future<String?> idToken() async => _user == null ? null : 'fake-id-token';
 }
 
 class FakeReportStorageService implements ReportStorageService {

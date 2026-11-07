@@ -28,8 +28,8 @@ Mỗi sự kiện dưới đây trả lời một câu hỏi sản phẩm và g�
 | `recipe_view` | Tải xong S07 | `item_id` (String) | Món nào được quan tâm? | F03 |
 | `plan_slot_saved` | Lưu kế hoạch thành công (S07) | `meal` (String), `action` (String: `add`, `replace`), `source` (String: `article`, `planner`), `duration_ms` (int) | Có đạt SC03 không? Người dùng thêm mới hay thay món? | F03, SC03 ≤ 120s |
 | `plan_save_failed` | Lưu kế hoạch thất bại (S07) | `meal` (String) | Tỷ lệ lỗi khi lưu kế hoạch? | F03, nhánh lỗi |
-| `report_exported` | Tải báo cáo lên Storage thành công | `meal_count` (int), `size_kb` (int) | Tính năng báo cáo có được dùng không? | Storage |
-| `report_export_failed` | Tạo hoặc tải báo cáo thất bại | `code` (String) | Lỗi nào hay gặp nhất? | Storage, nhánh lỗi |
+| `report_exported` | Tải báo cáo lên Cloudinary thành công | `meal_count` (int), `size_kb` (int) | Tính năng báo cáo có được dùng không? | Lưu trữ báo cáo |
+| `report_export_failed` | Tạo hoặc tải báo cáo thất bại | `code` (String) | Lỗi nào hay gặp nhất? | Lưu trữ báo cáo, nhánh lỗi |
 | `notification_opened` | Chạm thông báo hoặc mục trong S12 | `source` (String: `system`, `foreground`, `history`), `target` (String) | Thông báo có dẫn người dùng vào app không? | FCM |
 
 ## Cách đo các tiêu chí

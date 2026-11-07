@@ -2,13 +2,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../services/app_failure.dart';
+import '../services/cloud/cloudinary_report_service.dart';
 import '../services/fake_services.dart';
 import '../services/firebase/firebase_analytics_service.dart';
 import '../services/firebase/firebase_auth_service.dart';
 import '../services/firebase/firebase_crash_service.dart';
 import '../services/firebase/firebase_messaging_service.dart';
 import '../services/firebase/firebase_remote_config_service.dart';
-import '../services/firebase/firebase_storage_service.dart';
 import '../services/report_builder.dart';
 import '../services/repositories.dart';
 import '../services/service_interfaces.dart';
@@ -36,11 +36,17 @@ class AppServices {
 
   factory AppServices.firebase(SharedPreferences prefs) {
     final faults = FaultInjector();
+    final auth = FirebaseAuthService();
     return AppServices(
       prefs: prefs,
       faults: faults,
-      auth: FirebaseAuthService(),
-      storage: FirebaseReportStorageService(faults),
+      auth: auth,
+      storage: CloudinaryReportStorageService(
+        auth: auth,
+        faults: faults,
+        // Địa chỉ server báo cáo, truyền khi build: --dart-define=REPORT_API_URL=...
+        apiBase: const String.fromEnvironment('REPORT_API_URL'),
+      ),
       messaging: FirebaseMessagingService(),
       analytics: FirebaseAnalyticsService(),
       crash: FirebaseCrashService(),

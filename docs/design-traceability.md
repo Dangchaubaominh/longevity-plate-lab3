@@ -33,7 +33,7 @@ Nguồn thiết kế là repo `prm323-lab2`: `design/DESIGN.md`, `design/screen-
 |---|---|---|
 | 1 | Thêm S10, S11, S12. Lab 2 ghi rõ không có đăng nhập, hồ sơ hay màn thứ mười | Lab 3 bắt buộc Auth, đăng xuất, lịch sử thông báo và khu vực trình diễn |
 | 2 | F01 có thêm bước đăng nhập giữa S01 và S02 | Yêu cầu chặn truy cập và tách dữ liệu theo tài khoản |
-| 3 | Thêm nút "Xuất báo cáo PDF" ở S04 | Lab 3 yêu cầu tải tệp lên Cloud Storage |
+| 3 | Thêm nút "Xuất báo cáo PDF" ở S04 | Lab 3 yêu cầu tải tệp lên kho lưu trữ đám mây. Nhóm dùng Cloudinary thay Cloud Storage |
 | 4 | Header của tab có thêm chuông và tài khoản | Cần lối vào S11, S12 |
 | 5 | Dùng font Roboto thay vì Noto Sans | Repo Lab 2 không có tệp TTF của Noto Sans. Roboto có sẵn và hỗ trợ tiếng Việt |
 | 6 | Bữa do người dùng nhập dùng icon thay cho ảnh | Dữ liệu nhập tay không có ảnh |

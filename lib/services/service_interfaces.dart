@@ -21,6 +21,10 @@ abstract interface class AuthService {
   /// Ném [SignInCancelled] khi người dùng hủy, `AppFailure` khi lỗi khác.
   Future<void> signInWithGoogle();
   Future<void> signOut();
+
+  /// ID token Firebase của người đang đăng nhập, gửi cho server báo cáo để
+  /// server tự biết UID. Trả về null khi chưa đăng nhập.
+  Future<String?> idToken();
 }
 
 class UploadProgress {
@@ -37,7 +41,7 @@ abstract interface class ReportStorageService {
     required Uint8List bytes,
   });
 
-  /// Thử đọc báo cáo của UID khác để chứng minh storage.rules đang chặn.
+  /// Thử xin link báo cáo của UID khác để chứng minh server đang chặn.
   /// Trả về mã kết quả, ví dụ `unauthorized`.
   Future<String> probeForeignReport();
 }

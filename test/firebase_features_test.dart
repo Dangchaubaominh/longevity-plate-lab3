@@ -251,7 +251,7 @@ void main() {
     });
   });
 
-  group('Cloud Storage và báo cáo PDF', () {
+  group('Lưu trữ và báo cáo PDF', () {
     late AppServices services;
 
     setUp(() async {

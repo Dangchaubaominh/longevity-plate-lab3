@@ -43,7 +43,7 @@ class _ReportSheet extends StatelessWidget {
               const Text('Xuất báo cáo PDF', style: AppText.heading),
               const SizedBox(height: AppSpace.xs),
               const Text(
-                'Tổng hợp bữa ăn trong 7 ngày gần nhất và lưu vào không gian riêng của tài khoản trên Cloud Storage.',
+                'Tổng hợp bữa ăn trong 7 ngày gần nhất và lưu vào không gian riêng của tài khoản trên Cloudinary.',
                 style: AppText.caption,
               ),
               const SizedBox(height: AppSpace.lg),

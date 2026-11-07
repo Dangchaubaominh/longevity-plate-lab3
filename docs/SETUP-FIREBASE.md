@@ -56,16 +56,11 @@ Lấy các giá trị ở mục `Variant: debug`.
 
 Nếu thiếu SHA hoặc tệp cũ, màn đăng nhập báo "Đăng nhập Google chưa được cấu hình đúng cho bản cài này".
 
-## 4. Cloud Storage
+## 4. Lưu báo cáo trên Cloudinary
 
-1. Nâng dự án lên gói Blaze. [Từ 03/02/2026](https://firebase.google.com/docs/storage/faqs-storage-changes-announced-sept-2024), dự án ở gói Spark không truy cập được bucket nào. Blaze cần tài khoản thanh toán nhưng vẫn có hạn mức miễn phí.
-2. Đặt cảnh báo ngân sách trên Google Cloud Console.
-3. Console, Storage, Get started. Chọn vùng `US-CENTRAL1`, `US-EAST1` hoặc `US-WEST1` để dùng được hạn mức Always Free.
-4. Triển khai rules từ repo:
+[Từ 03/02/2026](https://firebase.google.com/docs/storage/faqs-storage-changes-announced-sept-2024), Firebase Cloud Storage cần gói Blaze. Nhóm không có tài khoản thanh toán nên dùng Cloudinary thay thế, theo hướng dẫn của giảng viên.
 
-```bash
-firebase deploy --only storage
-```
+Làm theo [server/README.md](../server/README.md): tạo tài khoản Cloudinary và Cloudflare, triển khai server báo cáo, rồi ghi lại địa chỉ server để dùng khi build app.
 
 ## 5. Remote Config
 
@@ -78,8 +73,10 @@ Console, Remote Config, tạo hai tham số rồi Publish:
 
 ## 6. Chạy app
 
+Thay địa chỉ bằng địa chỉ server báo cáo của nhóm. Thiếu `REPORT_API_URL` thì mọi thứ khác vẫn chạy, chỉ riêng xuất báo cáo báo lỗi.
+
 ```bash
-flutter run
+flutter run --dart-define=REPORT_API_URL=https://longevity-plate-reports.<tên>.workers.dev
 ```
 
 Xem trước giao diện không cần Firebase:
@@ -93,7 +90,7 @@ flutter run -d chrome --dart-define=USE_FAKE_SERVICES=true
 | Dịch vụ | Cách kiểm tra |
 |---|---|
 | Auth | Đăng nhập, hủy, tắt mạng rồi đăng nhập, đăng xuất. Xem người dùng ở Authentication, Users |
-| Storage | S04, Xuất báo cáo PDF. Xem tệp ở `reports/<uid>/`. S11, thử đọc báo cáo của UID khác phải bị từ chối. Tắt mạng rồi xuất báo cáo |
+| Lưu trữ báo cáo | S04, Xuất báo cáo PDF. Xem tệp trong Media Library của Cloudinary, thư mục `reports/<uid>/`. S11, thử đọc báo cáo của UID khác phải bị từ chối. Tắt mạng rồi xuất báo cáo |
 | FCM | S11, sao chép token. Console, Messaging, gửi thử với token này ở 3 trạng thái app, kèm custom data `route`, ví dụ `/library/who-diverse`. Trên Android 13+ thử từ chối quyền |
 | Analytics | Làm theo [analytics-plan.md](analytics-plan.md) với DebugView |
 | Crashlytics | S11, ghi lỗi non-fatal rồi gây crash thử nghiệm. Mở lại app để báo cáo được gửi đi |
@@ -104,3 +101,5 @@ flutter run -d chrome --dart-define=USE_FAKE_SERVICES=true
 Theo tài liệu Firebase, `google-services.json` và `firebase_options.dart` là cấu hình phía client, không phải khóa bí mật. Quyền truy cập do rules và Auth kiểm soát. Nên giới hạn API key theo package và SHA trên Google Cloud Console.
 
 Tuyệt đối không commit service account, keystore, `key.properties`, `.env` hoặc khóa API của ARTEMIS. Các mẫu này đã có trong `.gitignore`.
+
+API secret của Cloudinary chỉ đặt bằng `npx wrangler secret put`, không ghi vào repo. Cloud name và API key không phải khóa bí mật, nhưng cũng đặt theo cách đó cho gọn.
