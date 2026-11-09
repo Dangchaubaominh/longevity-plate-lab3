@@ -178,7 +178,7 @@ class ContentRepository {
   Future<Article> article(String id) async {
     await Future<void>.delayed(_latency);
     _faults.check(FaultPoint.loadDetail);
-    final found = articlesData.where((a) => a.id == id).firstOrNull;
+    final found = articleById(id);
     if (found == null) throw const AppFailure('article_not_found');
     return found;
   }
