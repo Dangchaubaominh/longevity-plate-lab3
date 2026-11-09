@@ -44,4 +44,5 @@ Chạy với Firebase thật trên Android: làm theo [docs/SETUP-FIREBASE.md](d
 | [docs/design-traceability.md](docs/design-traceability.md) | Đối chiếu màn hình và khác biệt so với Lab 2 |
 | [docs/SETUP-FIREBASE.md](docs/SETUP-FIREBASE.md) | Cấu hình Firebase, cách kiểm tra từng dịch vụ |
 | [docs/test-cases.md](docs/test-cases.md) | Test tự động, ca thủ công, ca ARTEMIS, danh sách bằng chứng |
+| [docs/code-review.md](docs/code-review.md) | Kết quả AI Code Review, quyết định cho từng phát hiện và commit sửa |
 | [server/README.md](server/README.md) | Server báo cáo trên Cloudflare Workers, giữ vai trò của storage.rules |

@@ -119,3 +119,4 @@ Tiến độ tải lên được tính theo số byte đã đưa cho http client
 - Không có server gửi FCM. Kiểm thử bằng công cụ gửi thử trên Firebase Console.
 - `getToken()` đã bị đánh dấu deprecated ở `firebase_messaging` 17. App vẫn dùng vì form gửi thử cần registration token. Cần chuyển sang `register()` và `onRegistered` nếu có backend.
 - Khu vực trình diễn hiện ở mọi bản build để phục vụ lab. Bản phát hành thật phải ẩn đi.
+- Hàng chờ thông báo do handler nền ghi có thể mất tin nếu tin đến đúng lúc app đang chuyển hàng chờ sang lịch sử, vì SharedPreferences không có khóa giữa các isolate. Xem CR-02 trong [code-review.md](code-review.md).
