@@ -19,6 +19,27 @@ flutter test
 
 Các test này kiểm tra logic app với bản giả lập. Chúng không chứng minh Firebase thật hoạt động, nên vẫn phải chạy phần thủ công bên dưới trên thiết bị.
 
+## Bản build chốt để chụp minh chứng
+
+Ảnh, video và lần chạy ARTEMIS cho báo cáo đều dùng bản này. Nếu phải sửa code, build bản mới, cập nhật bảng và chụp lại các ca bị ảnh hưởng.
+
+| Mục | Giá trị |
+|---|---|
+| Commit | `6159cd2`, tag `lab3-evidence` |
+| Ngày build | 09/11/2026 |
+| Loại | APK release, ký bằng khóa debug của máy build. SHA của khóa đã có trên Firebase |
+| Lệnh | `flutter build apk --release --dart-define=REPORT_API_URL=https://longevity-plate-reports.longevity-plate-reports.workers.dev` |
+| SHA-256 của APK | `13244D0B9BF96205288B31D8A3649710092B030099E184ACA67F4B202C9376E1` |
+| Server báo cáo | Cloudflare Workers, Version ID `783e590c-fcf2-4c5c-9127-ca885ce3d686` |
+| Remote Config đang publish | `max_knowledge_results = 1`, `suggested_recipes_enabled = false` |
+
+Khác bản debug: nút "Tải lại cấu hình" chỉ tải Remote Config tối đa một lần mỗi giờ. Giá trị mới publish trên Console vẫn đến ngay qua cập nhật realtime.
+
+Thử nhanh trên emulator ngày 09/11, tài khoản kiểm thử:
+
+- **Đạt:** mở app (khoảng 3,3 giây), đăng xuất rồi đăng nhập Google, ghi bữa, xuất báo cáo PDF (link trả về PDF), kiểm tra UID khác bị từ chối, ghi non-fatal, crash thử rồi mở lại app.
+- **Chưa kiểm tra:** nhận tin FCM và đổi Remote Config trên Console, vì cần thao tác trên Console. Crash và non-fatal của bản này chưa được xác nhận trên Console.
+
 ## Kiểm thử thủ công mỗi dịch vụ
 
 Điền kết quả sau khi chạy trên thiết bị Android thật hoặc emulator.
