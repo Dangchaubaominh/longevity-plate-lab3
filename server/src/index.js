@@ -126,6 +126,13 @@ export async function verifyIdToken(token, projectId, deps = {}) {
 
   const now = nowSeconds(deps);
   if (
+    header === null ||
+    typeof header !== 'object' ||
+    payload === null ||
+    typeof payload !== 'object' ||
+    // Tài liệu Firebase yêu cầu iat và auth_time ở quá khứ, nên phải có mặt.
+    typeof payload.iat !== 'number' ||
+    typeof payload.auth_time !== 'number' ||
     header.alg !== 'RS256' ||
     typeof header.kid !== 'string' ||
     payload.aud !== projectId ||

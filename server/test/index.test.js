@@ -166,6 +166,10 @@ test('thiếu hoặc sai token thì trả 401', async () => {
     'hết hạn': await makeToken({ exp: NOW - 1 }),
     'khóa lạ': await makeToken({}, { kid: 'unknown' }),
     'thuật toán khác': await makeToken({}, { alg: 'HS256' }),
+    'thiếu iat': await makeToken({ iat: undefined }),
+    'thiếu auth_time': await makeToken({ auth_time: undefined }),
+    'nội dung là null': `${head}.${segment(null)}.${otherSignature}`,
+    'header là null': `${segment(null)}.${body}.${otherSignature}`,
   };
   for (const [name, token] of Object.entries(cases)) {
     const { status } = await call('/reports/sign', { fileName: 'meal-report-1762500000000.pdf' }, token);
