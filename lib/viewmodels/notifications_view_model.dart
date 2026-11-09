@@ -19,9 +19,15 @@ class NotificationsViewModel extends ChangeNotifier with SafeNotifier {
     ];
     _onSessionChanged();
     _refreshPermission();
-    _s.messaging.initialMessage().then((message) {
-      if (message != null) _onOpened(message);
-    });
+    _s.messaging.initialMessage().then(
+      (message) {
+        if (message != null) _onOpened(message);
+      },
+      // Lỗi ở đây không làm app dừng, nên ghi non-fatal thay vì để thành crash.
+      onError: (Object e, StackTrace st) {
+        _s.crash.recordError(e, st, reason: 'initial_message_failed');
+      },
+    );
   }
 
   final AppServices _s;
