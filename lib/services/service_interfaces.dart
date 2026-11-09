@@ -71,6 +71,7 @@ abstract interface class MessagingService {
   Future<String?> token();
 }
 
+/// Không ném lỗi: ViewModel gọi Analytics ngay sau khi đã lưu dữ liệu.
 abstract interface class AnalyticsService {
   Future<void> logEvent(String name, [Map<String, Object> parameters]);
   Future<void> logScreen(String name);
