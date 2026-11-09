@@ -17,7 +17,8 @@ class HomeViewModel extends ChangeNotifier with SafeNotifier {
 
   final AppServices _s;
   final String _uid;
-  final date = today();
+  // Tab Hôm nay được giữ trong IndexedStack, nên phải tính lại khi app mở qua đêm.
+  DateTime get date => today();
 
   LoadState state = LoadState.loading;
   List<MealEntry> meals = const [];
