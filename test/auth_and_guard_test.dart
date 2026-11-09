@@ -153,6 +153,7 @@ void main() {
     expect(app.path, '/login');
     expect(find.text('Cơm rau'), findsNothing);
     expect(app.analytics.userId, isNull);
+    expect(app.crash.userId, isNull);
 
     // Đăng nhập lại vào shell mới: state cũ đã bị hủy, dữ liệu theo uid vẫn còn.
     await app.tapKey('login-google');

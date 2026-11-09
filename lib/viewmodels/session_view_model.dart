@@ -43,7 +43,7 @@ class SessionViewModel extends ChangeNotifier {
   // Chỉ gửi uid, không gửi email hay tên lên Analytics và Crashlytics.
   void _applyIdentity() {
     _s.analytics.setUserId(uid);
-    if (uid != null) _s.crash.setUserId(uid!);
+    _s.crash.setUserId(uid);
   }
 
   Future<void> signIn() async {

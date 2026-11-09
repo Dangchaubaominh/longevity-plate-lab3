@@ -22,7 +22,8 @@ class FirebaseCrashService implements CrashService {
   }) => _crashlytics.recordError(error, stack, reason: reason);
 
   @override
-  Future<void> setUserId(String uid) => _crashlytics.setUserIdentifier(uid);
+  Future<void> setUserId(String? uid) =>
+      _crashlytics.setUserIdentifier(uid ?? '');
 
   @override
   Future<void> setKey(String key, String value) =>

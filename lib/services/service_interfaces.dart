@@ -80,7 +80,8 @@ abstract interface class AnalyticsService {
 
 abstract interface class CrashService {
   Future<void> recordError(Object error, StackTrace? stack, {required String reason});
-  Future<void> setUserId(String uid);
+  /// null khi đăng xuất, để lỗi sau đó không bị gắn cho người dùng trước.
+  Future<void> setUserId(String? uid);
   Future<void> setKey(String key, String value);
   void testCrash();
 }

@@ -157,7 +157,7 @@ class FakeCrashService implements CrashService {
   }
 
   @override
-  Future<void> setUserId(String uid) async => userId = uid;
+  Future<void> setUserId(String? uid) async => userId = uid;
 
   @override
   Future<void> setKey(String key, String value) async => keys[key] = value;
