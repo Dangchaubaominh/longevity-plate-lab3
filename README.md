@@ -4,6 +4,42 @@ App Flutter cho Lab 3: ghi nhận bữa ăn, lên kế hoạch tuần và đọc
 
 Nội dung trong app là minh họa, không phải tư vấn y tế.
 
+Mã nguồn Lab 3 nằm ở nhánh `feature/lab3-firebase`. Bản đã chốt để nộp là tag [`lab3-evidence`](https://github.com/Dangchaubaominh/longevity-plate-lab3/tree/lab3-evidence).
+
+## Cài và dùng thử
+
+Cần điện thoại Android có Google Play và một tài khoản Google.
+
+1. Lấy tệp APK từ nhóm hoặc từ mục Releases của repo, nếu nhóm đã đăng.
+2. Mở tệp trên điện thoại và cho phép cài từ nguồn này. Play Protect có thể cảnh báo vì app không đến từ Play Store.
+3. Mở app, bấm **Bắt đầu**, chọn **Tiếp tục với Google**.
+4. Chọn ít nhất một mục tiêu rồi bấm **Hoàn tất**.
+
+| Tab hoặc màn | Việc làm được |
+|---|---|
+| Hôm nay | Xem tổng quan trong ngày, ghi nhanh bữa ăn |
+| Nhật ký | Thêm bữa ăn, xem theo ngày, xuất báo cáo PDF 7 ngày gần nhất |
+| Kế hoạch | Xếp món vào từng bữa trong tuần |
+| Kiến thức | Tìm và đọc bài viết, lập kế hoạch từ bài đang đọc |
+| Biểu tượng chuông | Xem lịch sử thông báo, bật quyền thông báo |
+| Biểu tượng tài khoản | Đổi mục tiêu, đăng xuất, mở Khu vực trình diễn |
+
+Lưu ý khi dùng:
+
+- Dữ liệu chỉ lưu trên điện thoại đó, tách riêng theo tài khoản và không đồng bộ giữa các thiết bị.
+- Xuất báo cáo cần có mạng. Link tải báo cáo hết hạn sau 15 phút, sau đó phải xuất lại.
+- Khu vực trình diễn chỉ để kiểm thử: các lỗi ở đó là giả lập, còn nút "Gây crash thử nghiệm" sẽ đóng app thật.
+
+## Chia sẻ cho người khác
+
+| Người nhận | Cần làm |
+|---|---|
+| Người dùng thử | Gửi tệp APK. Chỉ gửi trong nhóm và cho giảng viên, vì mọi lượt xuất báo cáo đều dùng hạn mức miễn phí của Cloudinary |
+| Thành viên chạy mã nguồn | Clone nhánh `feature/lab3-firebase`, rồi thêm SHA của khóa debug trên máy mình vào Firebase theo [docs/SETUP-FIREBASE.md](docs/SETUP-FIREBASE.md). Thiếu SHA thì đăng nhập Google báo lỗi cấu hình |
+| Giảng viên xem Firebase | Firebase Console, Project settings, Users and permissions, thêm email với quyền Viewer |
+
+Không chia sẻ API Secret của Cloudinary, tài khoản Cloudflare hay mật khẩu tài khoản kiểm thử. Ảnh minh chứng phải che email, UID và FCM token.
+
 ## Chạy nhanh
 
 Xem giao diện với dịch vụ giả lập, không cần Firebase:
