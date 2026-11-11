@@ -7,11 +7,14 @@ import '../app/theme.dart';
 import '../core/dates.dart';
 import '../core/load_state.dart';
 import '../models/models.dart';
+import '../services/meal_photo_service.dart';
 import '../viewmodels/add_meal_view_model.dart';
 import '../viewmodels/meal_log_view_model.dart';
 import '../viewmodels/session_view_model.dart';
 import 'report_sheet.dart';
 import 'widgets/common.dart';
+import 'widgets/meal_photo.dart';
+import 'widgets/wellness.dart';
 
 /// S04 Nhật ký bữa ăn.
 class MealLogScreen extends StatelessWidget {
@@ -47,9 +50,7 @@ class _MealLogViewState extends State<_MealLogView> {
 
   Future<void> _add(MealLogViewModel vm) async {
     vm.logAddStart();
-    final saved = await context.push<bool>(
-      '/log/add?date=${dateKey(vm.date)}',
-    );
+    final saved = await context.push<bool>('/log/add?date=${dateKey(vm.date)}');
     if (saved != true) return;
     vm.markSaved();
     // Banner nằm đầu danh sách, nhật ký dài thì phải cuộn lên mới thấy.
@@ -188,11 +189,33 @@ class _MealCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final uid = context.read<SessionViewModel>().uid!;
     return AppCard(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const IconTile(Icons.restaurant),
+          if (meal.imagePath != null)
+            SizedBox(
+              width: 72,
+              height: 72,
+              child: Semantics(
+                button: true,
+                label: 'Xem ảnh bữa ăn',
+                child: InkWell(
+                  key: Key('meal-photo-${meal.id}'),
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: () => showMealPhoto(context, uid, meal.imagePath!),
+                  child: MealPhotoView(
+                    key: ValueKey('$uid:${meal.imagePath}'),
+                    uid: uid,
+                    reference: meal.imagePath!,
+                    compact: true,
+                  ),
+                ),
+              ),
+            )
+          else
+            const IconTile(Icons.restaurant),
           const SizedBox(width: AppSpace.md),
           Expanded(
             child: Column(
@@ -306,6 +329,8 @@ class _AddMealViewState extends State<_AddMealView> {
       ),
     );
     if (discard != true || !mounted) return;
+    await vm.discard();
+    if (!mounted) return;
     vm.logDiscard();
     context.pop();
   }
@@ -313,112 +338,121 @@ class _AddMealViewState extends State<_AddMealView> {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<AddMealViewModel>();
-    return PopScope(
-      canPop: !vm.isDirty && !vm.saving,
-      onPopInvokedWithResult: (didPop, _) {
-        if (!didPop && !vm.saving) _confirmDiscard(vm);
-      },
-      child: Scaffold(
-        appBar: const BackAppBar(title: 'Thêm bữa ăn', showDemoPill: true),
-        // CTA nằm trong body, không dùng bottomNavigationBar, để không bị bàn
-        // phím che khi đang nhập tên món.
-        body: Column(
-          children: [
-            Expanded(
-              child: AbsorbPointer(
-                absorbing: vm.saving,
-                child: PageList(
+    final services = context.read<AppServices>();
+    return Theme(
+      data: Wellness.theme(context),
+      child: PopScope(
+        canPop: !vm.isDirty && !vm.busy,
+        onPopInvokedWithResult: (didPop, _) {
+          if (!didPop && !vm.busy) _confirmDiscard(vm);
+        },
+        child: Scaffold(
+          appBar: WellnessHeader(
+            title: 'Thêm bữa ăn',
+            onBack: vm.busy ? null : () => Navigator.of(context).maybePop(),
+            demo: services.isFake && !services.isLocal,
+          ),
+          // CTA nằm trong body, không dùng bottomNavigationBar, để không bị bàn
+          // phím che khi đang nhập tên món.
+          body: Column(
+            children: [
+              Expanded(
+                child: AbsorbPointer(
+                  absorbing: vm.busy,
+                  child: PageList(
+                    children: [
+                      _dateCard(vm),
+                      const SizedBox(height: AppSpace.md),
+                      _typeCard(vm),
+                      const SizedBox(height: AppSpace.md),
+                      _photoCard(vm),
+                      const SizedBox(height: AppSpace.md),
+                      _descriptionCard(vm),
+                    ],
+                  ),
+                ),
+              ),
+              BottomCta(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    _dateCard(vm),
-                    const SizedBox(height: AppSpace.md),
-                    _typeCard(vm),
-                    const SizedBox(height: AppSpace.md),
-                    _descriptionCard(vm),
+                    if (vm.saveFailed) ...[
+                      StatusBanner(
+                        key: const Key('meal-save-error'),
+                        kind: BannerKind.error,
+                        message: 'Chưa lưu được bữa ăn.',
+                        detail: 'Nội dung vẫn được giữ. Thử lại để tiếp tục.',
+                        actions: [
+                          TextButton(
+                            onPressed: _descriptionFocus.requestFocus,
+                            child: const Text('Sửa nội dung'),
+                          ),
+                          TextButton(
+                            key: const Key('meal-retry'),
+                            onPressed: () => _submit(vm),
+                            child: const Text('Thử lại'),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: AppSpace.sm),
+                    ],
+                    FilledButton(
+                      key: const Key('meal-save'),
+                      onPressed: vm.busy ? null : () => _submit(vm),
+                      child: vm.saving
+                          ? const SavingButtonChild('Đang lưu…')
+                          : const Text('Lưu bữa ăn'),
+                    ),
                   ],
                 ),
               ),
-            ),
-            BottomCta(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (vm.saveFailed) ...[
-                    StatusBanner(
-                      key: const Key('meal-save-error'),
-                      kind: BannerKind.error,
-                      message: 'Chưa lưu được bữa ăn.',
-                      detail: 'Nội dung vẫn được giữ. Thử lại để tiếp tục.',
-                      actions: [
-                        TextButton(
-                          onPressed: _descriptionFocus.requestFocus,
-                          child: const Text('Sửa nội dung'),
-                        ),
-                        TextButton(
-                          key: const Key('meal-retry'),
-                          onPressed: () => _submit(vm),
-                          child: const Text('Thử lại'),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: AppSpace.sm),
-                  ],
-                  FilledButton(
-                    key: const Key('meal-save'),
-                    onPressed: vm.saving ? null : () => _submit(vm),
-                    child: vm.saving
-                        ? const SavingButtonChild('Đang lưu…')
-                        : const Text('Lưu bữa ăn'),
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _dateCard(AddMealViewModel vm) {
-    return AppCard(
+    return WellnessCard(
       key: _sectionKeys[MealField.date],
+      botanical: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Ngày ăn', style: AppText.label),
+          const WellnessSectionTitle('Ngày ăn', Icons.calendar_month_outlined),
           const SizedBox(height: AppSpace.sm),
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(
               key: const Key('meal-date'),
-              onPressed: () => _pickDate(vm),
+              onPressed: vm.busy ? null : () => _pickDate(vm),
               icon: const Icon(Icons.calendar_today_outlined),
-              label: Text(formatDate(vm.date)),
+              label: Text(
+                formatDate(vm.date),
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ),
-          const SizedBox(height: AppSpace.sm),
-          Text(
-            'Chỉ ghi nhận ngày hiện tại hoặc quá khứ (tối đa ${formatDate(today())}).',
-            style: AppText.caption,
-          ),
           if (vm.errors.contains(MealField.date))
-            const FieldError('Ngày ghi nhận không được vượt quá ngày hiện tại.'),
+            const FieldError(
+              'Ngày ghi nhận không được vượt quá ngày hiện tại.',
+            ),
         ],
       ),
     );
   }
 
   Widget _typeCard(AddMealViewModel vm) {
-    return AppCard(
+    return WellnessCard(
       key: _sectionKeys[MealField.type],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
-            children: [
-              Expanded(child: Text('Loại bữa ăn *', style: AppText.label)),
-              Text('Bắt buộc', style: AppText.caption),
-            ],
-          ),
+          const WellnessSectionTitle('Loại bữa ăn *', Icons.restaurant_rounded),
           const SizedBox(height: AppSpace.md),
           for (final row in const [
             [MealType.breakfast, MealType.lunch],
@@ -428,11 +462,33 @@ class _AddMealViewState extends State<_AddMealView> {
               children: [
                 for (final type in row) ...[
                   Expanded(
-                    child: ChoiceTile(
-                      key: Key('meal-type-${type.name}'),
-                      label: type.label,
+                    child: Semantics(
                       selected: vm.type == type,
-                      onTap: () => vm.setType(type),
+                      child: OutlinedButton(
+                        key: Key('meal-type-${type.name}'),
+                        onPressed: vm.busy ? null : () => vm.setType(type),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 12,
+                          ),
+                          backgroundColor: vm.type == type
+                              ? Wellness.sage
+                              : Wellness.paper,
+                          side: BorderSide(
+                            color: Wellness.forest,
+                            width: vm.type == type ? 2 : 1.1,
+                          ),
+                        ),
+                        child: Text(
+                          type.label,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   if (type != row.last) const SizedBox(width: AppSpace.sm),
@@ -450,21 +506,22 @@ class _AddMealViewState extends State<_AddMealView> {
   }
 
   Widget _descriptionCard(AddMealViewModel vm) {
-    return AppCard(
+    return WellnessCard(
       key: _sectionKeys[MealField.description],
+      botanical: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              const Expanded(
-                child: Text('Bạn đã ăn món gì? *', style: AppText.label),
-              ),
-              Text(
+          WellnessSectionTitle(
+            'Bạn đã ăn món gì? *',
+            Icons.ramen_dining_outlined,
+            trailing: Padding(
+              padding: const EdgeInsets.only(top: 3),
+              child: Text(
                 '${vm.length}/${AddMealViewModel.maxLength}',
                 style: AppText.caption,
               ),
-            ],
+            ),
           ),
           const SizedBox(height: AppSpace.sm),
           TextField(
@@ -475,6 +532,7 @@ class _AddMealViewState extends State<_AddMealView> {
             minLines: 2,
             maxLines: 4,
             onChanged: vm.setDescription,
+            style: Wellness.body.copyWith(color: Wellness.forest),
             decoration: const InputDecoration(
               hintText: 'Ví dụ: Cơm gạo lứt, rau luộc, đậu hũ…',
               counterText: '',
@@ -491,4 +549,191 @@ class _AddMealViewState extends State<_AddMealView> {
       ),
     );
   }
+
+  Widget _photoCard(AddMealViewModel vm) => WellnessCard(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        WellnessSectionTitle(
+          'Ảnh bữa ăn',
+          Icons.photo_camera_outlined,
+          trailing: vm.photoReference == null
+              ? null
+              : IconButton(
+                  key: const Key('photo-remove'),
+                  tooltip: 'Xóa ảnh',
+                  onPressed: vm.busy ? null : vm.removePhoto,
+                  icon: const Icon(
+                    Icons.delete_outline,
+                    color: Wellness.forest,
+                  ),
+                ),
+        ),
+        const SizedBox(height: 12),
+        if (vm.photoReference case final String reference)
+          AspectRatio(
+            aspectRatio: 1.65,
+            child: InkWell(
+              key: const Key('photo-preview'),
+              onTap: () => showMealPhoto(context, vm.uid, reference),
+              child: MealPhotoView(
+                key: ValueKey('${vm.uid}:$reference'),
+                uid: vm.uid,
+                reference: reference,
+              ),
+            ),
+          )
+        else
+          CustomPaint(
+            foregroundPainter: const DashedPhotoBorder(),
+            child: Container(
+              key: const Key('photo-placeholder'),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                gradient: const LinearGradient(
+                  colors: [Color(0xFFF4F5E9), Color(0xFFEDF2E2)],
+                ),
+              ),
+              child: Column(
+                children: [
+                  const _PhotoIllustration(),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Chụp hoặc chọn ảnh bữa ăn của bạn',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: Wellness.forest,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    'Thêm ảnh để dễ nhớ và theo dõi bữa ăn của bạn.',
+                    textAlign: TextAlign.center,
+                    style: Wellness.body.copyWith(fontSize: 13),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        const SizedBox(height: 12),
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: FilledButton.icon(
+                  key: const Key('photo-camera'),
+                  onPressed: vm.busy
+                      ? null
+                      : () => vm.pickPhoto(MealPhotoSource.camera),
+                  style: FilledButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 10,
+                    ),
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  icon: const Icon(Icons.photo_camera_outlined, size: 22),
+                  label: const Text('Chụp ảnh', textAlign: TextAlign.center),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: OutlinedButton.icon(
+                  key: const Key('photo-gallery'),
+                  onPressed: vm.busy
+                      ? null
+                      : () => vm.pickPhoto(MealPhotoSource.gallery),
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 10,
+                    ),
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  icon: const Icon(Icons.photo_library_outlined, size: 22),
+                  label: const Text(
+                    'Chọn từ thư viện',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        if (vm.pickingPhoto) ...[
+          const SizedBox(height: 12),
+          const LinearProgressIndicator(),
+          const SizedBox(height: 6),
+          const Text('Đang xử lý ảnh…', style: AppText.caption),
+        ],
+        if (vm.photoMessage != null) ...[
+          const SizedBox(height: 12),
+          StatusBanner(
+            key: const Key('photo-message'),
+            kind: vm.photoMessageIsError ? BannerKind.error : BannerKind.info,
+            message: vm.photoMessage!,
+          ),
+        ],
+      ],
+    ),
+  );
+}
+
+class _PhotoIllustration extends StatelessWidget {
+  const _PhotoIllustration();
+  @override
+  Widget build(BuildContext context) => SizedBox(
+    width: 120,
+    height: 65,
+    child: Stack(
+      alignment: Alignment.center,
+      children: [
+        Positioned(
+          left: 8,
+          top: 1,
+          child: Transform.rotate(
+            angle: -.24,
+            child: Container(
+              width: 58,
+              height: 46,
+              decoration: BoxDecoration(
+                color: const Color(0xFFD8E3BD),
+                border: Border.all(color: Colors.white, width: 4),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: const Icon(
+                Icons.landscape,
+                color: Color(0xFFA8BF84),
+                size: 34,
+              ),
+            ),
+          ),
+        ),
+        const Positioned(
+          right: 8,
+          bottom: 0,
+          child: Icon(
+            Icons.camera_alt_rounded,
+            size: 67,
+            color: Color(0xFF7C9F70),
+          ),
+        ),
+        const Positioned(
+          right: 31,
+          bottom: 20,
+          child: Icon(Icons.circle_outlined, size: 21, color: Colors.white),
+        ),
+      ],
+    ),
+  );
 }

@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "581640648798",
-    "project_id": "longevity-plate",
-    "storage_bucket": "longevity-plate.firebasestorage.app"
+    "project_number": "490880482076",
+    "project_id": "longevity-plate-beff9",
+    "storage_bucket": "longevity-plate-beff9.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:581640648798:android:b65a816c691a0aae83dccf",
+        "mobilesdk_app_id": "1:490880482076:android:2f1d73f7bcb8bc7db158d9",
         "android_client_info": {
           "package_name": "com.longevityplate.longevity_plate"
         }
       },
       "oauth_client": [
         {
-          "client_id": "581640648798-29m0492ssaucnlikpashlbmn0o7hfun5.apps.googleusercontent.com",
+          "client_id": "490880482076-gmr5paqq3badhs1iss21t4h1utrqt4g0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.longevityplate.longevity_plate",
-            "certificate_hash": "285261f56540b79d717a8fc9b6ba33290422d89f"
+            "certificate_hash": "912ad1810374e6ee30971434eed427e89fa6b98f"
           }
         },
         {
-          "client_id": "581640648798-m88inudus7ks7ugv6bhbrm7eprcm6ijg.apps.googleusercontent.com",
+          "client_id": "490880482076-ejo9i3mg78bs1j3gtp1umptcna6cisfv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA3w3mkaWybnYlYsSa7xcEZaV3qUZEVcS8"
+          "current_key": "AIzaSyBrbXWSax0ahg5ZTXDXk5NQ8XpJxS1HXgQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "581640648798-m88inudus7ks7ugv6bhbrm7eprcm6ijg.apps.googleusercontent.com",
+              "client_id": "490880482076-ejo9i3mg78bs1j3gtp1umptcna6cisfv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

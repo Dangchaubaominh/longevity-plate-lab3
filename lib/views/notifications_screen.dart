@@ -29,13 +29,31 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       appBar: const BackAppBar(title: 'Thông báo'),
       body: PageList(
         children: [
-          if (vm.permissionMissing) ...[
+          if (vm.isLocal) ...[
+            const StatusBanner(
+              kind: BannerKind.info,
+              message: 'Thông báo trong bản offline',
+              detail: 'Tạo tin mẫu để thử lịch sử và điều hướng. Nhận thông báo đẩy cần kết nối Firebase.',
+            ),
+            const SizedBox(height: AppSpace.md),
+            OutlinedButton.icon(
+              key: const Key('local-notification'),
+              onPressed: vm.addLocalExample,
+              icon: const Icon(Icons.add_alert_outlined),
+              label: const Text('Tạo thông báo mẫu'),
+            ),
+            const SizedBox(height: AppSpace.md),
+          ],
+          if (vm.errorMessage != null) ...[
+            StatusBanner(kind: BannerKind.error, message: vm.errorMessage!),
+            const SizedBox(height: AppSpace.md),
+          ],
+          if (!vm.isLocal && vm.permissionMissing) ...[
             StatusBanner(
               key: const Key('notification-permission'),
               kind: BannerKind.info,
               message: 'Thông báo đang tắt',
-              detail:
-                  'Bạn vẫn dùng được app, nhưng sẽ không nhận được nhắc nhở. Nếu không thấy hộp thoại xin quyền, hãy bật trong Cài đặt của thiết bị.',
+              detail: 'Bạn vẫn dùng được app, nhưng sẽ không nhận được nhắc nhở. Nếu không thấy hộp thoại xin quyền, hãy bật trong Cài đặt của thiết bị.',
               actions: [
                 TextButton(
                   key: const Key('notification-request'),

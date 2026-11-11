@@ -1,0 +1,10 @@
+Analyzing longevity-plate-lab3...
+
+   info - The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/foundation.dart'. Try removing the import directive - lib\services\device_meal_photo_service.dart:4:8 - unnecessary_import
+   info - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._prefs') to initialize the field - lib\services\device_meal_photo_service.dart:52:8 - prefer_initializing_formals
+   info - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._currentUid') to initialize the field - lib\services\device_meal_photo_service.dart:53:8 - prefer_initializing_formals
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\services\device_meal_photo_service.dart:201:9 - curly_braces_in_flow_control_structures
+   info - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._currentUid') to initialize the field - lib\services\fake_meal_photo_service.dart:10:7 - prefer_initializing_formals
+   info - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._photos') to initialize the field - lib\services\repositories.dart:46:7 - prefer_initializing_formals
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\services\repositories.dart:307:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\views\widgets\meal_photo.dart:92:7 - curly_braces_in_flow_control_structures

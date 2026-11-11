@@ -25,6 +25,7 @@ class ReportViewModel extends ChangeNotifier with SafeNotifier {
 
   bool get isBusy =>
       phase == ReportPhase.building || phase == ReportPhase.uploading;
+  bool get isLocal => _s.isLocal;
 
   Future<void> export() async {
     if (isBusy) return;
@@ -43,7 +44,8 @@ class ReportViewModel extends ChangeNotifier with SafeNotifier {
 
       phase = ReportPhase.uploading;
       notifyListeners();
-      final fileName = 'meal-report-${DateTime.now().millisecondsSinceEpoch}.pdf';
+      final fileName =
+          'meal-report-${DateTime.now().millisecondsSinceEpoch}.pdf';
       final upload = _s.storage.upload(
         uid: _uid,
         fileName: fileName,
@@ -74,6 +76,12 @@ class ReportViewModel extends ChangeNotifier with SafeNotifier {
 
   String _describe(Object error) {
     final code = error is AppFailure ? error.code : '';
+    if (code == 'save_cancelled') {
+      return 'Bạn đã hủy lưu PDF. Bấm Thử lại để chọn nơi lưu.';
+    }
+    if (isLocal) {
+      return 'Chưa lưu được PDF vào máy. Kiểm tra dung lượng rồi thử lại.';
+    }
     if (code == 'unauthorized' || code == 'unauthenticated') {
       return 'Bạn không có quyền lưu tệp vào vị trí này. Hãy đăng nhập lại.';
     }

@@ -40,6 +40,8 @@ npm test
 
 ## Triển khai
 
+Kiểm tra `FIREBASE_PROJECT_ID` trong `wrangler.toml` trùng với `projectId` của app và `android/app/google-services.json` trước khi deploy. Working tree local hiện giữ project `longevity-plate-beff9`; Worker dùng project khác sẽ từ chối ID token của app.
+
 ```bash
 npx wrangler login
 ```

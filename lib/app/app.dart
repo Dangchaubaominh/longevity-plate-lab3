@@ -111,6 +111,29 @@ class _LongevityPlateAppState extends State<LongevityPlateApp>
           GlobalCupertinoLocalizations.delegate,
         ],
         routerConfig: _router,
+        builder: widget.services.isLocal
+            ? (context, child) => Column(
+                children: [
+                  SafeArea(
+                    bottom: false,
+                    child: Container(
+                      width: double.infinity,
+                      color: AppColors.selected,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 12,
+                      ),
+                      child: const Text(
+                        'OFFLINE · Dữ liệu lưu trên điện thoại',
+                        style: AppText.caption,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  Expanded(child: child!),
+                ],
+              )
+            : null,
       ),
     );
   }
@@ -118,9 +141,14 @@ class _LongevityPlateAppState extends State<LongevityPlateApp>
 
 /// Hiện khi Firebase chưa được cấu hình, thay vì màn trắng hoặc crash lúc mở app.
 class FirebaseSetupErrorApp extends StatelessWidget {
-  const FirebaseSetupErrorApp({super.key, required this.error});
+  const FirebaseSetupErrorApp({
+    super.key,
+    required this.error,
+    this.onContinueOffline,
+  });
 
   final Object error;
+  final VoidCallback? onContinueOffline;
 
   @override
   Widget build(BuildContext context) {
@@ -140,6 +168,17 @@ class FirebaseSetupErrorApp extends StatelessWidget {
               ),
               const SizedBox(height: AppSpace.lg),
               SelectableText('$error', style: AppText.caption),
+              if (onContinueOffline != null) ...[
+                const SizedBox(height: AppSpace.lg),
+                FilledButton(
+                  onPressed: onContinueOffline,
+                  child: const Text('Tiếp tục bằng chế độ offline'),
+                ),
+                const Text(
+                  'Chế độ này lưu dữ liệu trên máy, không đăng nhập Google và không gửi dữ liệu lên Firebase.',
+                  style: AppText.caption,
+                ),
+              ],
             ],
           ),
         ),

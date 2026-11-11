@@ -1,0 +1,168 @@
+00:00 +0: loading D:/PRM393/Lab3/longevity-plate-lab3/test/auth_and_guard_test.dart
+00:00 +0: D:/PRM393/Lab3/longevity-plate-lab3/test/auth_and_guard_test.dart: guardRedirect chặn mọi route bảo vệ khi chưa đăng nhập
+00:00 +1: D:/PRM393/Lab3/longevity-plate-lab3/test/auth_and_guard_test.dart: guardRedirect đã đăng nhập, chưa có mục tiêu thì buộc qua S02
+00:00 +2: D:/PRM393/Lab3/longevity-plate-lab3/test/auth_and_guard_test.dart: guardRedirect đã onboarding thì không quay lại S01, S10, S02
+00:00 +3: D:/PRM393/Lab3/longevity-plate-lab3/test/auth_and_guard_test.dart: F01: S01 → S10 → S02 → S03 kể cả lỗi chưa chọn mục tiêu
+[analytics] login {method: google}
+[analytics] tutorial_begin {}
+[analytics] tutorial_complete {goal_count: 1, duration_ms: 901}
+00:07 +4: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn kiểm tra hợp lệ rồi lưu đúng một bản ghi về S04
+00:08 +4: D:/PRM393/Lab3/longevity-plate-lab3/test/auth_and_guard_test.dart: S02: lưu lỗi vẫn giữ lựa chọn, thử lại thành công
+[analytics] tutorial_begin {}
+[crash] goal_save_failed: AppFailure(simulated_saveGoals)
+[analytics] tutorial_complete {goal_count: 1, duration_ms: 793}
+00:08 +5: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn kiểm tra hợp lệ rồi lưu đúng một bản ghi về S04
+00:10 +5: D:/PRM393/Lab3/longevity-plate-lab3/test/auth_and_guard_test.dart: S02: chỉ hỏi quyền thông báo sau onboarding
+[analytics] tutorial_begin {}
+[analytics] tutorial_complete {goal_count: 1, duration_ms: 507}
+00:10 +6: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn kiểm tra hợp lệ rồi lưu đúng một bản ghi về S04
+00:10 +7: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn kiểm tra hợp lệ rồi lưu đúng một bản ghi về S04
+00:11 +7: D:/PRM393/Lab3/longevity-plate-lab3/test/auth_and_guard_test.dart: hủy đăng nhập: ở lại S10, báo rõ, không ghi crash
+[analytics] login {method: google}
+[analytics] tutorial_begin {}
+00:11 +8: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn kiểm tra hợp lệ rồi lưu đúng một bản ghi về S04
+00:11 +8: D:/PRM393/Lab3/longevity-plate-lab3/test/auth_and_guard_test.dart: mất mạng khi đăng nhập: báo lỗi mạng, ghi non-fatal
+[crash] sign_in_failed: AppFailure(network-request-failed)
+00:11 +9: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn kiểm tra hợp lệ rồi lưu đúng một bản ghi về S04
+00:12 +10: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn kiểm tra hợp lệ rồi lưu đúng một bản ghi về S04
+[analytics] meal_add_start {}
+[analytics] meal_saved {meal_type: lunch, duration_ms: 3285}
+00:14 +11: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+00:15 +12: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+00:15 +13: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+00:15 +14: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+00:15 +14: D:/PRM393/Lab3/longevity-plate-lab3/test/auth_and_guard_test.dart: đăng xuất về S10, xóa trạng thái, đăng nhập lại còn dữ liệu
+[analytics] logout {}
+[analytics] login {method: google}
+00:15 +15: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+00:17 +16: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+00:18 +16: D:/PRM393/Lab3/longevity-plate-lab3/test/firebase_features_test.dart: Cloud Messaging foreground: lưu lịch sử, hiện SnackBar, Xem điều hướng
+[analytics] notification_opened {source: foreground, target: /log}
+00:18 +17: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+00:20 +17: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn lưu lỗi giữ nội dung, thử lại chỉ tạo một bản ghi
+[analytics] meal_add_start {}
+[analytics] meal_save_failed {meal_type: dinner}
+[crash] meal_save_failed: AppFailure(simulated_saveMeal)
+[analytics] meal_saved {meal_type: dinner, duration_ms: 2643}
+00:20 +18: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+00:20 +18: D:/PRM393/Lab3/longevity-plate-lab3/test/firebase_features_test.dart: Cloud Messaging background: chạm thông báo mở đúng màn và có trong lịch sử
+[analytics] notification_opened {source: system, target: /library/who-diverse}
+[analytics] select_content {content_type: article, item_id: who-diverse}
+00:20 +19: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+00:21 +19: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn Back khi có nội dung hỏi xác nhận, Tiếp tục nhập giữ nội dung
+[analytics] meal_add_start {}
+00:21 +19: D:/PRM393/Lab3/longevity-plate-lab3/test/firebase_features_test.dart: Cloud Messaging terminated: tin mở app được xử lý sau khi đã đăng nhập
+[analytics] notification_opened {source: system, target: /log}
+00:21 +20: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+00:23 +20: D:/PRM393/Lab3/longevity-plate-lab3/test/firebase_features_test.dart: Cloud Messaging terminated: mở màn chi tiết, Back về được màn chính
+[analytics] notification_opened {source: system, target: /library/who-diverse}
+[analytics] select_content {content_type: article, item_id: who-diverse}
+00:23 +21: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 360dp
+[analytics] login {method: google}
+[analytics] tutorial_begin {}
+[analytics] tutorial_complete {goal_count: 1, duration_ms: 1152}
+[analytics] meal_add_start {}
+[analytics] recipe_view {item_id: rice-veg-beans}
+[analytics] select_content {content_type: article, item_id: who-diverse}
+[analytics] plan_from_article {item_id: who-diverse}
+00:25 +22: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn Back khi có nội dung hỏi xác nhận, Tiếp tục nhập giữ nội dung
+00:25 +23: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn Back khi có nội dung hỏi xác nhận, Tiếp tục nhập giữ nội dung
+00:25 +24: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn Back khi có nội dung hỏi xác nhận, Tiếp tục nhập giữ nội dung
+00:26 +24: D:/PRM393/Lab3/longevity-plate-lab3/test/firebase_features_test.dart: Cloud Messaging chưa đăng nhập: giữ tin, đăng nhập xong mới đi tới
+[analytics] login {method: google}
+[analytics] notification_opened {source: system, target: /log}
+00:26 +25: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn Back khi có nội dung hỏi xác nhận, Tiếp tục nhập giữ nội dung
+[analytics] meal_add_start {}
+[analytics] meal_draft_discarded {}
+00:26 +26: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+00:26 +27: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+00:26 +27: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: lỗi Analytics không lan sang nghiệp vụ
+Analytics chưa gửi được: Bad state: offline
+Analytics chưa gửi được: Bad state: offline
+Analytics chưa gửi được: Bad state: offline
+00:26 +28: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+00:27 +28: D:/PRM393/Lab3/longevity-plate-lab3/test/firebase_features_test.dart: Cloud Messaging route lạ trong thông báo đưa về S12
+[analytics] notification_opened {source: system, target: /notifications}
+00:27 +29: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+00:28 +30: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+00:28 +31: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+00:29 +32: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+00:30 +32: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F02 Ghi nhận bữa ăn lỗi tải S04 có Thử lại
+[crash] meal_log_load_failed: AppFailure(simulated_loadLog)
+00:30 +33: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+00:30 +33: D:/PRM393/Lab3/longevity-plate-lab3/test/firebase_features_test.dart: Cloud Storage và báo cáo PDF tải lên đúng thư mục theo uid, có tiến độ và URL
+[analytics] report_exported {meal_count: 0, size_kb: 10}
+00:30 +34: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+00:30 +34: D:/PRM393/Lab3/longevity-plate-lab3/test/firebase_features_test.dart: Cloud Storage và báo cáo PDF tải lên lỗi báo rõ, ghi non-fatal, thử lại được
+[analytics] report_export_failed {code: simulated_uploadReport}
+[crash] report_export_failed: AppFailure(simulated_uploadReport)
+[analytics] report_exported {meal_count: 0, size_kb: 10}
+00:31 +35: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+00:31 +36: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 412dp
+[analytics] login {method: google}
+[analytics] tutorial_begin {}
+[analytics] tutorial_complete {goal_count: 1, duration_ms: 660}
+[analytics] meal_add_start {}
+[analytics] recipe_view {item_id: rice-veg-beans}
+[analytics] select_content {content_type: article, item_id: who-diverse}
+[analytics] plan_from_article {item_id: who-diverse}
+00:33 +37: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:33 +37: D:/PRM393/Lab3/longevity-plate-lab3/test/firebase_features_test.dart: Cloud Storage và báo cáo PDF bottom sheet ở S04 xuất báo cáo và hiện kết quả
+[analytics] report_exported {meal_count: 0, size_kb: 10}
+00:33 +37: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F03 Từ kiến thức đến kế hoạch S08 → S09 → S06 → S07 → S06 đúng ngày và slot
+[analytics] select_content {content_type: article, item_id: who-diverse}
+[analytics] plan_from_article {item_id: who-diverse}
+[analytics] recipe_view {item_id: toast-egg}
+[analytics] plan_slot_saved {meal: breakfast, action: add, source: article, duration_ms: 1672}
+00:34 +38: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:34 +39: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:39 +39: D:/PRM393/Lab3/longevity-plate-lab3/test/firebase_features_test.dart: Khu vực trình diễn bật lỗi giả lập một lần, thử quyền đọc UID khác
+[crash] demo_non_fatal: AppFailure(demo_non_fatal)
+00:39 +40: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:39 +40: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F03 Từ kiến thức đến kế hoạch thay món: Hủy giữ món cũ, Thay thế đổi đúng slot
+[analytics] recipe_view {item_id: rice-veg-beans}
+[analytics] plan_slot_saved {meal: lunch, action: replace, source: planner, duration_ms: 1687}
+00:39 +41: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:40 +41: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F03 Từ kiến thức đến kế hoạch lưu kế hoạch lỗi giữ lựa chọn, thử lại thành công
+[analytics] recipe_view {item_id: rice-veg-beans}
+00:41 +42: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:41 +42: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: mọi màn không tràn layout ở 800dp
+[analytics] login {method: google}
+[analytics] tutorial_begin {}
+[analytics] tutorial_complete {goal_count: 1, duration_ms: 1006}
+[analytics] meal_add_start {}
+[analytics] recipe_view {item_id: rice-veg-beans}
+[analytics] select_content {content_type: article, item_id: who-diverse}
+[analytics] plan_from_article {item_id: who-diverse}
+00:41 +43: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:42 +43: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F03 Từ kiến thức đến kế hoạch lưu kế hoạch lỗi giữ lựa chọn, thử lại thành công
+[analytics] plan_save_failed {meal: breakfast}
+[crash] plan_save_failed: AppFailure(simulated_savePlan)
+[analytics] plan_slot_saved {meal: breakfast, action: add, source: planner, duration_ms: 696}
+00:42 +44: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:42 +44: D:/PRM393/Lab3/longevity-plate-lab3/test/layout_test.dart: nút và điều khiển chính cao tối thiểu 48dp
+[analytics] meal_add_start {}
+00:42 +45: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:42 +46: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:43 +47: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+00:43 +48: D:/PRM393/Lab3/longevity-plate-lab3/test/local_mobile_test.dart: APK offline: onboarding, thêm bữa và thông báo mẫu điều hướng
+[analytics] login {method: local}
+[analytics] tutorial_begin {}
+[analytics] tutorial_complete {goal_count: 1, duration_ms: 2420}
+[analytics] meal_add_start {}
+[analytics] meal_saved {meal_type: lunch, duration_ms: 2407}
+[analytics] notification_opened {source: history, target: /library}
+00:43 +49: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F03 Từ kiến thức đến kế hoạch lỗi tải S06, S07, S08, S09 đều có Thử lại
+[crash] plan_load_failed: AppFailure(simulated_loadPlan)
+[crash] recipe_load_failed: AppFailure(simulated_loadDetail)
+[crash] library_load_failed: AppFailure(simulated_loadLibrary)
+[crash] article_load_failed: AppFailure(simulated_loadDetail)
+[analytics] select_content {content_type: article, item_id: who-diverse}
+00:45 +50: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F03 Từ kiến thức đến kế hoạch tìm kiếm không dấu, rỗng thì có Xóa tìm kiếm
+[analytics] article_search {result_count: 1}
+00:46 +51: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: F03 Từ kiến thức đến kế hoạch link ngoài lỗi thì báo, không crash
+[analytics] select_content {content_type: external_article, item_id: harvard-plate}
+00:47 +52: D:/PRM393/Lab3/longevity-plate-lab3/test/flows_test.dart: Analytics không gửi email, tên hay nội dung món
+[analytics] meal_add_start {}
+[analytics] meal_saved {meal_type: lunch, duration_ms: 334}
+00:48 +53: All tests passed!

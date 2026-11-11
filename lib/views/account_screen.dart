@@ -145,8 +145,38 @@ class _DemoArea extends StatelessWidget {
           if (vm.isFake)
             const StatusBanner(
               kind: BannerKind.info,
-              message: 'Đang chạy bằng dịch vụ giả lập, không kết nối Firebase.',
+              message:
+                  'Đang chạy bằng dịch vụ giả lập, không kết nối Firebase.',
             ),
+          if (vm.isLocal) ...[
+            const _DemoHeading('Tùy chỉnh bản offline'),
+            const Text(
+              'Các tùy chỉnh này áp dụng trên máy, không phải Firebase Remote Config.',
+              style: AppText.caption,
+            ),
+            SwitchListTile(
+              key: const Key('local-recipes-toggle'),
+              contentPadding: EdgeInsets.zero,
+              title: const Text('Hiện món gợi ý'),
+              value: vm.suggestedRecipesEnabled,
+              onChanged: vm.setLocalRecipesEnabled,
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text('Số bài trong thư viện'),
+              trailing: DropdownButton<int>(
+                key: const Key('local-article-limit'),
+                value: vm.maxKnowledgeResults,
+                items: [
+                  for (final n in [1, 2, 3])
+                    DropdownMenuItem(value: n, child: Text('$n')),
+                ],
+                onChanged: (value) {
+                  if (value != null) vm.setLocalMaxResults(value);
+                },
+              ),
+            ),
+          ],
           const _DemoHeading('Giả lập lỗi (xảy ra một lần)'),
           for (final point in FaultPoint.values)
             SwitchListTile(
@@ -156,75 +186,80 @@ class _DemoArea extends StatelessWidget {
               value: vm.isArmed(point),
               onChanged: (armed) => vm.setFault(point, armed),
             ),
-          const _DemoHeading('Remote Config'),
-          Text(
-            'max_knowledge_results = ${vm.maxKnowledgeResults}',
-            key: const Key('rc-max-results'),
-            style: AppText.body,
-          ),
-          Text(
-            'suggested_recipes_enabled = ${vm.suggestedRecipesEnabled}',
-            style: AppText.body,
-          ),
-          Text(vm.configStatus, style: AppText.caption),
-          const SizedBox(height: AppSpace.sm),
-          OutlinedButton(
-            key: const Key('rc-refresh'),
-            onPressed: vm.refreshingConfig ? null : vm.refreshConfig,
-            child: Text(
-              vm.refreshingConfig ? 'Đang tải…' : 'Tải lại cấu hình',
-            ),
-          ),
-          const _DemoHeading('Cloud Messaging'),
-          SelectableText(vm.token ?? 'Chưa có token.', style: AppText.caption),
-          const SizedBox(height: AppSpace.sm),
-          OutlinedButton(
-            onPressed: vm.token == null
-                ? null
-                : () {
-                    Clipboard.setData(ClipboardData(text: vm.token!));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Đã sao chép token.')),
-                    );
-                  },
-            child: const Text('Sao chép token'),
-          ),
-          const _DemoHeading('Lưu trữ báo cáo (Cloudinary)'),
-          OutlinedButton(
-            key: const Key('storage-probe'),
-            onPressed: vm.probing ? null : vm.probeForeignReport,
-            child: Text(
-              vm.probing ? 'Đang thử…' : 'Thử đọc báo cáo của UID khác',
-            ),
-          ),
-          if (vm.probeResult != null) ...[
-            const SizedBox(height: AppSpace.sm),
+          if (!vm.isLocal) ...[
+            const _DemoHeading('Remote Config'),
             Text(
-              vm.probeResult!,
-              key: const Key('storage-probe-result'),
+              'max_knowledge_results = ${vm.maxKnowledgeResults}',
+              key: const Key('rc-max-results'),
+              style: AppText.body,
+            ),
+            Text(
+              'suggested_recipes_enabled = ${vm.suggestedRecipesEnabled}',
+              style: AppText.body,
+            ),
+            Text(vm.configStatus, style: AppText.caption),
+            const SizedBox(height: AppSpace.sm),
+            OutlinedButton(
+              key: const Key('rc-refresh'),
+              onPressed: vm.refreshingConfig ? null : vm.refreshConfig,
+              child: Text(
+                vm.refreshingConfig ? 'Đang tải…' : 'Tải lại cấu hình',
+              ),
+            ),
+            const _DemoHeading('Cloud Messaging'),
+            SelectableText(
+              vm.token ?? 'Chưa có token.',
               style: AppText.caption,
             ),
-          ],
-          const _DemoHeading('Crashlytics'),
-          OutlinedButton(
-            key: const Key('crash-non-fatal'),
-            onPressed: vm.sendNonFatal,
-            child: const Text('Ghi lỗi non-fatal'),
-          ),
-          if (vm.nonFatalMessage != null) ...[
             const SizedBox(height: AppSpace.sm),
-            Text(vm.nonFatalMessage!, style: AppText.caption),
-          ],
-          const SizedBox(height: AppSpace.sm),
-          OutlinedButton(
-            key: const Key('crash-test'),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: AppColors.error,
-              side: const BorderSide(color: AppColors.error),
+            OutlinedButton(
+              onPressed: vm.token == null
+                  ? null
+                  : () {
+                      Clipboard.setData(ClipboardData(text: vm.token!));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Đã sao chép token.')),
+                      );
+                    },
+              child: const Text('Sao chép token'),
             ),
-            onPressed: () => _confirmCrash(context, vm),
-            child: const Text('Gây crash thử nghiệm'),
-          ),
+            const _DemoHeading('Lưu trữ báo cáo (Cloudinary)'),
+            OutlinedButton(
+              key: const Key('storage-probe'),
+              onPressed: vm.probing ? null : vm.probeForeignReport,
+              child: Text(
+                vm.probing ? 'Đang thử…' : 'Thử đọc báo cáo của UID khác',
+              ),
+            ),
+            if (vm.probeResult != null) ...[
+              const SizedBox(height: AppSpace.sm),
+              Text(
+                vm.probeResult!,
+                key: const Key('storage-probe-result'),
+                style: AppText.caption,
+              ),
+            ],
+            const _DemoHeading('Crashlytics'),
+            OutlinedButton(
+              key: const Key('crash-non-fatal'),
+              onPressed: vm.sendNonFatal,
+              child: const Text('Ghi lỗi non-fatal'),
+            ),
+            if (vm.nonFatalMessage != null) ...[
+              const SizedBox(height: AppSpace.sm),
+              Text(vm.nonFatalMessage!, style: AppText.caption),
+            ],
+            const SizedBox(height: AppSpace.sm),
+            OutlinedButton(
+              key: const Key('crash-test'),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: AppColors.error,
+                side: const BorderSide(color: AppColors.error),
+              ),
+              onPressed: () => _confirmCrash(context, vm),
+              child: const Text('Gây crash thử nghiệm'),
+            ),
+          ],
         ],
       ),
     );

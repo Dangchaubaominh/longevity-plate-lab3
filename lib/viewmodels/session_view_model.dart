@@ -53,7 +53,9 @@ class SessionViewModel extends ChangeNotifier {
     notifyListeners();
     try {
       await _s.auth.signInWithGoogle();
-      await _s.analytics.logEvent(AnalyticsEvents.login, {'method': 'google'});
+      await _s.analytics.logEvent(AnalyticsEvents.login, {
+        'method': _s.isLocal ? 'local' : 'google',
+      });
     } on SignInCancelled {
       _message = 'Bạn đã hủy đăng nhập. Bạn có thể thử lại bất kỳ lúc nào.';
     } catch (e, st) {
