@@ -19,15 +19,7 @@ class NotificationsViewModel extends ChangeNotifier with SafeNotifier {
     ];
     _onSessionChanged();
     _refreshPermission();
-    _s.messaging.initialMessage().then(
-      (message) {
-        if (message != null) _onOpened(message);
-      },
-      // Lỗi ở đây không làm app dừng, nên ghi non-fatal thay vì để thành crash.
-      onError: (Object e, StackTrace st) {
-        _s.crash.recordError(e, st, reason: 'initial_message_failed');
-      },
-    );
+    _readInitialMessage();
   }
 
   final AppServices _s;
@@ -46,6 +38,37 @@ class NotificationsViewModel extends ChangeNotifier with SafeNotifier {
   int get unreadCount => items.where((n) => !n.read).length;
   bool get permissionDenied => permission == PushPermission.denied;
   bool get permissionMissing => permission != PushPermission.granted;
+  bool get isLocal => _s.isLocal;
+  String? errorMessage;
+
+  Future<void> _readInitialMessage() async {
+    try {
+      final message = await _s.messaging.initialMessage();
+      if (!isDisposed && message != null) await _onOpened(message);
+    } catch (error, stack) {
+      await _s.crash.recordError(
+        error,
+        stack,
+        reason: 'initial_message_failed',
+      );
+      if (isDisposed) return;
+      errorMessage =
+          'Chưa mở được thông báo. Bạn có thể xem lại trong lịch sử.';
+      notifyListeners();
+    }
+  }
+
+  Future<void> addLocalExample() async {
+    if (!isLocal) return;
+    await _onForeground(
+      PushMessage(
+        id: 'local-${DateTime.now().microsecondsSinceEpoch}',
+        title: 'Thông báo mẫu trên thiết bị',
+        body: 'Chạm để mở thư viện kiến thức. Đây không phải thông báo FCM.',
+        route: '/library',
+      ),
+    );
+  }
 
   void _onSessionChanged() {
     final uid = _session.uid;
@@ -66,26 +89,42 @@ class NotificationsViewModel extends ChangeNotifier with SafeNotifier {
   Future<void> reload() async {
     final uid = _uid;
     if (uid == null) return;
-    final loaded = await _s.notifications.load(uid);
-    if (uid != _uid) return;
-    items = loaded;
+    try {
+      final loaded = await _s.notifications.load(uid);
+      if (uid != _uid || isDisposed) return;
+      items = loaded;
+    } catch (_) {
+      errorMessage =
+          'Chưa tải được lịch sử thông báo. Hãy mở lại màn này để thử lại.';
+    }
     notifyListeners();
     await _refreshPermission();
   }
 
   Future<void> _refreshPermission() async {
-    permission = await _s.messaging.permissionStatus();
+    try {
+      permission = await _s.messaging.permissionStatus();
+    } catch (_) {
+      errorMessage = 'Chưa đọc được quyền thông báo. Hãy thử lại.';
+    }
     notifyListeners();
   }
 
   Future<void> requestPermission() async {
-    permission = await _s.messaging.requestPermission();
+    errorMessage = null;
+    try {
+      permission = await _s.messaging.requestPermission();
+    } catch (_) {
+      errorMessage =
+          'Chưa bật được thông báo. Kiểm tra cài đặt thiết bị rồi thử lại.';
+    }
     notifyListeners();
   }
 
   /// Chỉ hỏi một lần sau onboarding, các lần sau người dùng tự bật ở màn Thông báo.
   Future<void> requestAfterOnboarding() async {
-    if (await _s.messaging.permissionStatus() == PushPermission.notDetermined) {
+    await _refreshPermission();
+    if (!isLocal && permission == PushPermission.notDetermined) {
       await requestPermission();
     }
   }

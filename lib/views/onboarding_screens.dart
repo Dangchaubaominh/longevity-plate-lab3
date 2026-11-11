@@ -10,6 +10,7 @@ import '../viewmodels/goal_view_model.dart';
 import '../viewmodels/notifications_view_model.dart';
 import '../viewmodels/session_view_model.dart';
 import 'widgets/common.dart';
+import 'widgets/wellness.dart';
 
 /// S01 Chào mừng.
 class WelcomeScreen extends StatelessWidget {
@@ -60,49 +61,153 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final session = context.watch<SessionViewModel>();
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, _) {
-        if (!didPop && !session.isSigningIn) {
-          session.clearMessage();
-          context.go('/welcome');
-        }
-      },
-      child: Scaffold(
-        appBar: const BackAppBar(title: 'Đăng nhập'),
-        body: PageList(
-          children: [
-            const RoundedImage(bowlImage, height: 160),
-            const SizedBox(height: AppSpace.xl),
-            const Text('Lưu nhật ký theo tài khoản của bạn', style: AppText.title),
-            const SizedBox(height: AppSpace.sm),
-            Text(
-              'Đăng nhập để dữ liệu bữa ăn và kế hoạch của bạn được tách riêng trên thiết bị này.',
-              style: AppText.body.copyWith(color: AppColors.muted),
-            ),
-            if (session.message != null) ...[
-              const SizedBox(height: AppSpace.lg),
-              StatusBanner(
-                key: const Key('login-message'),
-                kind: BannerKind.error,
-                message: session.message!,
+    final local = context.read<AppServices>().isLocal;
+    return Theme(
+      data: Wellness.theme(context),
+      child: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, _) {
+          if (!didPop && !session.isSigningIn) {
+            session.clearMessage();
+            context.go('/welcome');
+          }
+        },
+        child: Scaffold(
+          appBar: WellnessHeader(
+            title: 'Đăng nhập',
+            onBack: session.isSigningIn
+                ? null
+                : () {
+                    session.clearMessage();
+                    context.go('/welcome');
+                  },
+          ),
+          body: Stack(
+            children: [
+              const Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                height: 150,
+                child: IgnorePointer(
+                  child: CustomPaint(painter: BotanicalPainter()),
+                ),
+              ),
+              PageList(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: AspectRatio(
+                      aspectRatio: 1.9,
+                      child: Image.asset(
+                        bowlImage,
+                        fit: BoxFit.cover,
+                        excludeFromSemantics: true,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+                  const LeafBrand(),
+                  const SizedBox(height: 20),
+                  Text(
+                    local
+                        ? 'Bắt đầu với hồ sơ trên điện thoại'
+                        : 'Lưu nhật ký theo tài khoản của bạn',
+                    style: TextStyle(
+                      fontSize: MediaQuery.sizeOf(context).width < 390
+                          ? 31
+                          : 35,
+                      height: 1.18,
+                      fontWeight: FontWeight.w800,
+                      color: Wellness.forest,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      width: 72,
+                      height: 12,
+                      child: CustomPaint(painter: _LoginUnderline()),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  Text(
+                    local
+                        ? 'Ghi bữa ăn và kế hoạch ngay cả khi không có mạng. Dữ liệu chỉ lưu trên máy này. Chưa kết nối Google hoặc Firebase.'
+                        : 'Đăng nhập để dữ liệu bữa ăn và kế hoạch của bạn được tách riêng trên thiết bị này, giúp bạn đồng hành lâu dài và liền mạch hơn.',
+                    style: Wellness.body.copyWith(fontSize: 17, height: 1.5),
+                  ),
+                  const SizedBox(height: 65),
+                ],
               ),
             ],
-          ],
-        ),
-        bottomNavigationBar: BottomCta(
-          child: FilledButton.icon(
-            key: const Key('login-google'),
-            onPressed: session.isSigningIn ? null : session.signIn,
-            icon: const Icon(Icons.login),
-            label: Text(
-              session.isSigningIn ? 'Đang đăng nhập…' : 'Tiếp tục với Google',
+          ),
+          bottomNavigationBar: BottomCta(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                if (session.message != null) ...[
+                  StatusBanner(
+                    key: const Key('login-message'),
+                    kind: BannerKind.error,
+                    message: session.message!,
+                  ),
+                  const SizedBox(height: AppSpace.sm),
+                ],
+                FilledButton.icon(
+                  key: const Key('login-google'),
+                  onPressed: session.isSigningIn ? null : session.signIn,
+                  icon: session.isSigningIn
+                      ? const SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Wellness.muted,
+                          ),
+                        )
+                      : local
+                      ? const Icon(Icons.phone_android)
+                      : const GoogleMark(),
+                  label: Text(
+                    session.isSigningIn
+                        ? 'Đang mở…'
+                        : local
+                        ? 'Tiếp tục offline'
+                        : 'Tiếp tục với Google',
+                  ),
+                ),
+              ],
             ),
           ),
         ),
       ),
     );
   }
+}
+
+class _LoginUnderline extends CustomPainter {
+  const _LoginUnderline();
+  @override
+  void paint(Canvas canvas, Size size) => canvas.drawPath(
+    Path()
+      ..moveTo(2, size.height - 2)
+      ..quadraticBezierTo(
+        size.width * .5,
+        0,
+        size.width - 2,
+        size.height * .45,
+      ),
+    Paint()
+      ..color = const Color(0xFFA9BC83)
+      ..strokeWidth = 3
+      ..strokeCap = StrokeCap.round
+      ..style = PaintingStyle.stroke,
+  );
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 /// S02 Chọn mục tiêu. Từ Tài khoản mở với `edit=true` để đổi mục tiêu.
@@ -180,8 +285,7 @@ class _GoalsView extends StatelessWidget {
             if (!vm.isEditing)
               const StatusBanner(
                 kind: BannerKind.info,
-                message:
-                    'Bạn có thể thay đổi mục tiêu bất kỳ lúc nào trong phần cài đặt cá nhân sau khi bắt đầu.',
+                message: 'Bạn có thể thay đổi mục tiêu bất kỳ lúc nào trong phần cài đặt cá nhân sau khi bắt đầu.',
               ),
           ],
         ),

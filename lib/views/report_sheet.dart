@@ -16,6 +16,8 @@ Future<void> showReportSheet(BuildContext context) {
     // Che cả thanh tab để không chuyển màn được khi đang tải lên.
     useRootNavigator: true,
     isScrollControlled: true,
+    isDismissible: false,
+    enableDrag: false,
     builder: (_) => ChangeNotifierProvider(
       create: (_) => ReportViewModel(services, uid),
       child: const _ReportSheet(),
@@ -33,17 +35,31 @@ class _ReportSheet extends StatelessWidget {
       canPop: !vm.isBusy,
       child: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: pageMargin(context)).add(
-            const EdgeInsets.only(bottom: AppSpace.lg),
-          ),
+          padding: EdgeInsets.symmetric(horizontal: pageMargin(context))
+              .add(const EdgeInsets.only(bottom: AppSpace.lg)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Xuất báo cáo PDF', style: AppText.heading),
+              Row(
+                children: [
+                  const Expanded(
+                    child: Text('Xuất báo cáo PDF', style: AppText.heading),
+                  ),
+                  IconButton(
+                    tooltip: 'Đóng báo cáo',
+                    onPressed: vm.isBusy
+                        ? null
+                        : () => Navigator.of(context).pop(),
+                    icon: const Icon(Icons.close),
+                  ),
+                ],
+              ),
               const SizedBox(height: AppSpace.xs),
-              const Text(
-                'Tổng hợp bữa ăn trong 7 ngày gần nhất và lưu vào không gian riêng của tài khoản trên Cloudinary.',
+              Text(
+                vm.isLocal
+                    ? 'Tổng hợp bữa ăn trong 7 ngày gần nhất. Chọn thư mục để lưu PDF trên điện thoại, không tải lên cloud.'
+                    : 'Tổng hợp bữa ăn trong 7 ngày gần nhất và lưu vào không gian riêng của tài khoản trên Cloudinary.',
                 style: AppText.caption,
               ),
               const SizedBox(height: AppSpace.lg),
@@ -61,7 +77,9 @@ class _ReportSheet extends StatelessWidget {
         FilledButton(
           key: const Key('report-start'),
           onPressed: vm.export,
-          child: const Text('Tạo và tải lên'),
+          child: Text(
+            vm.isLocal ? 'Tạo và lưu vào điện thoại' : 'Tạo và tải lên',
+          ),
         ),
       ],
       ReportPhase.building => const [
@@ -73,7 +91,9 @@ class _ReportSheet extends StatelessWidget {
         LinearProgressIndicator(value: vm.progress),
         const SizedBox(height: AppSpace.sm),
         Text(
-          'Đang tải lên ${(vm.progress * 100).round()}%',
+          vm.isLocal
+              ? 'Chọn vị trí lưu trong hộp thoại Android…'
+              : 'Đang tải lên ${(vm.progress * 100).round()}%',
           key: const Key('report-progress'),
           style: AppText.label,
         ),
@@ -82,15 +102,14 @@ class _ReportSheet extends StatelessWidget {
         StatusBanner(
           key: const Key('report-success'),
           kind: BannerKind.success,
-          message: 'Đã tải báo cáo lên (${vm.mealCount} bữa).',
+          message: vm.isLocal
+              ? 'Đã lưu PDF trên máy (${vm.mealCount} bữa).'
+              : 'Đã tải báo cáo lên (${vm.mealCount} bữa).',
         ),
         const SizedBox(height: AppSpace.md),
         SelectableText(vm.url!, style: AppText.caption),
         const SizedBox(height: AppSpace.md),
-        FilledButton(
-          onPressed: vm.openReport,
-          child: const Text('Mở báo cáo'),
-        ),
+        FilledButton(onPressed: vm.openReport, child: const Text('Mở báo cáo')),
         const SizedBox(height: AppSpace.sm),
         OutlinedButton(
           onPressed: () {

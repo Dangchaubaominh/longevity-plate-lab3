@@ -6,6 +6,7 @@ import 'package:longevity_plate/app/app_services.dart';
 import 'package:longevity_plate/app/router.dart';
 import 'package:longevity_plate/models/models.dart';
 import 'package:longevity_plate/services/fake_services.dart';
+import 'package:longevity_plate/services/meal_photo_service.dart';
 import 'package:longevity_plate/services/service_interfaces.dart';
 import 'package:longevity_plate/views/widgets/common.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -124,6 +125,8 @@ Future<TestApp> pumpApp(
   PushMessage? launchMessage,
   PushPermission? permission,
   Future<bool> Function(Uri uri)? linkOpener,
+  MealPhotoService? mealPhotos,
+  bool capture = false,
 }) async {
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1;
@@ -139,12 +142,14 @@ Future<TestApp> pumpApp(
     auth: FakeAuthService(initialUser: signedIn ? demoUser : null),
     remoteConfig: remoteConfig,
     linkOpener: linkOpener,
+    mealPhotos: mealPhotos,
   );
   final messaging = services.messaging as FakeMessagingService;
   messaging.launchMessage = launchMessage;
   if (permission != null) messaging.permission = permission;
 
-  await tester.pumpWidget(LongevityPlateApp(services: services));
+  final widget = LongevityPlateApp(services: services);
+  await tester.pumpWidget(capture ? RepaintBoundary(key: const Key('ui-capture'), child: widget) : widget);
   await tester.pumpAndSettle();
   return TestApp(tester, services);
 }

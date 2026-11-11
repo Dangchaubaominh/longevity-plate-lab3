@@ -1,0 +1,58 @@
+import java.util.Base64
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    id 'com.android.application'
+    id 'dev.flutter.flutter-gradle-plugin'
+
+    // Firebase
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+def isLocalBuild = (project.findProperty('dart-defines') ?: '').split(',').any { encoded ->
+    try {
+        new String(Base64.getDecoder().decode(encoded), 'UTF-8') == 'USE_LOCAL_SERVICES=true'
+    } catch (IllegalArgumentException ignored) {
+        false
+    }
+}
+
+android {
+    namespace 'com.longevityplate.longevity_plate'
+    compileSdk flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    defaultConfig {
+        applicationId 'com.longevityplate.longevity_plate'
+        minSdk flutter.minSdkVersion
+        targetSdk flutter.targetSdkVersion
+        versionCode flutter.versionCode
+        versionName flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            // Offline lab builds keep release Dart AOT without costly Java R8.
+            minifyEnabled !isLocalBuild
+            shrinkResources !isLocalBuild
+            // Lab installation only; configure a release key before publishing.
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_17
+    }
+}
+
+flutter {
+    source '../..'
+}

@@ -11,10 +11,16 @@ import 'firebase_options.dart';
 /// Chạy bằng dịch vụ giả lập, ví dụ để xem trước giao diện trên web:
 /// flutter run -d chrome --dart-define=USE_FAKE_SERVICES=true
 const _useFakeServices = bool.fromEnvironment('USE_FAKE_SERVICES');
+const _useLocalServices = bool.fromEnvironment('USE_LOCAL_SERVICES');
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
+
+  if (_useLocalServices) {
+    runApp(LongevityPlateApp(services: AppServices.local(prefs)));
+    return;
+  }
 
   if (_useFakeServices) {
     runApp(LongevityPlateApp(services: AppServices.fake(prefs)));
@@ -34,7 +40,13 @@ Future<void> main() async {
       onTimeout: () => null,
     );
   } catch (error) {
-    runApp(FirebaseSetupErrorApp(error: error));
+    runApp(
+      FirebaseSetupErrorApp(
+        error: error,
+        onContinueOffline: () =>
+            runApp(LongevityPlateApp(services: AppServices.local(prefs))),
+      ),
+    );
     return;
   }
   runApp(LongevityPlateApp(services: services));

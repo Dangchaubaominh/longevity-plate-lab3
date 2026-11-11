@@ -37,7 +37,7 @@ firebase login
 flutterfire configure --platforms=android --android-package-name=com.longevityplate.longevity_plate
 ```
 
-4. Kiểm tra plugin Gradle. `android/settings.gradle.kts` phải có `com.google.gms.google-services` và `com.google.firebase.crashlytics`, `android/app/build.gradle.kts` phải áp dụng cả hai. Nếu lệnh trên chưa thêm, hãy tự thêm theo <https://firebase.google.com/docs/android/setup> và chọn phiên bản tương thích với AGP 9.1.
+4. Kiểm tra plugin Gradle. `android/settings.gradle.kts` phải có `com.google.gms.google-services` và `com.google.firebase.crashlytics`, `android/app/build.gradle` (Groovy) phải áp dụng cả hai. Nếu lệnh trên chưa thêm, hãy tự thêm theo <https://firebase.google.com/docs/android/setup> và chọn phiên bản tương thích với AGP 9.1.
 
 ## 3. Đăng nhập Google
 

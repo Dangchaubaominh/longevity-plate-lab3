@@ -5,4 +5,4 @@ compatibility_date = "2025-09-01"
 # Ba giá trị Cloudinary đặt bằng `npx wrangler secret put <TÊN>`, không ghi vào đây:
 # CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
 [vars]
-FIREBASE_PROJECT_ID = "longevity-plate"
+FIREBASE_PROJECT_ID = "longevity-plate-beff9"

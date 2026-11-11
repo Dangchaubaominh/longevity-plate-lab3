@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../app/app_services.dart';
 import '../models/models.dart';
 import '../services/app_failure.dart';
+import '../services/fake_services.dart';
 import 'safe_notifier.dart';
 
 class AccountViewModel extends ChangeNotifier with SafeNotifier {
@@ -23,6 +24,17 @@ class AccountViewModel extends ChangeNotifier with SafeNotifier {
 
   Set<Goal> get goals => _s.goals.load(_uid);
   bool get isFake => _s.isFake;
+  bool get isLocal => _s.isLocal;
+
+  void setLocalMaxResults(int value) {
+    if (!isLocal) return;
+    (_s.remoteConfig as FakeRemoteConfigService).publish(maxResults: value);
+  }
+
+  void setLocalRecipesEnabled(bool value) {
+    if (!isLocal) return;
+    (_s.remoteConfig as FakeRemoteConfigService).publish(recipesEnabled: value);
+  }
 
   void reloadGoals() => notifyListeners();
 
@@ -67,7 +79,8 @@ class AccountViewModel extends ChangeNotifier with SafeNotifier {
       StackTrace.current,
       reason: 'demo_non_fatal',
     );
-    nonFatalMessage = 'Đã ghi lỗi non-fatal. Crashlytics có thể mất vài phút để hiển thị.';
+    nonFatalMessage =
+        'Đã ghi lỗi non-fatal. Crashlytics có thể mất vài phút để hiển thị.';
     notifyListeners();
   }
 

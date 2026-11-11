@@ -7,6 +7,7 @@ import '../core/dates.dart';
 import '../data/content_data.dart';
 import '../models/models.dart';
 import 'app_failure.dart';
+import 'meal_photo_service.dart';
 
 // Dữ liệu người dùng lưu local theo từng uid. Đăng xuất chỉ xóa trạng thái trong
 // bộ nhớ, đăng nhập lại vẫn thấy dữ liệu của chính mình.
@@ -41,10 +42,12 @@ class GoalRepository {
 }
 
 class MealRepository extends ChangeNotifier {
-  MealRepository(this._prefs, this._faults);
+  MealRepository(this._prefs, this._faults, {this.photos});
 
   final SharedPreferences _prefs;
   final FaultInjector _faults;
+
+  final MealPhotoService? photos;
 
   String _key(String uid) => '$uid.meals';
 
@@ -68,7 +71,9 @@ class MealRepository extends ChangeNotifier {
     final start = dateKey(from);
     final end = dateKey(to);
     return _all(uid)
-        .where((m) => m.date.compareTo(start) >= 0 && m.date.compareTo(end) <= 0)
+        .where(
+          (m) => m.date.compareTo(start) >= 0 && m.date.compareTo(end) <= 0,
+        )
         .toList()
       ..sort((a, b) {
         final byDate = a.date.compareTo(b.date);
@@ -81,24 +86,74 @@ class MealRepository extends ChangeNotifier {
     required String date,
     required MealType type,
     required String description,
+    String? photoDraft,
+    String? id,
   }) async {
     await Future<void>.delayed(_latency);
     _faults.check(FaultPoint.saveMeal);
     final now = DateTime.now();
+    final all = _all(uid);
+    final entryId = id ?? now.microsecondsSinceEpoch.toString();
+    final existing = all.where((meal) => meal.id == entryId).firstOrNull;
+    if (existing != null) return existing;
+    String? imagePath;
+    if (photoDraft != null) {
+      final photoStorage = photos;
+      if (photoStorage == null) {
+        throw const AppFailure('photo_storage_unavailable');
+      }
+      imagePath = await photoStorage.persist(uid, photoDraft, entryId);
+    }
     final entry = MealEntry(
-      id: now.microsecondsSinceEpoch.toString(),
+      id: entryId,
       date: date,
       type: type,
       description: description,
       createdAt: now,
+      imagePath: imagePath,
     );
-    final all = _all(uid)..add(entry);
-    await _prefs.setString(
-      _key(uid),
-      jsonEncode([for (final m in all) m.toJson()]),
-    );
+    all.add(entry);
+    try {
+      if (photoDraft != null) photos!.checkOwner(uid);
+      final saved = await _prefs.setString(
+        _key(uid),
+        jsonEncode([for (final m in all) m.toJson()]),
+      );
+      if (!saved) throw const AppFailure('meal_write_failed');
+    } catch (_) {
+      if (imagePath != null) await _removePhoto(uid, imagePath);
+      rethrow;
+    }
+    if (photoDraft != null) await _removePhoto(uid, photoDraft);
     notifyListeners();
     return entry;
+  }
+
+  /// A deletion commits the record change first, then removes its owned photo.
+  /// Logout never invokes this method. There is no new delete UI in this phase.
+  Future<void> delete(String uid, String id) async {
+    photos?.checkOwner(uid);
+    final all = _all(uid);
+    final entry = all.where((meal) => meal.id == id).firstOrNull;
+    if (entry == null) return;
+    all.removeWhere((meal) => meal.id == id);
+    if (!await _prefs.setString(
+      _key(uid),
+      jsonEncode([for (final m in all) m.toJson()]),
+    )) {
+      throw const AppFailure('meal_write_failed');
+    }
+    if (entry.imagePath != null) await _removePhoto(uid, entry.imagePath!);
+    notifyListeners();
+  }
+
+  Future<void> _removePhoto(String uid, String reference) async {
+    try {
+      await photos?.remove(uid, reference);
+    } catch (_) {
+      // Cleanup failure must not turn a committed save into a failed retry.
+      debugPrint('Chưa dọn được một tệp ảnh bữa ăn.');
+    }
   }
 }
 
@@ -250,11 +305,11 @@ class NotificationRepository extends ChangeNotifier {
   void _merge(List<AppNotification> items, AppNotification item) {
     if (items.any((n) => n.id == item.id)) return;
     items.insert(0, item);
-    if (items.length > _maxHistory) items.removeRange(_maxHistory, items.length);
+    if (items.length > _maxHistory) {
+      items.removeRange(_maxHistory, items.length);
+    }
   }
 
-  Future<void> _save(String uid, List<AppNotification> items) => _prefs.setString(
-    _key(uid),
-    jsonEncode([for (final n in items) n.toJson()]),
-  );
+  Future<void> _save(String uid, List<AppNotification> items) => _prefs
+      .setString(_key(uid), jsonEncode([for (final n in items) n.toJson()]));
 }

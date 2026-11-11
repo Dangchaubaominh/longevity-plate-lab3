@@ -42,6 +42,8 @@ Không chia sẻ API Secret của Cloudinary, tài khoản Cloudflare hay mật 
 
 ## Chạy nhanh
 
+**Cài lên điện thoại Android:** xem [docs/ANDROID-APK.md](docs/ANDROID-APK.md). Bản offline giữ phiên local, có đủ ba luồng và lưu PDF thật vào thư mục do người dùng chọn trên điện thoại. Firebase thật cần cấu hình riêng.
+
 Xem giao diện với dịch vụ giả lập, không cần Firebase:
 
 ```bash
