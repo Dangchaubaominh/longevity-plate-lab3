@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-14",
+  "pages": 15,
+  "reportCompanion": "Longevity_Plate_Lab3_Report_Final_20261114.pdf",
+  "embeddedImages": 9,
+  "nativeTables": 8,
+  "visualReview": "All15slides reviewed; changed slides rechecked; zero PDF text overflow",
+  "files": [
+    {
+      "path": "output/pdf/Longevity_Plate_Lab3_Slides_Redesign_Final_20261114.pdf",
+      "bytes": 5424265,
+      "sha256": "1eb26e57ff349c8c19df9a264309a0a1d79c5e9b72e3f228770f3174bf756a55"
+    },
+    {
+      "path": "output/pdf/Longevity_Plate_Lab3_Slides_Redesign_Final_20261114.pptx",
+      "bytes": 3208843,
+      "sha256": "7658fe20269ad2ed56abbc76859d28f2cde12fe5d8bdba3146916b81a95251d0"
+    }
+  ]
+}
