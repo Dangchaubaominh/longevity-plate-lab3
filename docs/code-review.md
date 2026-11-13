@@ -1,6 +1,6 @@
 # AI Code Review
 
-Cập nhật triển khai backend 13/11/2026: CR-02 đã được xử lý bằng queue mỗi sự kiện một khóa theo UID/event ID; client không chuyển queue của A cho B. Có test notification_owner_test.dart và hồi quy Firebase. Thay đổi mới hiện ở working tree; các commit trong bảng dưới vẫn là bằng chứng của vòng review gốc, không được hiểu là commit cho backend mới.
+Cập nhật backend13/11/2026, commit9215cf9: CR-02 được xử lý bằng queue mỗi sự kiện một khóa theo UID/event ID; client không chuyển queue củaA choB. Có test notification_owner_test.dart và hồi quy Firebase. Bảng dưới giữ nguyên kết quả tại vòng review gốc09/11; trạng thái CR-02 lịch sử không phải trạng thái code hiện tại.
 
 ## Cách rà soát
 

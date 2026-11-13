@@ -26,4 +26,4 @@ Production/cloud/device execution must not be marked DONE based only on mock tes
 - Crashlytics: đã bật REST API; sau khi người dùng đồng ý mới cấp roles/firebasecrashlytics.viewer cho runtime service account. Đã đọc 4 nhóm sự cố và actual issue/events từ staging.
 - APK: artifacts/backend-implementation/longevity-plate-staging-arm64.apk, nối staging thật. Không coi compile thành công là đã nghiệm thu trên điện thoại.
 
-Điện thoại đã kết nối, integration_test1/1 và FCM ba trạng thái đã đạt. Phần tiếp tục: camera/gallery, crash button trên APK mới; ARTEMIS10 case ×3 và exploratory; xác nhận CI GitHub sau push.
+Điện thoại đã kết nối, integration_test1/1, FCM ba trạng thái và crash button→Firebase/Admin đã đạt. GitHub Actions43449611839 hai job success trên commit9215cf9. Phần tiếp tục: camera/gallery; ARTEMIS10 case ×3 và exploratory.

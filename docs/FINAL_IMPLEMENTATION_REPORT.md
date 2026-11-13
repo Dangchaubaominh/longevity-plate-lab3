@@ -31,10 +31,10 @@ Admin React/TS/Vite có dashboard, users/activity counts/search/pagination, devi
 | Authentication | Firebase JWT + Admin allowlist | Bad claims/signature/owner/role | Firebase tokens thật; Google Admin login user-confirmed | VERIFIED_REAL |
 | Cloudinary/PDF | Signed/authenticated media | Signature/metadata/owner/retry | Provider15/15 + staging upload/download/A-B | VERIFIED_REAL |
 | FCM | HTTPv1/token/jobs/history | Success/error/retry/generation | CPH2637 nhận foreground/background/terminated; openedAt và route đúng | VERIFIED_REAL |
-| Crashlytics | Actual REST v1alpha adapter | Fixtures/errors/redaction |4 nhóm + issue/event thật; Reader role được user phê duyệt | VERIFIED_REAL cho web đọc dữ liệu |
-| Flutter Sync | SQLite transactional outbox/MVVM |102 Flutter cases, analyze sạch | CPH2637 integration1/1: meal/photo/private download/tombstone | VERIFIED_REAL cho luồng online |
+| Crashlytics | Actual REST v1alpha adapter | Fixtures/errors/redaction | Nút crash CPH2637 → nhóm fatal mới/event đúng timestamp/device; tổng5 nhóm | VERIFIED_REAL |
+| Flutter Sync | SQLite transactional outbox/MVVM |102 Flutter cases, analyze sạch | CPH2637 integration2/2: online media; controlled HTTP failure/native SQLite reopen/idempotent retry/real second-client conflict | VERIFIED_REAL trong phạm vi kiểm thử |
 | Admin Web | React/TS/Vite |8 RTL +4 browser | Google login user-confirmed; real loader/CSP check | VERIFIED_REAL |
-| CI | GitHub Actions, no prod secrets | Lệnh tương ứng đã chạy local | Cần xác nhận workflow remote sau push | CODE_COMPLETE |
+| CI | GitHub Actions, no prod secrets | backend-admin và flutter cùng đạt | [Run43449611839](https://github.com/Dangchaubaominh/longevity-plate-lab3/actions/runs/43449611839), commit9215cf9 | TEST_PASSED |
 | ARTEMIS | Environment + plan/scripts | Doctor ready, thiết bị và model key có sẵn | Đang chạy; model mặc định gặp503, thử model khả dụng | IN_PROGRESS |
 
 ## Deploy và bảo vệ dữ liệu
@@ -45,6 +45,6 @@ Public example được làm sạch; `.dev.vars`, private-backup, logs/artifacts
 
 ## Điều kiện còn phụ thuộc người dùng
 
-Điện thoại đã kết nối; cài APK, integration_test và FCM ba trạng thái đã đạt (DEVICE_ACCEPTANCE.md). Tiếp tục camera/gallery, nút crash trên bản mới và ARTEMIS theo rubric. Đa thiết bị cần thiết bị thứ hai; tests A/B API đã kiểm tra owner isolation. Người dùng tự quay video theo phân công.
+Điện thoại đã kết nối; APK, integration_test, FCM ba trạng thái và crash→Firebase/Admin đã đạt (DEVICE_ACCEPTANCE.md). Tiếp tục camera/gallery và ARTEMIS theo rubric. Đa thiết bị cần thiết bị thứ hai; tests A/B API đã kiểm tra owner isolation. Người dùng tự quay video theo phân công.
 
 Hướng dẫn: DEPLOYMENT_GUIDE.md, TEST_PLAN.md, ADMIN_GUIDE.md, FCM_SETUP.md, CRASHLYTICS_INTEGRATION.md, ASSIGNMENT_ACCEPTANCE.md. Giới hạn sản phẩm còn lại và phạm vi evidence được ghi trong KNOWN_LIMITATIONS.md.
