@@ -260,6 +260,12 @@ void main() {
     });
 
     test('tải lên đúng thư mục theo uid, có tiến độ và URL', () async {
+      await services.meals.add(
+        'demo-user',
+        date: dateKey(today()),
+        type: MealType.lunch,
+        description: 'Cơm rau',
+      );
       final vm = ReportViewModel(services, 'demo-user');
       final progress = <double>[];
       vm.addListener(() => progress.add(vm.progress));
@@ -275,6 +281,12 @@ void main() {
     });
 
     test('tải lên lỗi báo rõ, ghi non-fatal, thử lại được', () async {
+      await services.meals.add(
+        'demo-user',
+        date: dateKey(today()),
+        type: MealType.lunch,
+        description: 'Cơm rau',
+      );
       services.faults.set(FaultPoint.uploadReport, true);
       final vm = ReportViewModel(services, 'demo-user');
 
@@ -289,6 +301,17 @@ void main() {
 
       await vm.export();
       expect(vm.phase, ReportPhase.success);
+    });
+
+    test('BR-10: 7 ngày gần nhất không có bữa nào thì không xuất báo cáo', () async {
+      final vm = ReportViewModel(services, 'demo-user');
+
+      await vm.export();
+
+      expect(vm.phase, ReportPhase.failure);
+      expect(vm.errorMessage, contains('7 ngày gần nhất chưa có bữa ăn'));
+      final storage = services.storage as FakeReportStorageService;
+      expect(storage.lastPath, isNull);
     });
 
     test('PDF hợp lệ, chỉ gồm 7 ngày gần nhất', () async {
@@ -318,6 +341,7 @@ void main() {
 
     testWidgets('bottom sheet ở S04 xuất báo cáo và hiện kết quả', (tester) async {
       final app = await pumpApp(tester, signedIn: true, onboarded: true);
+      await app.addMeal('demo-user', dateKey(today()), MealType.lunch, 'Cơm rau');
       await app.tapKey('tab-log');
       await app.tapKey('log-export');
       expect(find.text('Xuất báo cáo PDF'), findsWidgets);

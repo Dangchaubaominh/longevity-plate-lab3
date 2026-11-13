@@ -187,6 +187,41 @@ class _MealCard extends StatelessWidget {
 
   final MealEntry meal;
 
+  Future<void> _delete(BuildContext context, String uid) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final meals = context.read<AppServices>().meals;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Xóa bữa ăn này?'),
+        content: Text(
+          '${meal.type.label}: ${meal.description}\n\nBữa ăn sẽ bị xóa khỏi nhật ký và không khôi phục được.',
+        ),
+        actions: [
+          TextButton(
+            key: const Key('meal-delete-cancel'),
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Hủy'),
+          ),
+          TextButton(
+            key: const Key('meal-delete-confirm'),
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Xóa'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    try {
+      await meals.delete(uid, meal.id);
+      messenger.showSnackBar(const SnackBar(content: Text('Đã xóa bữa ăn')));
+    } catch (_) {
+      messenger.showSnackBar(
+        const SnackBar(content: Text('Chưa xóa được bữa ăn. Vui lòng thử lại.')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final uid = context.read<SessionViewModel>().uid!;
@@ -225,7 +260,13 @@ class _MealCard extends StatelessWidget {
                   children: [
                     Pill(meal.type.label),
                     const SizedBox(width: AppSpace.sm),
-                    Text(formatTime(meal.createdAt), style: AppText.caption),
+                    Expanded(
+                      child: Text(
+                        formatTime(meal.createdAt),
+                        style: AppText.caption,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: AppSpace.xs),
@@ -239,6 +280,12 @@ class _MealCard extends StatelessWidget {
                   }, style: AppText.caption),
               ],
             ),
+          ),
+          IconButton(
+            key: Key('meal-delete-${meal.id}'),
+            tooltip: 'Xóa bữa ăn',
+            icon: const Icon(Icons.delete_outline),
+            onPressed: () => _delete(context, uid),
           ),
         ],
       ),
