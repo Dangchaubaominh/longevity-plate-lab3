@@ -230,6 +230,13 @@ class _MealCard extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSpace.xs),
                 Text(meal.description, style: AppText.body),
+                if (meal.syncStatus != null)
+                  Text(switch (meal.syncStatus) {
+                    'synced' => 'Đã đồng bộ',
+                    'conflict' => 'Có xung đột · mở Đồng bộ',
+                    'failed' => 'Cần thử đồng bộ lại',
+                    _ => 'Đã lưu trên máy · chờ đồng bộ',
+                  }, style: AppText.caption),
               ],
             ),
           ),

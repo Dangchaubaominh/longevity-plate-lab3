@@ -133,12 +133,17 @@ export async function verifyIdToken(token, projectId, deps = {}) {
     // Tài liệu Firebase yêu cầu iat và auth_time ở quá khứ, nên phải có mặt.
     typeof payload.iat !== 'number' ||
     typeof payload.auth_time !== 'number' ||
+    typeof payload.exp !== 'number' ||
+    !Number.isFinite(payload.exp) ||
+    !Number.isFinite(payload.iat) ||
+    !Number.isFinite(payload.auth_time) ||
     header.alg !== 'RS256' ||
     typeof header.kid !== 'string' ||
     payload.aud !== projectId ||
     payload.iss !== `https://securetoken.google.com/${projectId}` ||
     typeof payload.sub !== 'string' ||
     payload.sub.length === 0 ||
+    payload.sub.length > 128 ||
     payload.iat > now + CLOCK_SKEW_SECONDS ||
     payload.auth_time > now + CLOCK_SKEW_SECONDS
   ) {
@@ -146,8 +151,13 @@ export async function verifyIdToken(token, projectId, deps = {}) {
   }
   if (!(payload.exp > now)) throw new HttpError(401, 'token-expired');
 
-  const keys = await (deps.fetchKeys ?? fetchGoogleKeys)();
-  const jwk = keys.find((key) => key.kid === header.kid);
+  let keys = await (deps.fetchKeys ?? fetchGoogleKeys)();
+  let jwk = keys.find((key) => key.kid === header.kid);
+  if (!jwk && !deps.fetchKeys) {
+    cachedUntil = 0;
+    keys = await fetchGoogleKeys();
+    jwk = keys.find((key) => key.kid === header.kid);
+  }
   if (!jwk) throw new HttpError(401, 'invalid-token');
   const key = await crypto.subtle.importKey(
     'jwk',

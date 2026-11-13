@@ -76,6 +76,12 @@ class _AccountView extends StatelessWidget {
             child: const Text('Đổi mục tiêu'),
           ),
           const SizedBox(height: AppSpace.md),
+          if (context.read<AppServices>().sync != null)
+            OutlinedButton.icon(
+              onPressed: () => context.push('/sync-status'),
+              icon: const Icon(Icons.sync),
+              label: const Text('Đồng bộ dữ liệu'),
+            ),
           if (session.message != null) ...[
             StatusBanner(kind: BannerKind.error, message: session.message!),
             const SizedBox(height: AppSpace.md),

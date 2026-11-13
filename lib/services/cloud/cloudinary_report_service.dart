@@ -94,7 +94,9 @@ class CloudinaryReportStorageService implements ReportStorageService {
       );
     }
 
-    final link = await _callApi('reports/url', {'publicId': ticket['publicId']});
+    final link = await _callApi('reports/url', {
+      'publicId': ticket['publicId'],
+    });
     return link['url'] as String;
   }
 

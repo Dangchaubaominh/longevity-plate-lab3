@@ -4,7 +4,7 @@ App Flutter cho Lab 3: ghi nhận bữa ăn, lên kế hoạch tuần và đọc
 
 Nội dung trong app là minh họa, không phải tư vấn y tế.
 
-Mã nguồn Lab 3 nằm ở nhánh `feature/lab3-firebase`. Bản đã chốt để nộp là tag [`lab3-evidence`](https://github.com/Dangchaubaominh/longevity-plate-lab3/tree/lab3-evidence).
+Backend/Admin và đồng bộ mới nằm ở nhánh `feature/backend-admin-offline-sync`. Bản Firebase trước khi thêm backend được lưu tại tag [`lab3-evidence`](https://github.com/Dangchaubaominh/longevity-plate-lab3/tree/lab3-evidence).
 
 ## Cài và dùng thử
 
@@ -26,7 +26,7 @@ Cần điện thoại Android có Google Play và một tài khoản Google.
 
 Lưu ý khi dùng:
 
-- Dữ liệu chỉ lưu trên điện thoại đó, tách riêng theo tài khoản và không đồng bộ giữa các thiết bị.
+- Khi build với `API_BASE_URL`, dữ liệu lưu SQLite trước rồi đồng bộ qua Worker/D1 và Cloudinary. Không có define này thì giữ chế độ local/PDF cũ. Backend mới cần nghiệm thu staging theo hướng dẫn bên dưới.
 - Xuất báo cáo cần có mạng. Link tải báo cáo hết hạn sau 15 phút, sau đó phải xuất lại.
 - Khu vực trình diễn chỉ để kiểm thử: các lỗi ở đó là giả lập, còn nút "Gây crash thử nghiệm" sẽ đóng app thật.
 
@@ -84,3 +84,16 @@ Chạy với Firebase thật trên Android: làm theo [docs/SETUP-FIREBASE.md](d
 | [docs/test-cases.md](docs/test-cases.md) | Test tự động, ca thủ công, ca ARTEMIS, danh sách bằng chứng |
 | [docs/code-review.md](docs/code-review.md) | Kết quả AI Code Review, quyết định cho từng phát hiện và commit sửa |
 | [server/README.md](server/README.md) | Server báo cáo trên Cloudflare Workers, giữ vai trò của storage.rules |
+
+## Backend và Admin mới
+
+Web Admin/API staging: [Mở Longevity Plate Admin](https://longevity-plate-lab3-staging.longevity-plate-dai05.workers.dev). Google login được bảo vệ bằng allowlist server; thông tin triển khai và phạm vi nghiệm thu nằm trong [báo cáo triển khai](docs/FINAL_IMPLEMENTATION_REPORT.md).
+
+Worker TypeScript/Hono, Cloudflare D1, Cloudinary authenticated ảnh/PDF, FCM HTTP v1, Web Admin React và adapter Crashlytics REST. Flutter giữ MVVM, thêm transactional outbox SQLite, retry/idempotency và xử lý xung đột.
+
+- Bắt đầu: [DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md).
+- Kiến trúc/API: [SYSTEM_ARCHITECTURE.md](docs/SYSTEM_ARCHITECTURE.md), [OpenAPI](docs/openapi.json).
+- Nghiệm thu: [TEST_PLAN.md](docs/TEST_PLAN.md), [ASSIGNMENT_ACCEPTANCE.md](docs/ASSIGNMENT_ACCEPTANCE.md).
+- Tiến độ và giới hạn thực: [IMPLEMENTATION_PROGRESS.md](docs/IMPLEMENTATION_PROGRESS.md), [KNOWN_LIMITATIONS.md](docs/KNOWN_LIMITATIONS.md).
+
+Local tests không thay thế nghiệm thu Google/Cloudinary/FCM/Crashlytics trên điện thoại thật. Không đưa secret vào Git hoặc chat.

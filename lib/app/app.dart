@@ -77,7 +77,10 @@ class _LongevityPlateAppState extends State<LongevityPlateApp>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) _notifications.reload();
+    if (state == AppLifecycleState.resumed) {
+      _notifications.reload();
+      widget.services.sync?.synchronize();
+    }
   }
 
   @override

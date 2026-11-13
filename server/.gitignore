@@ -1,3 +1,9 @@
 node_modules/
 .wrangler/
 .dev.vars
+dist/
+coverage/
+.dev.vars.*
+!.dev.vars.example
+wrangler.staging.toml
+wrangler.production.toml

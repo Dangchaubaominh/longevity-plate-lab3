@@ -1,6 +1,12 @@
-# Server báo cáo
+# Longevity Plate API
 
-Một Cloudflare Worker nhỏ, giữ vai trò của storage.rules khi app lưu báo cáo PDF trên Cloudinary thay cho Firebase Storage. Server kiểm tra ID token Firebase, ký lệnh tải lên vào `reports/<uid>/` của chính người gọi, và chỉ cấp link tải có hạn dùng cho chủ tệp. Khóa bí mật Cloudinary chỉ nằm trong secret của Cloudflare.
+Cloudflare Worker TypeScript/Hono với D1: profile/goals/meals/plans, sync, authenticated Cloudinary photo/PDF, devices/FCM, Admin và Crashlytics REST. Hai API PDF cũ vẫn tương thích. Firebase project hiện dùng được giữ nguyên; UID và Admin được xác minh phía server.
+
+Chạy Admin build trước (`cd ../admin; npm ci; npm run build`), sau đó `npm ci`, `npm run db:migrate`, cấu hình `.dev.vars` từ example và `npm run dev` trong server. UUID zero chỉ dùng D1 local.
+
+Kiểm tra: `npm run lint`, `npm run typecheck`, `npm test`, `npm run openapi`, `npm run security`, `npm run build` (dry-run). Tests dùng Workers/D1 local, provider fixtures; không cần production secrets.
+
+Staging/deploy/secrets/Admin bootstrap: [Deployment guide](../docs/DEPLOYMENT_GUIDE.md). API: [OpenAPI](../docs/openapi.json). Không deploy đè production hoặc đưa private key vào repo.
 
 Lý do và luồng chi tiết nằm ở [docs/architecture.md](../docs/architecture.md#lưu-trữ-báo-cáo-trên-cloudinary).
 

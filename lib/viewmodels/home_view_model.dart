@@ -27,7 +27,9 @@ class HomeViewModel extends ChangeNotifier with SafeNotifier {
   int get mealCount => meals.length;
 
   String get mealSummary {
-    if (meals.isEmpty) return 'Ghi nhận bữa ăn để theo dõi nhịp điệu trong ngày.';
+    if (meals.isEmpty) {
+      return 'Ghi nhận bữa ăn để theo dõi nhịp điệu trong ngày.';
+    }
     final types = <String>{for (final m in meals) m.type.label.toLowerCase()};
     return 'Bạn đã ghi nhận ${joinVietnamese(types.toList())}.';
   }
@@ -38,8 +40,7 @@ class HomeViewModel extends ChangeNotifier with SafeNotifier {
   PlanSlot get featuredSlot {
     if (plan.isEmpty) return PlanSlot.dinner;
     final hour = DateTime.now().hour;
-    final slots = plan.keys.toList()
-      ..sort((a, b) => a.hour.compareTo(b.hour));
+    final slots = plan.keys.toList()..sort((a, b) => a.hour.compareTo(b.hour));
     return slots.firstWhere((s) => s.hour >= hour, orElse: () => slots.last);
   }
 

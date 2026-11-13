@@ -1,0 +1,20 @@
+# Copy to wrangler.staging.toml and use a separately created staging database.
+# All provider credentials belong in Wrangler secrets, never in this file.
+name = "longevity-plate-lab3-staging"
+main = "src/worker.ts"
+compatibility_date = "2025-09-01"
+workers_dev = true
+preview_urls = false
+[assets]
+directory = "../admin/dist"
+binding = "ASSETS"
+run_worker_first = ["/api/*", "/reports/*", "/health"]
+[vars]
+FIREBASE_PROJECT_ID = "longevity-plate-beff9"
+[[d1_databases]]
+binding = "DB"
+database_name = "replace-with-your-staging-db-name"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+[triggers]
+crons = ["*/5 * * * *"]

@@ -27,7 +27,8 @@ class LibraryViewModel extends ChangeNotifier with SafeNotifier {
     final value = _s.remoteConfig.maxKnowledgeResults;
     return value > 0
         ? value
-        : RemoteConfigKeys.defaults[RemoteConfigKeys.maxKnowledgeResults]! as int;
+        : RemoteConfigKeys.defaults[RemoteConfigKeys.maxKnowledgeResults]!
+              as int;
   }
 
   List<Article> get results {
@@ -43,7 +44,9 @@ class LibraryViewModel extends ChangeNotifier with SafeNotifier {
   }
 
   LoadState get state {
-    if (_loadState == LoadState.ready && results.isEmpty) return LoadState.empty;
+    if (_loadState == LoadState.ready && results.isEmpty) {
+      return LoadState.empty;
+    }
     return _loadState;
   }
 

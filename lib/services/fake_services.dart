@@ -48,7 +48,8 @@ class FakeAuthService implements AuthService {
   }
 
   @override
-  Future<String?> idToken() async => _user == null ? null : 'fake-id-token';
+  Future<String?> idToken({bool forceRefresh = false}) async =>
+      _user == null ? null : 'fake-id-token';
 }
 
 class FakeReportStorageService implements ReportStorageService {
@@ -80,6 +81,8 @@ class FakeReportStorageService implements ReportStorageService {
 }
 
 class FakeMessagingService implements MessagingService {
+  @override
+  Stream<String> get tokenRefresh => const Stream.empty();
   final _foreground = StreamController<PushMessage>.broadcast();
   final _opened = StreamController<PushMessage>.broadcast();
   PushPermission permission = PushPermission.notDetermined;
@@ -169,9 +172,13 @@ class FakeCrashService implements CrashService {
 class FakeRemoteConfigService extends RemoteConfigService {
   FakeRemoteConfigService({int? maxResults, bool? recipesEnabled})
     : _maxResults =
-          maxResults ?? RemoteConfigKeys.defaults[RemoteConfigKeys.maxKnowledgeResults]! as int,
+          maxResults ??
+          RemoteConfigKeys.defaults[RemoteConfigKeys.maxKnowledgeResults]!
+              as int,
       _recipesEnabled =
-          recipesEnabled ?? RemoteConfigKeys.defaults[RemoteConfigKeys.suggestedRecipesEnabled]! as bool;
+          recipesEnabled ??
+          RemoteConfigKeys.defaults[RemoteConfigKeys.suggestedRecipesEnabled]!
+              as bool;
 
   int _maxResults;
   bool _recipesEnabled;

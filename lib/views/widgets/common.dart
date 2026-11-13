@@ -44,12 +44,7 @@ class BottomCta extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(
-          margin,
-          AppSpace.sm,
-          margin,
-          AppSpace.lg,
-        ),
+        padding: EdgeInsets.fromLTRB(margin, AppSpace.sm, margin, AppSpace.lg),
         child: child,
       ),
     );
@@ -284,7 +279,11 @@ class LoadingView extends StatelessWidget {
               Text(message, style: AppText.label, textAlign: TextAlign.center),
               if (detail != null) ...[
                 const SizedBox(height: AppSpace.xs),
-                Text(detail!, style: AppText.caption, textAlign: TextAlign.center),
+                Text(
+                  detail!,
+                  style: AppText.caption,
+                  textAlign: TextAlign.center,
+                ),
               ],
             ],
           ),

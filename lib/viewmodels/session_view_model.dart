@@ -10,12 +10,15 @@ class SessionViewModel extends ChangeNotifier {
   SessionViewModel(this._s) : _user = _s.auth.currentUser {
     _sub = _s.auth.userChanges.listen(_onUser);
     _applyIdentity();
+    if (_user != null && _s.sync != null) unawaited(_restore(_user!.uid));
   }
 
   final AppServices _s;
   late final StreamSubscription<AppUser?> _sub;
   AppUser? _user;
   bool _signingIn = false;
+  bool restoring = false;
+  int _generation = 0;
   String? _message;
 
   AppUser? get user => _user;
@@ -23,7 +26,8 @@ class SessionViewModel extends ChangeNotifier {
   bool get isSignedIn => _user != null;
   bool get isSigningIn => _signingIn;
   String? get message => _message;
-  bool get isOnboarded => _user != null && _s.goals.isOnboarded(_user!.uid);
+  bool get isOnboarded =>
+      _user != null && !restoring && _s.goals.isOnboarded(_user!.uid);
 
   /// Tên gọi ở màn Hôm nay. Thứ tự họ tên trên tài khoản Google không cố định
   /// nên hiển thị đủ, không tách tên riêng.
@@ -37,7 +41,32 @@ class SessionViewModel extends ChangeNotifier {
     _user = user;
     if (user != null) _message = null;
     _applyIdentity();
+    if (user != null && _s.sync != null) {
+      unawaited(_restore(user.uid));
+    } else if (user == null) {
+      _generation++;
+      restoring = false;
+      unawaited(_s.sync?.deactivate() ?? Future.value());
+    }
     notifyListeners();
+  }
+
+  Future<void> _restore(String uid) async {
+    final generation = ++_generation;
+    restoring = true;
+    notifyListeners();
+    try {
+      await _s.sync!.activate(uid);
+    } catch (_) {
+      if (generation == _generation) {
+        _message = 'Dữ liệu trên thiết bị vẫn được giữ. Mở Đồng bộ để thử lại.';
+      }
+    } finally {
+      if (generation == _generation) {
+        restoring = false;
+        notifyListeners();
+      }
+    }
   }
 
   // Chỉ gửi uid, không gửi email hay tên lên Analytics và Crashlytics.
@@ -83,6 +112,7 @@ class SessionViewModel extends ChangeNotifier {
   Future<void> signOut() async {
     try {
       await _s.analytics.logEvent(AnalyticsEvents.logout);
+      await _s.sync?.deactivate();
       await _s.auth.signOut();
     } catch (e, st) {
       _message = 'Chưa đăng xuất được. Vui lòng thử lại.';
