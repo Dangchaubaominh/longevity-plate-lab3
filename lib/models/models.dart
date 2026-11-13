@@ -25,6 +25,7 @@ class MealEntry {
     required this.description,
     required this.createdAt,
     this.imagePath,
+    this.syncStatus,
   });
 
   factory MealEntry.fromJson(Map<String, dynamic> json) => MealEntry(
@@ -34,6 +35,7 @@ class MealEntry {
     description: json['description'] as String,
     createdAt: DateTime.parse(json['createdAt'] as String),
     imagePath: json['imagePath'] is String ? json['imagePath'] as String : null,
+    syncStatus: json['syncStatus'] as String?,
   );
 
   final String id;
@@ -44,6 +46,7 @@ class MealEntry {
 
   /// Optional relative sandbox reference. Older records have no photo.
   final String? imagePath;
+  final String? syncStatus;
 
   Map<String, dynamic> toJson() => {
     'id': id,

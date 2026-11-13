@@ -70,9 +70,9 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
-  Future<String?> idToken() async {
+  Future<String?> idToken({bool forceRefresh = false}) async {
     try {
-      return await _auth.currentUser?.getIdToken();
+      return await _auth.currentUser?.getIdToken(forceRefresh);
     } on FirebaseAuthException catch (e) {
       // Token hết hạn mà mất mạng thì không làm mới được, ví dụ network-request-failed.
       throw AppFailure(e.code, e.message);

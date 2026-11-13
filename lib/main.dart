@@ -32,7 +32,7 @@ Future<void> main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    services = AppServices.firebase(prefs);
+    services = await AppServices.connectedFirebase(prefs);
     await services.remoteConfig.init();
     // Chờ Firebase khôi phục phiên để không hiện nhầm màn đăng nhập.
     await services.auth.userChanges.first.timeout(

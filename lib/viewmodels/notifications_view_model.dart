@@ -71,13 +71,21 @@ class NotificationsViewModel extends ChangeNotifier with SafeNotifier {
   }
 
   void _onSessionChanged() {
-    final uid = _session.uid;
-    if (uid == _uid) return;
+    final uid = _session.restoring ? null : _session.uid;
+    if (uid == _uid) {
+      _flushPending();
+      return;
+    }
     _uid = uid;
     items = const [];
     notifyListeners();
     if (uid == null) return;
     reload();
+    _flushPending();
+  }
+
+  void _flushPending() {
+    if (_uid == null || _session.restoring || !_session.isOnboarded) return;
     final pending = _pendingOpen;
     if (pending != null) {
       _pendingOpen = null;
@@ -93,6 +101,40 @@ class NotificationsViewModel extends ChangeNotifier with SafeNotifier {
       final loaded = await _s.notifications.load(uid);
       if (uid != _uid || isDisposed) return;
       items = loaded;
+      if (_s.backend != null) {
+        try {
+          final response = await _s.backend!.call(
+            uid,
+            '/notifications?limit=50',
+          );
+          if (uid != _uid || isDisposed) return;
+          for (final row in response['items'] as List) {
+            final value = Map<String, dynamic>.from(row as Map);
+            if (value['status'] != 'accepted' && value['openedAt'] == null) {
+              continue;
+            }
+            await _s.notifications.add(
+              uid,
+              AppNotification(
+                id: value['id'] as String,
+                title: value['title'] as String,
+                body: value['body'] as String,
+                route: value['route'] as String?,
+                receivedAt: DateTime.parse(value['receivedAt'] as String),
+                read: value['openedAt'] != null,
+              ),
+            );
+            if (uid != _uid || isDisposed) return;
+          }
+          final merged = await _s.notifications.load(uid);
+          if (uid != _uid || isDisposed) return;
+          items = merged;
+        } catch (_) {
+          if (uid == _uid && !isDisposed) {
+            errorMessage = 'Đang hiển thị lịch sử đã lưu trên thiết bị.';
+          }
+        }
+      }
     } catch (_) {
       errorMessage =
           'Chưa tải được lịch sử thông báo. Hãy mở lại màn này để thử lại.';
@@ -114,6 +156,10 @@ class NotificationsViewModel extends ChangeNotifier with SafeNotifier {
     errorMessage = null;
     try {
       permission = await _s.messaging.requestPermission();
+      final uid = _uid;
+      if (uid != null && permission == PushPermission.granted) {
+        await _s.sync?.registerDevice(uid);
+      }
     } catch (_) {
       errorMessage =
           'Chưa bật được thông báo. Kiểm tra cài đặt thiết bị rồi thử lại.';
@@ -140,23 +186,29 @@ class NotificationsViewModel extends ChangeNotifier with SafeNotifier {
   Future<void> _onForeground(PushMessage message) async {
     final item = _toItem(message);
     final uid = _uid;
+    if (message.targetUid != null && message.targetUid != uid) return;
     if (uid == null) {
-      await NotificationRepository.enqueueFromBackground(item);
+      if (_s.isFake) await NotificationRepository.enqueueFromBackground(item);
       return;
     }
     await _s.notifications.add(uid, item);
+    if (uid != _uid || isDisposed) return;
     await reload();
     onForegroundShown?.call(item);
   }
 
   Future<void> _onOpened(PushMessage message) async {
     final uid = _uid;
-    if (uid == null) {
+    if (uid != null && message.targetUid != null && message.targetUid != uid) {
+      return;
+    }
+    if (uid == null || !_session.isOnboarded) {
       // Người dùng phải đăng nhập trước, đăng nhập xong mới đưa tới đích.
       _pendingOpen = message;
       return;
     }
     await _s.notifications.add(uid, _toItem(message));
+    if (uid != _uid || isDisposed) return;
     await open(message.id, source: 'system');
   }
 
@@ -165,7 +217,21 @@ class NotificationsViewModel extends ChangeNotifier with SafeNotifier {
     final uid = _uid;
     if (uid == null) return;
     await _s.notifications.markRead(uid, id);
+    if (_s.backend != null) {
+      try {
+        await _s.backend!.call(
+          uid,
+          '/notifications/${Uri.encodeComponent(id)}/open',
+          method: 'POST',
+          body: {},
+        );
+      } catch (_) {
+        errorMessage =
+            'Đã mở trên thiết bị. Chưa cập nhật trạng thái lên máy chủ.';
+      }
+    }
     await reload();
+    if (uid != _uid || isDisposed) return;
     final item = items.where((n) => n.id == id).firstOrNull;
     final route = resolvePushRoute(item?.route);
     await _s.analytics.logEvent(AnalyticsEvents.notificationOpened, {

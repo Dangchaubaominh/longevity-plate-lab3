@@ -1,0 +1,312 @@
+{
+  "date": "2026-11-13",
+  "branch": "feature/backend-admin-offline-sync",
+  "stagingUrl": "https://longevity-plate-lab3-staging.longevity-plate-dai05.workers.dev",
+  "automated": {
+    "flutter": 102,
+    "backend": 55,
+    "adminComponents": 8,
+    "browser": 4
+  },
+  "coverage": {
+    "covered": 3246,
+    "total": 3994,
+    "percent": 81.27
+  },
+  "cloudinary": {
+    "time": "2026-11-13T10:52:29.564Z",
+    "source": "live-cloudinary",
+    "checks": [
+      {
+        "name": "credential_ping",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "photo_signed_upload",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "photo_authenticated_metadata",
+        "pass": true
+      },
+      {
+        "name": "photo_receipt_signature",
+        "pass": true
+      },
+      {
+        "name": "photo_admin_metadata",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "photo_private_download",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "photo_unsigned_denied",
+        "pass": true,
+        "status": 401
+      },
+      {
+        "name": "pdf_signed_upload",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "pdf_authenticated_metadata",
+        "pass": true
+      },
+      {
+        "name": "pdf_receipt_signature",
+        "pass": true
+      },
+      {
+        "name": "pdf_admin_metadata",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "pdf_private_download",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "pdf_unsigned_denied",
+        "pass": true,
+        "status": 401
+      },
+      {
+        "name": "photo_fixture_cleanup",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "pdf_fixture_cleanup",
+        "pass": true,
+        "status": 200
+      }
+    ]
+  },
+  "stagingApi": {
+    "time": "2026-11-13T14:17:36.719Z",
+    "source": "staging-worker-with-real-providers",
+    "checks": [
+      {
+        "name": "anonymous_401",
+        "pass": true,
+        "status": 401
+      },
+      {
+        "name": "firebase_token_a",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "firebase_token_b",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "worker_real_firebase_jwt_a",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "worker_real_firebase_jwt_b",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "ordinary_user_admin_403",
+        "pass": true,
+        "status": 403
+      },
+      {
+        "name": "local_admin_allowlist",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "meal_create_d1",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "meal_idempotency",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "other_owner_read_404",
+        "pass": true,
+        "status": 404
+      },
+      {
+        "name": "other_owner_update_404",
+        "pass": true,
+        "status": 404
+      },
+      {
+        "name": "revision_conflict",
+        "pass": true,
+        "status": 409
+      },
+      {
+        "name": "profile_update",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "goals_update",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "weekly_plan_create",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "photo_worker_ticket",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "photo_direct_upload",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "photo_other_owner_confirm_404",
+        "pass": true,
+        "status": 404
+      },
+      {
+        "name": "photo_worker_confirmation",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "photo_reconcile_idempotent",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "photo_worker_private_download",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "photo_other_owner_link_404",
+        "pass": true,
+        "status": 404
+      },
+      {
+        "name": "pdf_worker_ticket",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "pdf_direct_upload",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "pdf_other_owner_confirm_404",
+        "pass": true,
+        "status": 404
+      },
+      {
+        "name": "pdf_worker_confirmation",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "pdf_reconcile_idempotent",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "pdf_worker_private_download",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "pdf_other_owner_link_404",
+        "pass": true,
+        "status": 404
+      },
+      {
+        "name": "sync_cursor_real_changes",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "meal_soft_delete",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "sync_tombstone",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "fcm_provider_validate_only",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "crashlytics_live_refresh",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "crashlytics_actual_issue_events",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "owned_cloud_fixture_cleanup",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "owned_cloud_fixture_cleanup",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "temporary_firebase_user_cleanup",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "temporary_firebase_user_cleanup",
+        "pass": true,
+        "status": 200
+      },
+      {
+        "name": "local_d1_fixture_cleanup",
+        "pass": true
+      }
+    ],
+    "notes": [
+      "FCM used validate_only=true. No device message was sent; no claim of delivery.",
+      "Actual Crashlytics groups returned: 4. No synthetic crash data inserted."
+    ]
+  },
+  "googleLoader": {
+    "time": "2026-11-13T14:08:20.506Z",
+    "url": "https://longevity-plate-lab3-staging.longevity-plate-dai05.workers.dev",
+    "googleCspBlocks": 0,
+    "googleLoaderStatus": 200,
+    "popupHost": "accounts.google.com",
+    "pass": true
+  },
+  "deviceVerification": "in_progress",
+  "artemisVerification": "requires_model_configuration_and_device_run"
+}

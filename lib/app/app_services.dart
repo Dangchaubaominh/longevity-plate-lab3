@@ -17,6 +17,10 @@ import '../services/firebase/firebase_remote_config_service.dart';
 import '../services/report_builder.dart';
 import '../services/repositories.dart';
 import '../services/service_interfaces.dart';
+import '../services/sync/backend_api.dart';
+import '../services/sync/local_sync_store.dart';
+import '../services/sync/sync_engine.dart';
+import '../services/sync/connected_storage.dart';
 
 /// Toàn bộ phụ thuộc của app. ViewModel nhận từ đây nên test đổi được bản giả lập.
 class AppServices {
@@ -31,13 +35,18 @@ class AppServices {
     required this.remoteConfig,
     this.isFake = false,
     this.isLocal = false,
+    this.syncStore,
+    this.backend,
     MealPhotoService? mealPhotos,
     Future<bool> Function(Uri uri)? linkOpener,
   }) : openLink = linkOpener ?? _launch,
-       goals = GoalRepository(prefs, faults),
-       plans = PlanRepository(prefs, faults),
+       goals = GoalRepository(prefs, faults, sync: syncStore),
+       plans = PlanRepository(prefs, faults, sync: syncStore),
        content = ContentRepository(faults),
-       notifications = NotificationRepository(prefs),
+       notifications = NotificationRepository(
+         prefs,
+         allowLegacyPending: isFake,
+       ),
        reports = ReportBuilder() {
     photos =
         mealPhotos ??
@@ -47,7 +56,51 @@ class AppServices {
                 prefs: prefs,
                 currentUid: () => auth.currentUser?.uid,
               ));
-    meals = MealRepository(prefs, faults, photos: photos);
+    meals = MealRepository(prefs, faults, photos: photos, sync: syncStore);
+    if (syncStore != null && backend != null) {
+      sync = SyncEngine(
+        store: syncStore!,
+        api: backend!,
+        prefs: prefs,
+        photos: photos,
+        messaging: messaging,
+      );
+    }
+  }
+
+  static Future<AppServices> connectedFirebase(
+    SharedPreferences prefs, {
+    String apiBase = const String.fromEnvironment('API_BASE_URL'),
+  }) async {
+    if (apiBase.isEmpty) return AppServices.firebase(prefs);
+    final auth = FirebaseAuthService(), faults = FaultInjector();
+    await auth.userChanges.first.timeout(
+      const Duration(seconds: 3),
+      onTimeout: () => null,
+    );
+    final store = await LocalSyncStore.open(() => auth.currentUser?.uid);
+    final api = BackendApi(baseUrl: apiBase, auth: auth);
+    final localPhotos = DeviceMealPhotoService(
+      prefs: prefs,
+      currentUid: () => auth.currentUser?.uid,
+    );
+    final services = AppServices(
+      prefs: prefs,
+      faults: faults,
+      auth: auth,
+      storage: ConnectedReportStorage(api),
+      messaging: FirebaseMessagingService(),
+      analytics: ResilientAnalyticsService(FirebaseAnalyticsService()),
+      crash: FirebaseCrashService(),
+      remoteConfig: FirebaseRemoteConfigService(),
+      syncStore: store,
+      backend: api,
+      mealPhotos: ConnectedMealPhotos(localPhotos, api, prefs),
+    );
+    final uid = auth.currentUser?.uid;
+    // Populate durable cache before the first route reads onboarding state.
+    if (uid != null) await store.activate(uid, prefs);
+    return services;
   }
 
   factory AppServices.firebase(SharedPreferences prefs) {
@@ -126,6 +179,9 @@ class AppServices {
   final RemoteConfigService remoteConfig;
   final bool isFake;
   final bool isLocal;
+  final LocalSyncStore? syncStore;
+  final BackendApi? backend;
+  SyncEngine? sync;
 
   final GoalRepository goals;
   late final MealPhotoService photos;

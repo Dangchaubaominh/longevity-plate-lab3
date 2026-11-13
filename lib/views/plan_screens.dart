@@ -101,7 +101,10 @@ class _PlannerViewState extends State<_PlannerView> {
                 minTileHeight: 64,
                 leading: RoundedImage(recipe.image, height: 48, width: 48),
                 title: Text(recipe.title, style: AppText.label),
-                subtitle: const Text('Công thức minh họa', style: AppText.caption),
+                subtitle: const Text(
+                  'Công thức minh họa',
+                  style: AppText.caption,
+                ),
                 onTap: () => Navigator.pop(context, recipe.id),
               ),
           ],

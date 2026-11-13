@@ -1,0 +1,8 @@
+# Copy to .dev.vars. Fill actual values locally; never commit them.
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+GOOGLE_SERVICE_ACCOUNT_JSON=
+FIREBASE_APP_ID=
+# JSON of the public Web SDK config, not a service-account credential.
+FIREBASE_WEB_CONFIG=

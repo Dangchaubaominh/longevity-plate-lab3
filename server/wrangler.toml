@@ -1,8 +1,24 @@
 name = "longevity-plate-reports"
-main = "src/index.js"
+main = "src/worker.ts"
 compatibility_date = "2025-09-01"
+
+[assets]
+directory = "../admin/dist"
+binding = "ASSETS"
+run_worker_first = ["/api/*", "/reports/*", "/health"]
 
 # Ba giá trị Cloudinary đặt bằng `npx wrangler secret put <TÊN>`, không ghi vào đây:
 # CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
 [vars]
 FIREBASE_PROJECT_ID = "longevity-plate-beff9"
+ADMIN_ORIGIN = "http://localhost:5173"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "longevity-plate-lab3"
+# Local binding only. Replace in a separate staging config after creating a D1 database.
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[triggers]
+crons = ["*/5 * * * *"]

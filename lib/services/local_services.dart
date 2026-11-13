@@ -25,7 +25,7 @@ class LocalAuthService implements AuthService {
   }
 
   @override
-  Future<String?> idToken() async => null;
+  Future<String?> idToken({bool forceRefresh = false}) async => null;
 
   @override
   Future<void> signInWithGoogle() async {

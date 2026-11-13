@@ -33,7 +33,9 @@ class PlannerViewModel extends ChangeNotifier with SafeNotifier {
 
   DateTime get weekStart => startOfWeek(selectedDate);
   DateTime get weekEnd => addDays(weekStart, 6);
-  List<DateTime> get days => [for (var i = 0; i < 7; i++) addDays(weekStart, i)];
+  List<DateTime> get days => [
+    for (var i = 0; i < 7; i++) addDays(weekStart, i),
+  ];
 
   bool get showSuggestions => _s.remoteConfig.suggestedRecipesEnabled;
   List<Recipe> get recipes => _s.content.recipes;

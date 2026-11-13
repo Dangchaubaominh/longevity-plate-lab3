@@ -24,7 +24,7 @@ abstract interface class AuthService {
 
   /// ID token Firebase của người đang đăng nhập, gửi cho server báo cáo để
   /// server tự biết UID. Trả về null khi chưa đăng nhập.
-  Future<String?> idToken();
+  Future<String?> idToken({bool forceRefresh = false});
 }
 
 class UploadProgress {
@@ -54,15 +54,18 @@ class PushMessage {
     required this.title,
     required this.body,
     this.route,
+    this.targetUid,
   });
 
   final String id;
   final String title;
   final String body;
   final String? route;
+  final String? targetUid;
 }
 
 abstract interface class MessagingService {
+  Stream<String> get tokenRefresh;
   Stream<PushMessage> get onForeground;
   Stream<PushMessage> get onOpened;
   Future<PushMessage?> initialMessage();
@@ -79,7 +82,12 @@ abstract interface class AnalyticsService {
 }
 
 abstract interface class CrashService {
-  Future<void> recordError(Object error, StackTrace? stack, {required String reason});
+  Future<void> recordError(
+    Object error,
+    StackTrace? stack, {
+    required String reason,
+  });
+
   /// null khi đăng xuất, để lỗi sau đó không bị gắn cho người dùng trước.
   Future<void> setUserId(String? uid);
   Future<void> setKey(String key, String value);

@@ -11,6 +11,7 @@ import '../views/meal_screens.dart';
 import '../views/notifications_screen.dart';
 import '../views/onboarding_screens.dart';
 import '../views/plan_screens.dart';
+import '../views/sync_screen.dart';
 
 /// Quy tắc chặn truy cập. Tách riêng để kiểm thử không cần dựng giao diện.
 String? guardRedirect({
@@ -43,13 +44,38 @@ GoRouter buildRouter(SessionViewModel session) {
   return GoRouter(
     initialLocation: '/welcome',
     refreshListenable: session,
-    redirect: (context, state) => guardRedirect(
-      path: state.uri.path,
-      isEditingGoals: state.uri.queryParameters['edit'] == 'true',
-      signedIn: session.isSignedIn,
-      onboarded: session.isOnboarded,
-    ),
+    redirect: (context, state) => session.restoring
+        ? (state.uri.path == '/restoring' ? null : '/restoring')
+        : state.uri.path == '/restoring'
+        ? (session.isOnboarded ? '/home' : '/goals')
+        : session.isSignedIn && state.uri.path == '/sync-status'
+        ? null
+        : guardRedirect(
+            path: state.uri.path,
+            isEditingGoals: state.uri.queryParameters['edit'] == 'true',
+            signedIn: session.isSignedIn,
+            onboarded: session.isOnboarded,
+          ),
     routes: [
+      GoRoute(
+        path: '/restoring',
+        builder: (context, state) => const Scaffold(
+          body: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(height: 16),
+                Text('Đang khôi phục dữ liệu…'),
+              ],
+            ),
+          ),
+        ),
+      ),
+      GoRoute(
+        path: '/sync-status',
+        builder: (context, state) => const SyncScreen(),
+      ),
       GoRoute(
         path: '/welcome',
         builder: (context, state) => const WelcomeScreen(),
@@ -57,9 +83,8 @@ GoRouter buildRouter(SessionViewModel session) {
       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(
         path: '/goals',
-        builder: (context, state) => GoalsScreen(
-          isEditing: state.uri.queryParameters['edit'] == 'true',
-        ),
+        builder: (context, state) =>
+            GoalsScreen(isEditing: state.uri.queryParameters['edit'] == 'true'),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => _TabShell(shell: shell),

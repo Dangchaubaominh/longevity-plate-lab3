@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 
@@ -9,12 +10,14 @@ import '../service_interfaces.dart';
 
 PushMessage _toPush(RemoteMessage message) => PushMessage(
   id:
+      message.data['notificationId'] as String? ??
       message.messageId ??
       message.sentTime?.toIso8601String() ??
       DateTime.now().microsecondsSinceEpoch.toString(),
   title: message.notification?.title ?? 'Longevity Plate',
   body: message.notification?.body ?? '',
   route: message.data['route'] as String?,
+  targetUid: message.data['targetUid'] as String?,
 );
 
 /// Chạy ở isolate riêng khi app ở nền hoặc đã đóng, không dùng được Provider.
@@ -22,6 +25,8 @@ PushMessage _toPush(RemoteMessage message) => PushMessage(
 Future<void> firebaseBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final push = _toPush(message);
+  final uid = push.targetUid ?? FirebaseAuth.instance.currentUser?.uid;
+  if (uid == null) return;
   await NotificationRepository.enqueueFromBackground(
     AppNotification(
       id: push.id,
@@ -30,10 +35,15 @@ Future<void> firebaseBackgroundHandler(RemoteMessage message) async {
       route: push.route,
       receivedAt: message.sentTime ?? DateTime.now(),
     ),
+    targetUid: uid,
   );
 }
 
 class FirebaseMessagingService implements MessagingService {
+  @override
+  // HTTP v1 requires the registration token, not a Firebase installation ID.
+  // ignore: deprecated_member_use
+  Stream<String> get tokenRefresh => _messaging.onTokenRefresh;
   FirebaseMessagingService() {
     FirebaseMessaging.onBackgroundMessage(firebaseBackgroundHandler);
   }
@@ -78,7 +88,7 @@ class FirebaseMessagingService implements MessagingService {
       // ignore: deprecated_member_use
       return await _messaging.getToken();
     } catch (e) {
-      debugPrint('Không lấy được FCM token: $e');
+      debugPrint('Không lấy được FCM registration token.');
       return null;
     }
   }

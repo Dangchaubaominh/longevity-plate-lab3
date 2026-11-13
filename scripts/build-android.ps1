@@ -1,4 +1,4 @@
-param([switch]$Firebase, [switch]$SkipChecks, [string]$ReportApiUrl = $env:REPORT_API_URL)
+param([switch]$Firebase, [switch]$SkipChecks, [string]$ReportApiUrl = $env:REPORT_API_URL, [string]$ApiBaseUrl = $env:API_BASE_URL)
 
 $ErrorActionPreference = 'Stop'
 $projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
@@ -34,6 +34,9 @@ try {
     if (-not $Firebase) { $buildArgs += '--dart-define=USE_LOCAL_SERVICES=true' }
     if ($Firebase -and -not [string]::IsNullOrWhiteSpace($ReportApiUrl)) {
         $buildArgs += "--dart-define=REPORT_API_URL=$ReportApiUrl"
+    }
+    if ($Firebase -and -not [string]::IsNullOrWhiteSpace($ApiBaseUrl)) {
+        $buildArgs += "--dart-define=API_BASE_URL=$ApiBaseUrl"
     }
     & flutter @buildArgs
     if ($LASTEXITCODE -ne 0) { throw 'Build Android thất bại.' }

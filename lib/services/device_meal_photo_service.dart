@@ -248,6 +248,16 @@ class DeviceMealPhotoService implements MealPhotoService {
     return bytes;
   }
 
+  Future<String> cacheCloud(String uid, Uint8List bytes, String assetId) async {
+    checkOwner(uid);
+    final draft = await _prepare(uid, XFile.fromData(bytes, name: 'cloud.jpg'));
+    try {
+      return await persist(uid, draft, 'cloud_$assetId');
+    } finally {
+      await remove(uid, draft);
+    }
+  }
+
   @override
   Future<void> remove(String uid, String reference) async {
     final file = await _file(uid, reference);
