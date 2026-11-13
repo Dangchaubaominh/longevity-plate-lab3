@@ -32,7 +32,7 @@
   {
     "id": "AR07",
     "flow": "F03 / cancel replacement",
-    "goal": "In the APP Ke hoach screen inspect breakfast on 20 November 2026, created by AR06 (Com rau cu va dau). Actually open a DIFFERENT recipe, such as Banh mi trung. Set exactly 20/11/2026 and Sang and tap Them vao ke hoach. You MUST observe the dialog Thay the mon hien tai? and tap Huy. Record the original recipe title and the different candidate title in your result. Verify the original breakfast remains unchanged. If no replacement dialog is seen, report FAIL, never infer success. Return to the APP Hom nay tab. Hide any keyboard with Android BACK before navigation."
+    "goal": "In the APP Ke hoach screen inspect breakfast on 20 November 2026 reserved by AR06 (Com rau cu va dau). Suggestions only show the FIRST recipe, so do NOT search suggestions for another. Tap Chon mon in an EMPTY lunch/dinner slot to open the recipe chooser, choose Banh mi va trung. On its detail set exactly 20/11/2026 and Sang BEFORE tapping Them vao ke hoach. Observe Thay the mon hien tai? and tap Huy. Never save to the empty lunch/dinner slot. Verify original breakfast remains unchanged. If no replacement dialog is observed report FAIL. Return to the APP Hom nay tab."
   },
   {
     "id": "AR08",

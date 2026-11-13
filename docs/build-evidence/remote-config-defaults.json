@@ -1,0 +1,9 @@
+{
+  "time": "2026-11-13T17:34:35.787Z",
+  "mode": "defaults",
+  "version": "5",
+  "values": {
+    "max_knowledge_results": "3",
+    "suggested_recipes_enabled": "true"
+  }
+}

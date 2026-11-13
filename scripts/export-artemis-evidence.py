@@ -21,6 +21,7 @@ for result in results:
     session = result.get("session")
     steps = db.execute("SELECT step_number,pre_image_name,post_image_name,action_taken FROM steps WHERE session_id=? ORDER BY step_number", (session,)).fetchall()
     texts, packages, actions, images = [], set(), [], set()
+    app_inputs = []
     for number, pre, post, action in steps:
         try:
             actions.append(json.loads(action))
@@ -40,6 +41,9 @@ for result in results:
             for node in nodes:
                 texts.extend([node.get("text", ""), node.get("content-desc", "")])
                 packages.add(node.get("package", ""))
+                if (node.get("package") == "com.longevityplate.longevity_plate"
+                        and "EditText" in node.get("class", "")):
+                    app_inputs.append(node.get("text", ""))
     visible = normalize("\n".join(texts))
     targets = normalize("\n".join(str(a.get("target_text", "")) for a in actions))
     criteria = {
@@ -52,6 +56,8 @@ for result in results:
         "replacementDialogVisible": "Thay thế món hiện tại" in visible,
         "cancelActionRecorded": "Hủy" in targets,
         "noMatchQueryVisible": "ARTEMIS_NO_SUCH_ARTICLE" in visible,
+        # A keyboard clipboard suggestion is not the app's submitted value.
+        "noMatchQueryInAppField": any("ARTEMIS_NO_SUCH_ARTICLE" in text for text in app_inputs),
         "nativeGoogleUiObserved": any("google.android.gms" in p for p in packages),
         "nativeBrowserObserved": any("chrome" in p or "browser" in p for p in packages),
         "nativePhotoPickerObserved": any("providers.media" in p or "photopicker" in p or "google.android.apps.photos" in p for p in packages),
@@ -65,7 +71,7 @@ for result in results:
         "AR04": ["mealTypeErrorVisible", "mealDescriptionErrorVisible"],
         "AR05": ["discardDialogVisible"],
         "AR07": ["replacementDialogVisible", "cancelActionRecorded"],
-        "AR08": ["noMatchQueryVisible"],
+        "AR08": ["noMatchQueryInAppField"],
         "AR10": ["nativeBrowserObserved"],
         "AR13": ["nativePhotoPickerObserved", "galleryButtonClicked"],
     }.get(case, [])

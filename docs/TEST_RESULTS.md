@@ -30,8 +30,9 @@ Ngày 13/11/2026, Windows, Flutter 3.47.2/Dart 3.13.2, Node 22.22.3. Source phá
 | Native gallery photo | PASS | Người dùng chọn trong photo picker; D1version2/asset; private JPEG228597bytes HTTP200 |
 | Device FCM | PASS foreground/background/terminated | SnackBar/history, Android notification và openedAt; xem DEVICE_ACCEPTANCE.md |
 | Device crash/non-fatal → Admin | PASS | Nhóm fatal mới/eventTime15:11:28Z khớp CPH2637/Android16; non-fatal event tăng |
-| GitHub Actions | PASS backend-admin + flutter | Run43449611839, commit9215cf9, hai job success |
-| Camera/ARTEMIS | IN_PROGRESS | AR04-R1 đã quan sát validation và báo PASS; đang chạy suite |
+| GitHub Actions | PASS backend-admin + flutter | Run43465913095, commitfb1afbd, hai job success |
+| ARTEMIS |30runs,36attempts;16PASS/14FAIL theo quan sát | ARTEMIS_RESULTS.md; không lấy agent SUCCESS làm PASS |
+| Supervised exploratory |16.04min;5kiểm tra | EXPLORATORY_SESSION.md; native PDF200/14925bytes; RC đổi hành vi; camera cancel; replacement cancel |
 
 Các lỗi tìm thấy và đã sửa: fetch bị mất browser context; timeout chưa bao trọn send; queue sync tự kích hoạt lại thừa; ảnh bị thay/xóa từ thiết bị khác; thiếu revision cho ảnh chưa upload; queue notification lẫn owner; mất deep link trong restore/onboarding; token registration/logout đến server sai thứ tự. Tests regression bao phủ các trường hợp này.
 

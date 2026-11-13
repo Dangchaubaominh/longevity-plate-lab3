@@ -8,7 +8,7 @@ Ngày 13/11/2026. Triển khai theo Backendtast.docx và đối chiếu guide La
 - **APK:** artifacts/backend-implementation/longevity-plate-staging-arm64.apk, ARM64 debug, nối trực tiếp staging; SHA256 cùng thư mục. Không chứa Cloudinary secret hay service-account key.
 - **API E2E thật:** 40/40 checks. Firebase-issued ID tokens, remote D1, profile/goals/meal/plan, owner isolation, idempotency/revision, cursor/tombstone, JPEG/PDF upload/confirm/private download, FCM validate_only và Crashlytics issue/events.
 - **Automated local:** 102 Flutter +55 backend +8 Admin RTL +4 browser =169 cases đạt. Flutter analyze không có issue; line coverage81.27% (3246/3994).
-- **Cloudinary:** 15/15 kiểm tra provider thật, bao gồm unsigned denial và cleanup. **Crashlytics:** đọc4 nhóm sự cố thật và actual issue/events từ Firebase; không chèn sample production.
+- **Cloudinary:** 15/15 kiểm tra provider thật, bao gồm unsigned denial và cleanup. **Crashlytics:** đọc5 nhóm sự cố thật và actual issue/events từ Firebase; không chèn sample production.
 
 ## Những gì đã thay đổi
 
@@ -34,8 +34,8 @@ Admin React/TS/Vite có dashboard, users/activity counts/search/pagination, devi
 | Crashlytics | Actual REST v1alpha adapter | Fixtures/errors/redaction | Nút crash CPH2637 → nhóm fatal mới/event đúng timestamp/device; tổng5 nhóm | VERIFIED_REAL |
 | Flutter Sync | SQLite transactional outbox/MVVM |102 Flutter cases, analyze sạch | CPH2637 integration2/2: online media; controlled HTTP failure/native SQLite reopen/idempotent retry/real second-client conflict | VERIFIED_REAL trong phạm vi kiểm thử |
 | Admin Web | React/TS/Vite |8 RTL +4 browser | Google login user-confirmed; real loader/CSP check | VERIFIED_REAL |
-| CI | GitHub Actions, no prod secrets | backend-admin và flutter cùng đạt | [Run43449611839](https://github.com/Dangchaubaominh/longevity-plate-lab3/actions/runs/43449611839), commit9215cf9 | TEST_PASSED |
-| ARTEMIS | Environment + plan/scripts | Doctor ready, thiết bị và model key có sẵn | Đang chạy; model mặc định gặp503, thử model khả dụng | IN_PROGRESS |
+| CI | GitHub Actions, no prod secrets | backend-admin và flutter cùng đạt | [Run43465913095](https://github.com/Dangchaubaominh/longevity-plate-lab3/actions/runs/43465913095), commitfb1afbd | TEST_PASSED |
+| ARTEMIS | Official CLI;10case×3 |36attempts/30runs |16PASS/14FAIL theo ảnh/UI/cloud; exploratory16.04min riêng | Kết quả đã đối chiếu |
 
 ## Deploy và bảo vệ dữ liệu
 
@@ -45,6 +45,8 @@ Public example được làm sạch; `.dev.vars`, private-backup, logs/artifacts
 
 ## Điều kiện còn phụ thuộc người dùng
 
-Điện thoại đã kết nối; APK, integration_test, FCM ba trạng thái và crash→Firebase/Admin đã đạt (DEVICE_ACCEPTANCE.md). Tiếp tục camera/gallery và ARTEMIS theo rubric. Đa thiết bị cần thiết bị thứ hai; tests A/B API đã kiểm tra owner isolation. Người dùng tự quay video theo phân công.
+Điện thoại đã kết nối; APK, integration_test, FCM ba trạng thái và crash→Firebase/Admin đã đạt (DEVICE_ACCEPTANCE.md). Gallery thật và camera cancel đã kiểm tra; ARTEMIS có30lượt/36attempts và khám phá riêng. Camera capture/upload không được suy ra từ ca cancel. Đa thiết bị cần thiết bị thứ hai; tests A/B API đã kiểm tra owner isolation. Người dùng tự quay video theo phân công.
 
 Hướng dẫn: DEPLOYMENT_GUIDE.md, TEST_PLAN.md, ADMIN_GUIDE.md, FCM_SETUP.md, CRASHLYTICS_INTEGRATION.md, ASSIGNMENT_ACCEPTANCE.md. Giới hạn sản phẩm còn lại và phạm vi evidence được ghi trong KNOWN_LIMITATIONS.md.
+
+Chốt14/11: native PDF upload/download200/14925bytes, camera cancel và replacement cancel đã thử. RC publish4=1/false→5=3/true chứng minh library/planner đổi hành vi; không rebuild. Báo cáo12trang,slide15trang. Phần ảnh Console còn thiếu nằm ASSIGNMENT_ACCEPTANCE.md; video người dùng tự quay.

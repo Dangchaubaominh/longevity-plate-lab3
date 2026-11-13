@@ -4,6 +4,10 @@ import {readFileSync,mkdirSync,writeFileSync,createWriteStream} from 'node:fs';
 import {spawn} from 'node:child_process';
 import {resolve,delimiter} from 'node:path';
 const root=resolve(import.meta.dirname,'..');
+// --locked-app is a navigation hint, NOT a security boundary. AR13-R3
+// launched an unrelated app despite that flag. Bulk unattended runs are retired.
+if(process.env.LAB3_ARTEMIS_SUPERVISED!=='1')throw new Error('Unattended ARTEMIS disabled after an out-of-scope launch. A human must supervise every action; see docs/ARTEMIS_RESULTS.md.');
+if(!/^AR\d{2}$/.test(process.env.LAB3_ARTEMIS_CASE||'')||! /^[123]$/.test(process.env.LAB3_ARTEMIS_RUN||''))throw new Error('Supervised mode requires exactly one LAB3_ARTEMIS_CASE and LAB3_ARTEMIS_RUN (1..3). Never leave the device unattended.');
 const serial=process.env.LAB3_DEVICE_SERIAL;
 if(!serial)throw new Error('Set LAB3_DEVICE_SERIAL to the authorized Android device.');
 const toolRoot=resolve(root,'../tools/artemis');
@@ -19,6 +23,7 @@ let results=[];try{results=JSON.parse(readFileSync(resultPath,'utf8'));}catch{/*
 const env={...process.env,ARTEMIS_APP_DIR:runtime,ARTEMIS_ARTEMIS_JSONC:config,ARTEMIS_HELPER_AUTO_INSTALL:'false',ARTEMIS_HIERARCHY_BACKEND:'uiautomator',PYTHONUTF8:'1',PATH:[resolve(process.env.LOCALAPPDATA,'Android/Sdk/platform-tools'),resolve(root,'../tools/scrcpy/scrcpy-win64-v5.0.1'),process.env.PATH].join(delimiter)};
 const selected=process.env.LAB3_ARTEMIS_CASE?.split(',');
 suite: for(let run=1;run<=3;run++)for(const test of cases){
+ if(run!==Number(process.env.LAB3_ARTEMIS_RUN))continue;
  if(selected&&!selected.includes(test.id))continue;
  const name=`${test.id}-R${run}`;
  const prior=results.filter(r=>r.name===name);const previous=prior.at(-1);

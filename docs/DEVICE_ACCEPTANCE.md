@@ -20,3 +20,7 @@ Thiết bị OPPO CPH2637, Android 16/API36, ARM64, ADB qua Wi-Fi. Bản debug n
 Raw evidence nằm trong thư mục Git-ignored `artifacts/backend-implementation/`: `device-integration.txt`, `device-fcm-foreground.png`, `device-fcm-background-opened.json`, `device-fcm-terminated-opened.json`. Không công khai token, tài khoản khác trên thiết bị hoặc signed URL.
 
 Hai integration tests đạt trên CPH2637. Ca offline dùng lỗi HTTP có kiểm soát và close/open database, không tuyên bố ngắt Wi-Fi hoặc kill tiến trình Android. Gallery đã thử native với ảnh người dùng chọn; camera capture là ca riêng. Không tính `accepted` của FCM là bằng chứng nhận tin nếu chưa quan sát trên điện thoại. Raw evidence: `device-offline-integration.txt`, `device-gallery-proof.json`, `device-native-crash.txt`, `device-crash-refresh.json`, `device-crash-detail.json` (private; không publish token/tài khoản khác).
+
+## Bổ sung khám phá có giám sát14/11
+
+16.04phút/5kiểm tra; xem EXPLORATORY_SESSION.md. Camera native mở rồi hủy; không ghi nhận camera capture/upload. Hai validation nhìn thấy trong ảnh thực dù hierarchy thiếu text. Hủy thay món giữ recipe/revision1 ở D1. Native PDF14925bytes HTTP200; RCv4=1/false thực sự giảm list còn1bài và ẩn gợi ý; v5=3/true khôi phục gợi ý. Không rebuild APK.

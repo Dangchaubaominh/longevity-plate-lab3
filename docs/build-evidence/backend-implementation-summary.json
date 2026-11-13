@@ -373,5 +373,26 @@
       "recipes": true,
       "source": "native-UI-realtime-no-rebuild"
     }
+  },
+  "finalDelivery": {
+    "date": "2026-11-14",
+    "artemisObserved": {
+      "runs": 30,
+      "attempts": 36,
+      "pass": 16,
+      "fail": 14
+    },
+    "exploratoryMinutes": 16.04,
+    "remoteConfigFinalVersion": "5",
+    "remoteConfigFinalValues": {
+      "max_knowledge_results": 3,
+      "suggested_recipes_enabled": true
+    },
+    "nativePdf": {
+      "status": 200,
+      "bytes": 14925
+    },
+    "consoleEvidenceGaps": "docs/ASSIGNMENT_ACCEPTANCE.md",
+    "video": "User records separately"
   }
 }

@@ -1,0 +1,25 @@
+{
+  "verifiedAt": "2026-11-13T17:46:22.585163+00:00",
+  "pdfPages": [
+    12,
+    15
+  ],
+  "visualQA": "27 rendered pages reviewed; changed result pages re-rendered for final check",
+  "files": [
+    {
+      "path": "output/pdf/Longevity_Plate_Lab3_Report_Final_20261114.pdf",
+      "bytes": 2250622,
+      "sha256": "df269d8f91ec36b2f7ddbf494587b56ab93d523aee406f74cbb34063be68a582"
+    },
+    {
+      "path": "output/pdf/Longevity_Plate_Lab3_Slides_Final_20261114.pdf",
+      "bytes": 969196,
+      "sha256": "1df0311a92d37a001fb47dc2f824796a60acf38e8958773cfeefdcdef12c42d8"
+    },
+    {
+      "path": "output/pdf/Longevity_Plate_Lab3_Slides_Ready_20261114.pptx",
+      "bytes": 82282,
+      "sha256": "eaf10a4da5c34d142f4b71fec3f1cd8c65fc29253dcfb57c6f0de04f68f17d3b"
+    }
+  ]
+}
