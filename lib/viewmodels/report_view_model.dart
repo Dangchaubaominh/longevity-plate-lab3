@@ -39,6 +39,14 @@ class ReportViewModel extends ChangeNotifier with SafeNotifier {
       final to = today();
       final from = addDays(to, -(days - 1));
       final meals = _s.meals.inRange(_uid, from, to);
+      // BR-10: không có báo cáo rỗng để xuất và tải lên.
+      if (meals.isEmpty) {
+        phase = ReportPhase.failure;
+        errorMessage =
+            '7 ngày gần nhất chưa có bữa ăn nào. Hãy ghi ít nhất một bữa rồi xuất báo cáo.';
+        notifyListeners();
+        return;
+      }
       mealCount = meals.length;
       final bytes = await _s.reports.build(meals: meals, from: from, to: to);
 
