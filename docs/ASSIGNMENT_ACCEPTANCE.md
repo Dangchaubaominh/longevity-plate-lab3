@@ -29,3 +29,11 @@ Chức năng và API đã có, nhưng chưa đủ ảnh Console cho toàn bộ c
 Computer Use đã dừng do không xác định được URL trình duyệt đủ chắc để kiểm tra chính sách. Không tiếp tục input trình duyệt trong lượt này. Giữ checklist để người vận hành bổ sung ảnh Console bằng phiên đã đăng nhập, không tạo ảnh giả.
 
 Không cần nâng cấp package hoặc đổi Expo. APK staging hiện tại phù hợp các kiểm tra; code app không thay đổi sau bản APK đã nghiệm thu. Backend dùng Workers/HonoTS+D1; Cloudinary chỉ giữ media; Firebase phục vụ Auth/FCM/Analytics/Crashlytics/RC.
+
+<!-- ARTEMIS_REMEDIATION_START -->
+## Remediation thực tế 06:59:29 14/11/26
+
+Baseline giữ **16/30 PASS, 14 FAIL**. Campaign `remediation_20261114` chạy lại riêng 14 lượt FAIL: **12/14 PASS đã xác minh**, 26 attempts được giữ. Tổng hợp kế thừa 16 PASS baseline: **28/30 (93.33%)**, còn 2 lượt chưa đạt xác nhận. Đây không phải 30 lượt chạy mới.
+
+Chi tiết và giới hạn: [ARTEMIS_REMEDIATION_STATUS.md](ARTEMIS_REMEDIATION_STATUS.md). Ba lượt AR13 đều có người dùng tự chọn ảnh fixture. Tác nhân báo PASS cả ba; R3 có ảnh popup, R1/R2 còn thiếu ảnh popup trong trace và giữ PENDING_REVIEW. Người dùng yêu cầu dừng đối chiếu, không chạy thêm. Kết quả báo về tổng hợp 30/30; bằng chứng đầy đủ xác nhận 28/30. Model, sessions và bằng chứng có trong hồ sơ.
+<!-- ARTEMIS_REMEDIATION_END -->

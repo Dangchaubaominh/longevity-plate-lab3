@@ -1,0 +1,146 @@
+diff --git a/artemis/drivers/android/adb_driver.py b/artemis/drivers/android/adb_driver.py
+index 360aa48..23eb970 100644
+--- a/artemis/drivers/android/adb_driver.py
++++ b/artemis/drivers/android/adb_driver.py
+@@ -16,6 +16,7 @@
+ 
+ import asyncio
+ import base64
++import os
+ from io import BytesIO
+ from pathlib import Path
+ from typing import Any, Literal
+@@ -120,6 +121,11 @@ class AndroidAdbDriver(BaseDeviceDriver):
+ 
+     async def get_screen_data(self, skip_settling: bool = False) -> ScreenData:
+         """Captures screenshot and XML hierarchy concurrently."""
++        scope = os.environ.get("ARTEMIS_SCOPE_PACKAGE")
++        if scope:
++            allowed = {scope, *filter(None, os.environ.get("ARTEMIS_SCOPE_NATIVE_PACKAGES", "").split(","))}
++            if await self.get_current_package() not in allowed:
++                raise RuntimeError("Screen capture refused: foreground package outside test scope")
+         if not skip_settling:
+             await asyncio.sleep(0.3)
+ 
+@@ -305,6 +311,9 @@ class AndroidAdbDriver(BaseDeviceDriver):
+         return False
+ 
+     async def input_text(self, text: str, clear_existing: bool = True) -> bool:
++        verify_package = os.environ.get("ARTEMIS_INPUT_VERIFY_PACKAGE")
++        if verify_package and text.isascii() and "\n" not in text and "\r" not in text:
++            return await self._verified_ascii_input(text, clear_existing, verify_package)
+         try:
+             if clear_existing:
+                 # Safe & robust clearing: Move to End -> Shift+Home selection -> Delete -> Fallback backspaces
+@@ -369,7 +378,50 @@ class AndroidAdbDriver(BaseDeviceDriver):
+             logger.error(f"Input text failed for '{text}': {e}")
+             return False
+ 
++    async def _verified_ascii_input(self, text: str, clear_existing: bool, package: str) -> bool:
++        """Opt-in native input with read-back from the focused app field.
++
++        Clipboard set success alone does not prove KEYCODE_PASTE reached EditText
++        (observed on OPPO Android 16). Do not type if focus cannot be verified.
++        """
++        async def focused_text() -> str | None:
++            if await self.get_current_package() != package:
++                return None
++            screen = await self.get_screen_data()
++            fields = [node for node in screen.ui_elements
++                      if node.get("package") == package
++                      and "EditText" in node.get("class", "")
++                      and str(node.get("focused", "")).lower() == "true"]
++            return str(fields[0].get("text", "")) if len(fields) == 1 else None
++
++        try:
++            before = await focused_text()
++            if before is None:
++                logger.warning("Verified input refused: focused app field unavailable")
++                return False
++            expected = text if clear_existing else before + text
++            # ACTION_SET_TEXT bypasses keyboard composition, not application
++            # validation. Native input text is transformed by Vietnamese Telex
++            # on OPPO (ARTEMIS becomes ẢTEMIS), so key injection is not reliable.
++            ui_device = getattr(self._ui_adb_client, "_device", None)
++            if ui_device is None:
++                logger.warning("Verified input refused: accessibility device unavailable")
++                return False
++            field = ui_device(focused=True, packageName=package, className="android.widget.EditText")
++            await asyncio.to_thread(field.set_text, expected)
++            actual = await focused_text()
++            if actual != expected:
++                logger.warning("Verified input failed: app field does not match expected value")
++                return False
++            return True
++        except Exception:
++            logger.exception("Verified native input failed")
++            return False
++
+     async def press_key(self, key: KeyCode | str | int) -> bool:
++        if os.environ.get("ARTEMIS_SCOPE_PACKAGE") and str(key).lower().replace("keycode.", "").removeprefix("keycode_") in {"home", "3", "app_switch", "187", "power", "26"}:
++            logger.warning("Key refused by test scope")
++            return False
+         try:
+             keycode_val = key
+             if isinstance(key, (KeyCode, str)):
+@@ -383,6 +435,10 @@ class AndroidAdbDriver(BaseDeviceDriver):
+             return False
+ 
+     async def launch_app(self, package_name: str) -> bool:
++        scope = os.environ.get("ARTEMIS_SCOPE_PACKAGE")
++        if scope and package_name != scope:
++            logger.warning("App launch refused by test scope")
++            return False
+         try:
+             cmd = f"monkey -p {package_name} -c android.intent.category.LAUNCHER 1"
+             await asyncio.to_thread(self.device.shell, cmd)
+@@ -392,6 +448,10 @@ class AndroidAdbDriver(BaseDeviceDriver):
+             return False
+ 
+     async def stop_app(self, package_name: str) -> bool:
++        scope = os.environ.get("ARTEMIS_SCOPE_PACKAGE")
++        if scope and package_name != scope:
++            logger.warning("App stop refused by test scope")
++            return False
+         try:
+             await asyncio.to_thread(self.device.shell, f"am force-stop {package_name}")
+             return True
+diff --git a/artemis/mcp/actuators/adb.py b/artemis/mcp/actuators/adb.py
+index 4580e43..c05628c 100644
+--- a/artemis/mcp/actuators/adb.py
++++ b/artemis/mcp/actuators/adb.py
+@@ -27,6 +27,7 @@ executor's ``try/except`` did.
+ 
+ import asyncio
+ import inspect
++import os
+ import re
+ import time
+ from typing import Any
+@@ -205,18 +206,15 @@ class AdbActuator:
+                     detail=str(err),
+                     normalized_coordinates=coords,
+                 )
+-        if clear_exist:
+-            if hasattr(self.controller, "erase_text") and not await self.controller.erase_text():
+-                return ActionResult.failure(
+-                    "input_text",
+-                    "Failed to clear existing text",
+-                    normalized_coordinates=coords,
+-                )
+-        elif hasattr(self.controller, "press_key"):
+-            # KEYCODE_MOVE_END: move cursor to the end for reliable append.
+-            await self.controller.press_key("123")
++        verified_input = bool(os.environ.get("ARTEMIS_INPUT_VERIFY_PACKAGE"))
++        if not verified_input:
++            if clear_exist:
++                if hasattr(self.controller, "erase_text") and not await self.controller.erase_text():
++                    return ActionResult.failure("input_text", "Failed to clear existing text", normalized_coordinates=coords)
++            elif hasattr(self.controller, "press_key"):
++                await self.controller.press_key("123")
+         if hasattr(self.controller, "type_text") and not await self.controller.type_text(
+-            text, clear_existing=False
++            text, clear_existing=clear_exist if verified_input else False
+         ):
+             return ActionResult.failure(
+                 "input_text",

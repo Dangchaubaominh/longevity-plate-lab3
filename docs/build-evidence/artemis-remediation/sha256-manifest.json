@@ -1,0 +1,16 @@
+{
+  "AR13-R1-photo-proof.json": "6d44a6bbe6f9673254ffc5f4e391ab4ba67e5d806efb70202ddd722022d99b1a",
+  "AR13-R2-photo-proof.json": "b252bbfc2bbdbf96d50f9b07a7e6bfd4e2f76ee27ecb5dcdf9fe99346fc97a0d",
+  "AR13-R3-photo-proof.json": "0de2fbb4a027c2dacbb3a3b770728cf6d921439408a9685f918d1417da6f610a",
+  "AR13-R3-popup.png": "87e1867b4693235a1644150e73480312f63c3af5e3ff2a4f0b0d8db1dc8612e1",
+  "attempts.json": "07375e84a17176ed74c0c0b0eaccb27ae6133e3e18e66ff249f238496612e18b",
+  "baseline-analysis.json": "296ab11c05f8f3e41acc7908dc5c6cc2f17654880e00f67e0bfa1600ea44eaee",
+  "build-manifest.json": "616f96926ddf2120fc200604cd60afeafc0fe029e660e2db0b858d84a9e8a837",
+  "input-fixture.jpg": "ed997daef928abc00c385f2cdd9aefede683eaeca4740fa9a7dcd7a1a7828480",
+  "proof-description.png": "3f960320b523272d0fd8d3887a616fe258a6af624f4808bf110884d0f60f84eb",
+  "proof-type.png": "cb712f72318d7c41198a9053c8b57e3d1255ffa2ecaa3e498cc36d285ac257be",
+  "README.md": "7a1b69c491e4be3eaf9f3470885c8d3fac380ee3212417dfb1cd80e84aea1868",
+  "remediation_20261114-summary.json": "5876075301af70faa9882ab50e610e2e826847cd805ee9f8cd71be3efd256321",
+  "slide-validation.json": "d0d26cffa01fddbd4c5dfcf7925cc02570c33ba6c6b14bf3e0dff36ed18a0a83",
+  "uploaded-fixture.jpg": "45df1fd2c321abced678b07f36839d7259bff12fa99abbeda4b2db9bd0332237"
+}

@@ -12,17 +12,17 @@
   {
     "id": "AR03",
     "flow": "F02 / create meal",
-    "goal": "In Longevity Plate open the app meal journal, tap Them bua an. Choose Bua trua and verify the lunch option is selected. Scroll to the food description, enter exactly ARTEMIS_AR03_R{run}_COM_RAU. Close the keyboard with Android BACK before tapping Luu bua an. Verify the journal shows this exact description AND Bua trua, and success feedback. Create only one record; if that exact test record already exists inspect its type instead of adding another. If the existing record has the wrong type, report FAIL. Return to the APP Hom nay tab, not the Android launcher."
+    "goal": "In Longevity Plate open the app meal journal, tap Them bua an. Existing journal records with DIFFERENT descriptions (including other AR03 runs) are unrelated: leave them untouched and create this run's NEW record. Choose Bua trua and verify the lunch option is selected. Scroll to the food description, enter exactly ARTEMIS_AR03_R{run}_COM_RAU. Close the keyboard with Android BACK before tapping Luu bua an. Verify the journal shows this EXACT description AND Bua trua, and success feedback. Create only one record. ONLY if the EXACT required description already exists, inspect that matching record instead of adding a duplicate; report FAIL if that exact matching record has the wrong type. A record for R2 must never be treated as the required R3 record. Return to the APP Hom nay tab, not the Android launcher."
   },
   {
     "id": "AR04",
     "flow": "F02 / required fields",
-    "goal": "Open the app meal journal and tap Them bua an. Leave meal type and description empty and tap Luu bua an. FIRST observe Hay chon loai bua. THEN SCROLL DOWN past the photo area to the food description and observe Hay nhap mon an truoc khi luu. Both visible errors are required: do not report PASS after seeing only the first. No meal may be saved. Close any keyboard with Android BACK before navigation, then return to the APP Hom nay tab, not Android launcher."
+    "goal": "Open the app meal journal and tap Them bua an. Confirm this is a fresh form. Leave meal type and description empty and tap Luu bua an ONCE. FIRST observe Hay chon loai bua. THEN swipe your finger UP, from the lower part of the form towards the upper part, to reveal content further BELOW the photo area. Repeat upward finger swipes until the food description and Hay nhap mon an truoc khi luu are visible. Wait for scrolling to stop before observing. Do not tap Save again to scroll because submission returns focus to the first invalid field. Both visible errors are required: do not report PASS after seeing only the first. No meal may be saved. Close any keyboard with Android BACK before navigation, then return to the APP Hom nay tab, not Android launcher."
   },
   {
     "id": "AR05",
     "flow": "F02 / discard",
-    "goal": "Open Ghi nhan bua an and type ARTEMIS_AR05_R{run}_DISCARD into the food description. Press Back, verify the unsaved-changes dialog, choose Bo thay doi. Verify this description does not appear in the journal. Return to the APP Hom nay tab; close the keyboard using Android BACK first, and do not press Android HOME."
+    "goal": "Open the APP Nhat ky meal journal, then tap Them bua an to open a fresh add-meal FORM. The journal itself is not the form. Reveal the actual food text field and type exactly ARTEMIS_AR05_R{run}_DISCARD. Dismiss the keyboard with Android BACK, then press the form Back button, verify the unsaved-changes dialog, choose Bo thay doi. Verify this description does not appear in the journal. Return to the APP Hom nay tab, and do not press Android HOME."
   },
   {
     "id": "AR06",
@@ -32,7 +32,7 @@
   {
     "id": "AR07",
     "flow": "F03 / cancel replacement",
-    "goal": "In the APP Ke hoach screen inspect breakfast on 20 November 2026 reserved by AR06 (Com rau cu va dau). Suggestions only show the FIRST recipe, so do NOT search suggestions for another. Tap Chon mon in an EMPTY lunch/dinner slot to open the recipe chooser, choose Banh mi va trung. On its detail set exactly 20/11/2026 and Sang BEFORE tapping Them vao ke hoach. Observe Thay the mon hien tai? and tap Huy. Never save to the empty lunch/dinner slot. Verify original breakfast remains unchanged. If no replacement dialog is observed report FAIL. Return to the APP Hom nay tab."
+    "goal": "In the APP Ke hoach screen inspect breakfast on 20 November 2026 reserved by AR06 (Com rau cu va dau). Suggestions only show the FIRST recipe, so do NOT search suggestions for another. Tap Chon mon in an EMPTY DINNER slot to open the recipe chooser, choose Banh mi va trung. CRITICAL: the detail initially inherits the dinner slot. DO NOT press the bottom Them vao ke hoach button yet. Swipe UP on the WHOLE SCREEN without a target parameter until the form section containing Ngay and Bua an is fully visible. Set the date to exactly 20/11/2026, then tap the Sang choice under Bua an and visually verify Sang is selected, NOT Trua or Toi. ONLY THEN press Them vao ke hoach. A real dialog titled Thay the mon hien tai? must appear; tap its Huy button. Never save to the empty lunch/dinner slot. Verify original breakfast remains unchanged. Do not claim a replacement dialog unless its screenshot and an actual Huy click exist. If no replacement dialog is observed report FAIL. Return to the APP Hom nay tab."
   },
   {
     "id": "AR08",

@@ -1,0 +1,3837 @@
+{
+  "baselineSha256": "988336e50331e7af311b36fbaf0de5566c6ac1e414d18a7ad40549e3991e7856",
+  "baseline": {
+    "pass": 16,
+    "fail": 14,
+    "ratePercent": 53.33,
+    "officialRuns": 30,
+    "rawAttempts": 36
+  },
+  "selectionRule": "One historical adjudicated session per case/run, matching artemis-summary.json; all36rawattempts retained.",
+  "primaryCategoryCounts": {
+    "A": 0,
+    "B": 2,
+    "C": 12,
+    "D": 0,
+    "E": 0
+  },
+  "runs": [
+    {
+      "testId": "AR01",
+      "name": "AR01-R1",
+      "run": 1,
+      "flow": "F01 / native Google account chooser",
+      "session": "23c4a7b0-e9d3-4cab-8a24-4479dcd4fb05",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:19:34.686Z",
+      "end": "2026-11-13T15:21:11.540Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F01 / native Google account chooser; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794583202.7301455,
+          "tool": "click",
+          "target": "Tài khoản",
+          "preImage": "d1cb55e8bfef7cb4aa73d9cd2c92f6b26d044fdaccad9a40f78e0717150457ee",
+          "postImage": "4bb2cf68f0d74be6b875f786fc16733c14074ac03a9e9011545ec0b68b4d81fc",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794583211.4151187,
+          "tool": "click",
+          "target": "Đăng xuất",
+          "preImage": "4bb2cf68f0d74be6b875f786fc16733c14074ac03a9e9011545ec0b68b4d81fc",
+          "postImage": "c74f268a7183608491dc9239a9884e81b147dea65ae5d07fcdd6c49c12c2b150",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794583218.8881075,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "c74f268a7183608491dc9239a9884e81b147dea65ae5d07fcdd6c49c12c2b150",
+          "postImage": "5dad319a3f20de9abf1d97d9dc7028215efe219c48a634efebace4e9a4149542",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794583230.2419324,
+          "tool": "click",
+          "target": "Bắt đầu →",
+          "preImage": "5dad319a3f20de9abf1d97d9dc7028215efe219c48a634efebace4e9a4149542",
+          "postImage": "c74f268a7183608491dc9239a9884e81b147dea65ae5d07fcdd6c49c12c2b150",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794583236.214758,
+          "tool": "click",
+          "target": "Tiếp tục với Google",
+          "preImage": "c74f268a7183608491dc9239a9884e81b147dea65ae5d07fcdd6c49c12c2b150",
+          "postImage": "8d8dfaea5addf5ff6a1f28b3d2edf94e9dfce05af950b71ccd87f48505592bcf",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794583245.490147,
+          "tool": "click",
+          "target": "Như Đại Nguyễn",
+          "preImage": "8d8dfaea5addf5ff6a1f28b3d2edf94e9dfce05af950b71ccd87f48505592bcf",
+          "postImage": "3165c4997f8821a21ed6e4f8756d597406ad8577040fe890baf47675d8b2d24a",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794583261.1685274,
+          "tool": "wait_for_delay",
+          "target": "",
+          "preImage": "3165c4997f8821a21ed6e4f8756d597406ad8577040fe890baf47675d8b2d24a",
+          "postImage": "682775c88c01f9a242c29e42518512711f3d66088e17c741cc76683a0cb28ea7",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794583270.085423,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "682775c88c01f9a242c29e42518512711f3d66088e17c741cc76683a0cb28ea7",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR01",
+      "name": "AR01-R2",
+      "run": 2,
+      "flow": "F01 / native Google account chooser",
+      "session": "742758fb-ef13-4c10-9b7f-689713e3200d",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:45:56.515Z",
+      "end": "2026-11-13T15:47:40.072Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F01 / native Google account chooser; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794584782.4501963,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "601f091a88fc765378be729160a103c5c7c801a547018b20fc50efca38004578",
+          "postImage": "4e2002cc03e01f9cb73f8aba855992131a55dff17c852a73573bb2d21e3e2f00",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794584788.4666648,
+          "tool": "click",
+          "target": "Bỏ thay đổi",
+          "preImage": "4e2002cc03e01f9cb73f8aba855992131a55dff17c852a73573bb2d21e3e2f00",
+          "postImage": "58ef4418c94644376653970dd5dfa74e75ce8c06ad270e81fd68354baa8f5e11",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794584793.3453383,
+          "tool": "click",
+          "target": "Tài khoản",
+          "preImage": "58ef4418c94644376653970dd5dfa74e75ce8c06ad270e81fd68354baa8f5e11",
+          "postImage": "44946ad42a6ca76c0e79fd7f8e7256a3309e385b9fc771b84d7072366ec50fb5",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794584800.8317642,
+          "tool": "click",
+          "target": "Đăng xuất",
+          "preImage": "44946ad42a6ca76c0e79fd7f8e7256a3309e385b9fc771b84d7072366ec50fb5",
+          "postImage": "12fa615aa5a47c499c16f3967497defd333ff68d86bb483750f88f58e827eb35",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794584809.688129,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "12fa615aa5a47c499c16f3967497defd333ff68d86bb483750f88f58e827eb35",
+          "postImage": "63736e266716682e246ff581314f1a1824029d3c8806e8e15a42f67eb6cb1d30",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794584818.9901056,
+          "tool": "click",
+          "target": "Bắt đầu →",
+          "preImage": "63736e266716682e246ff581314f1a1824029d3c8806e8e15a42f67eb6cb1d30",
+          "postImage": "990e57f8397922743149c632bb21733c2211ba1da28e743761f29b4d8d3b700d",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794584826.2194333,
+          "tool": "click",
+          "target": "Tiếp tục với Google",
+          "preImage": "990e57f8397922743149c632bb21733c2211ba1da28e743761f29b4d8d3b700d",
+          "postImage": "9c17512a6a0f588dd150765c68df11b2473cccd720ac9beeb2b5bd17491cea10",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794584836.5665083,
+          "tool": "click",
+          "target": "Như Đại Nguyễn",
+          "preImage": "9c17512a6a0f588dd150765c68df11b2473cccd720ac9beeb2b5bd17491cea10",
+          "postImage": "8189d2b55d70a909b865b8f7336f8ae4a4d22a10359ce2506a3c0fb57bc9fe4b",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794584850.241928,
+          "tool": "wait_for_delay",
+          "target": "",
+          "preImage": "8189d2b55d70a909b865b8f7336f8ae4a4d22a10359ce2506a3c0fb57bc9fe4b",
+          "postImage": "1504c16381f90b47f1a8fbb4d9ba025a1acb5d9a69d8ab620364283fee086af7",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794584858.3753147,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "1504c16381f90b47f1a8fbb4d9ba025a1acb5d9a69d8ab620364283fee086af7",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR01",
+      "name": "AR01-R3",
+      "run": 3,
+      "flow": "F01 / native Google account chooser",
+      "session": "95fb5be8-789e-497f-b10b-d04cc5060319",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:44:28.067Z",
+      "end": "2026-11-13T16:46:42.270Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F01 / native Google account chooser; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794588300.1524289,
+          "tool": "click",
+          "target": "Tài khoản",
+          "preImage": "cd10a72f841c0ba17aaa5b46b48e43509afe2fe74f3ba08d56f56167d4c316a4",
+          "postImage": "039947a08883537b16f698a0d40bcd65a0787a7a676b4dca0b7b728d7a4cd8bb",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794588307.8857226,
+          "tool": "click",
+          "target": "Đăng xuất",
+          "preImage": "039947a08883537b16f698a0d40bcd65a0787a7a676b4dca0b7b728d7a4cd8bb",
+          "postImage": "3ad52735b92c7baa853e99180404f914f1ab8f9bfdc28c30f0410717243d1a51",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588315.806634,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "3ad52735b92c7baa853e99180404f914f1ab8f9bfdc28c30f0410717243d1a51",
+          "postImage": "b5cd3c47c0ff46291f74a90915004fc95e5a5f6b73fd38248c2f1d93a2ddff9e",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588323.966741,
+          "tool": "click",
+          "target": "Bắt đầu →",
+          "preImage": "b5cd3c47c0ff46291f74a90915004fc95e5a5f6b73fd38248c2f1d93a2ddff9e",
+          "postImage": "3ad52735b92c7baa853e99180404f914f1ab8f9bfdc28c30f0410717243d1a51",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588329.8996048,
+          "tool": "click",
+          "target": "Tiếp tục với Google",
+          "preImage": "3ad52735b92c7baa853e99180404f914f1ab8f9bfdc28c30f0410717243d1a51",
+          "postImage": "e09b187e1704b4d7698bf7f398dfeb2da09fd94d6a3f8088cf67443a423c3683",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794588335.7842171,
+          "tool": "click",
+          "target": "Như Đại Nguyễn",
+          "preImage": "e09b187e1704b4d7698bf7f398dfeb2da09fd94d6a3f8088cf67443a423c3683",
+          "postImage": "10d44ff46b06ae32a0722fbbaedd9840bd20940bc426f8f92b17af387f441efb",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794588348.7159643,
+          "tool": "wait_for_delay",
+          "target": "",
+          "preImage": "10d44ff46b06ae32a0722fbbaedd9840bd20940bc426f8f92b17af387f441efb",
+          "postImage": "1c065b405e675e4741a149251ce0f1bc7c7adba82b227b57d8951d78279ea783",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794588353.9002545,
+          "tool": "click",
+          "target": "Tài khoản",
+          "preImage": "1c065b405e675e4741a149251ce0f1bc7c7adba82b227b57d8951d78279ea783",
+          "postImage": "523875fbd2386ee98adc23b9f75dda4740663c8afeff76341a4e5b59ee5717cf",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794588360.8946319,
+          "tool": "click",
+          "target": "Đăng xuất",
+          "preImage": "523875fbd2386ee98adc23b9f75dda4740663c8afeff76341a4e5b59ee5717cf",
+          "postImage": "75a8838c46e8295b8bd9797a80ee512b351ea4faecba7e3cbbab3d638725c523",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794588367.7866402,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "75a8838c46e8295b8bd9797a80ee512b351ea4faecba7e3cbbab3d638725c523",
+          "postImage": "b74354cd539bddf2319549b8206a0c6417d459293a9531de31dfb865a6c83509",
+          "decisive": false
+        },
+        {
+          "step": 11,
+          "timestamp": 1794588374.520579,
+          "tool": "click",
+          "target": "Bắt đầu →",
+          "preImage": "b74354cd539bddf2319549b8206a0c6417d459293a9531de31dfb865a6c83509",
+          "postImage": "75a8838c46e8295b8bd9797a80ee512b351ea4faecba7e3cbbab3d638725c523",
+          "decisive": false
+        },
+        {
+          "step": 12,
+          "timestamp": 1794588378.9984577,
+          "tool": "click",
+          "target": "Tiếp tục với Google",
+          "preImage": "75a8838c46e8295b8bd9797a80ee512b351ea4faecba7e3cbbab3d638725c523",
+          "postImage": "f9d48b8f2fdd2ad48b1bc8a7d0543678b8d65a8ab71c85d872cafd3972e0f5f1",
+          "decisive": false
+        },
+        {
+          "step": 13,
+          "timestamp": 1794588383.9295933,
+          "tool": "click",
+          "target": "Như Đại Nguyễn",
+          "preImage": "f9d48b8f2fdd2ad48b1bc8a7d0543678b8d65a8ab71c85d872cafd3972e0f5f1",
+          "postImage": "adda0ae3fb505b969c805dc9d0eb1468003d532cd9cae558c646fa386f2604c7",
+          "decisive": false
+        },
+        {
+          "step": 14,
+          "timestamp": 1794588396.779658,
+          "tool": "wait_for_delay",
+          "target": "",
+          "preImage": "adda0ae3fb505b969c805dc9d0eb1468003d532cd9cae558c646fa386f2604c7",
+          "postImage": "94715654086482df86cd36907723df869e83e75941396b5a446c8e9925d2a2b5",
+          "decisive": false
+        },
+        {
+          "step": 15,
+          "timestamp": 1794588400.3857124,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "94715654086482df86cd36907723df869e83e75941396b5a446c8e9925d2a2b5",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR02",
+      "name": "AR02-R1",
+      "run": 1,
+      "flow": "F01 / validation",
+      "session": "aa117132-4830-4c6d-963a-7c8505787c8b",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:21:11.547Z",
+      "end": "2026-11-13T15:23:08.249Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F01 / validation; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794583304.46794,
+          "tool": "click",
+          "target": "Tài khoản",
+          "preImage": "682775c88c01f9a242c29e42518512711f3d66088e17c741cc76683a0cb28ea7",
+          "postImage": "168c76183aa3973b2f5325ff7975cbaaf8a0e30f4314ab901ad4503ef0eccf1c",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794583318.3855662,
+          "tool": "click",
+          "target": "Đổi mục tiêu",
+          "preImage": "168c76183aa3973b2f5325ff7975cbaaf8a0e30f4314ab901ad4503ef0eccf1c",
+          "postImage": "e0d6af939def63fa8916e524982e57f7500ebd352fa355ddd1e1202a5938fd10",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794583336.0426953,
+          "tool": "click",
+          "target": "Hiểu thêm về kiến thức ăn uống.\nĐã chọn",
+          "preImage": "e0d6af939def63fa8916e524982e57f7500ebd352fa355ddd1e1202a5938fd10",
+          "postImage": "821665beba5485b446c35fddfa9dafbfa44a964faf208b8ff37721e5d0ecbf8b",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794583348.6278465,
+          "tool": "click",
+          "target": "Hoàn tất",
+          "preImage": "821665beba5485b446c35fddfa9dafbfa44a964faf208b8ff37721e5d0ecbf8b",
+          "postImage": "5dbf7fe472d3a89ea05b45da81e4889ac414565ac258e0b8592a7ad64ac564a2",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794583361.9204035,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "5dbf7fe472d3a89ea05b45da81e4889ac414565ac258e0b8592a7ad64ac564a2",
+          "postImage": "45fff0272c7e1665ef8b685be903af3f8b6e22a5417298a722c1a1a7689ea728",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794583375.6940084,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "45fff0272c7e1665ef8b685be903af3f8b6e22a5417298a722c1a1a7689ea728",
+          "postImage": "6fc226990ce062f2cc51aa9c45640df6e2fa2a5e33194a35a0aed3a32a974ef7",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794583386.8858635,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "6fc226990ce062f2cc51aa9c45640df6e2fa2a5e33194a35a0aed3a32a974ef7",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR02",
+      "name": "AR02-R2",
+      "run": 2,
+      "flow": "F01 / validation",
+      "session": "39b400c0-2500-46f7-bed3-7ae8d5884bad",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:47:40.079Z",
+      "end": "2026-11-13T15:48:44.622Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F01 / validation; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794584885.1119282,
+          "tool": "click",
+          "target": "Tài khoản",
+          "preImage": "771f301b5d7355a1f2e8565bd638f02e0657045e6637e4fc7df6c209c587f900",
+          "postImage": "86b79bb4aef4307b178aeb2a0986a8f57537abf20eec6e333152d6247e8ffe69",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794584890.3417366,
+          "tool": "click",
+          "target": "Đổi mục tiêu",
+          "preImage": "86b79bb4aef4307b178aeb2a0986a8f57537abf20eec6e333152d6247e8ffe69",
+          "postImage": "e1a306ed9285588ee62f6a1893ff4189a280c9a5480d2bef30f061b141051041",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794584895.5996966,
+          "tool": "click",
+          "target": "Hiểu thêm về kiến thức ăn uống.\nĐã chọn",
+          "preImage": "e1a306ed9285588ee62f6a1893ff4189a280c9a5480d2bef30f061b141051041",
+          "postImage": "7b28fd685dff7222b97dba1a3dbb49fdf1dff43386dba6359e28712bb7cacf3f",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794584900.5531747,
+          "tool": "click",
+          "target": "Hoàn tất",
+          "preImage": "7b28fd685dff7222b97dba1a3dbb49fdf1dff43386dba6359e28712bb7cacf3f",
+          "postImage": "c85659965412a1cc009cd8686ff8f5e3366c6785dbd33c974307190ed0d80394",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794584906.167008,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "c85659965412a1cc009cd8686ff8f5e3366c6785dbd33c974307190ed0d80394",
+          "postImage": "86b79bb4aef4307b178aeb2a0986a8f57537abf20eec6e333152d6247e8ffe69",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794584916.5047529,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "86b79bb4aef4307b178aeb2a0986a8f57537abf20eec6e333152d6247e8ffe69",
+          "postImage": "8026fed1bbe1986f0657cf96258e702cd289c49209bdb33db15593b52cfe598b",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794584923.554888,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "8026fed1bbe1986f0657cf96258e702cd289c49209bdb33db15593b52cfe598b",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR02",
+      "name": "AR02-R3",
+      "run": 3,
+      "flow": "F01 / validation",
+      "session": "88786ddc-0e37-4cff-a178-0599f80231e6",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:46:42.294Z",
+      "end": "2026-11-13T16:48:01.307Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F01 / validation; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794588436.817152,
+          "tool": "click",
+          "target": "Tài khoản",
+          "preImage": "304b897a22d0c41f5e6e34b3c520741483c8f950784352d8c646fa939c7e7b83",
+          "postImage": "fd17e3855cac834a7740f000db5344ad7865aa8b5d1feafa05082db0f500d346",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794588443.8520508,
+          "tool": "click",
+          "target": "Đổi mục tiêu",
+          "preImage": "fd17e3855cac834a7740f000db5344ad7865aa8b5d1feafa05082db0f500d346",
+          "postImage": "ae7b75498de5369b9912b1b8771fac5d8e53f07ee8d5b289303bda1d431f1e29",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588450.0726154,
+          "tool": "click",
+          "target": "Hiểu thêm về kiến thức ăn uống.\nĐã chọn",
+          "preImage": "ae7b75498de5369b9912b1b8771fac5d8e53f07ee8d5b289303bda1d431f1e29",
+          "postImage": "2fed77518f4300afd3061aebb9f21644fe3c55179e5f7f235f77350bcec3a132",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588461.9862835,
+          "tool": "click",
+          "target": "Hoàn tất",
+          "preImage": "2fed77518f4300afd3061aebb9f21644fe3c55179e5f7f235f77350bcec3a132",
+          "postImage": "f4771ee1caa343309a87e9d6f8c88fc689a88abcbef1e642d14d05f2214ae12e",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588468.2966685,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "f4771ee1caa343309a87e9d6f8c88fc689a88abcbef1e642d14d05f2214ae12e",
+          "postImage": "b9077905b10f75ccbde92aadb7f488aee432698f772429f50e5a4efe1adf5053",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794588476.2276182,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "b9077905b10f75ccbde92aadb7f488aee432698f772429f50e5a4efe1adf5053",
+          "postImage": "fe20e895fabd8031da5e0ff79fe88631ad419c2050a1cae645579e733c86c40e",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794588479.4435208,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "fe20e895fabd8031da5e0ff79fe88631ad419c2050a1cae645579e733c86c40e",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR03",
+      "name": "AR03-R1",
+      "run": 1,
+      "flow": "F02 / create meal",
+      "session": "6b153094-acb7-4fb0-ae1f-eb631c42a411",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:23:08.252Z",
+      "end": "2026-11-13T15:26:50.651Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F02 / create meal; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794583419.8199122,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "ead46572618fbeca53934e2f7ed765aed9853604f617f7bdab2267ecb00126c0",
+          "postImage": "b52e446472b8855039806d7b1b23b29b78410945e05e4278d513c82ea0aefa63",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794583433.0456064,
+          "tool": "click",
+          "target": "Thêm bữa ăn",
+          "preImage": "b52e446472b8855039806d7b1b23b29b78410945e05e4278d513c82ea0aefa63",
+          "postImage": "d87989f5d3f969294124f9271d555cf1b7b00a8aa725072e4ea5abe02e0ad642",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794583445.8869514,
+          "tool": "click",
+          "target": "Bữa trưa",
+          "preImage": "d87989f5d3f969294124f9271d555cf1b7b00a8aa725072e4ea5abe02e0ad642",
+          "postImage": "18528d946fdb18e9a912ad6b8b2c1eb6e5431b0f18ee5d6e781b867fe927b4a2",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794583460.0714068,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "18528d946fdb18e9a912ad6b8b2c1eb6e5431b0f18ee5d6e781b867fe927b4a2",
+          "postImage": "7637184ca6ff43145e776b632b321ec5b5144273da0741c10b5ef9c1e1eeaa66",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794583475.1435618,
+          "tool": "swipe",
+          "target": "",
+          "direction": "up",
+          "preImage": "7637184ca6ff43145e776b632b321ec5b5144273da0741c10b5ef9c1e1eeaa66",
+          "postImage": "21aaafabaf246848bab072bbb4dd3b8ff44b50ec3640600c38c09fd905d53702",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794583493.5284748,
+          "tool": "input_text",
+          "target": "Bạn đã ăn món gì? *\n0/120\nVí dụ: Cơm gạo lứt, rau luộc, đậu hũ…\nNhập ngắn gọn tên món, tối đa 120 ký tự.",
+          "clear_exist": true,
+          "text": "ARTEMIS_AR03_R1_COM_RAU",
+          "preImage": "21aaafabaf246848bab072bbb4dd3b8ff44b50ec3640600c38c09fd905d53702",
+          "postImage": "bf21cf3f2f091ac5a75ecfe1b278356c6625e0ef33b6dc61693adf22faac449e",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794583505.8268905,
+          "tool": "click",
+          "target": "Lưu bữa ăn",
+          "preImage": "bf21cf3f2f091ac5a75ecfe1b278356c6625e0ef33b6dc61693adf22faac449e",
+          "postImage": "7a1812b8bd0595be8b94b7ab392555438e6f10efc3215829a10c1ffe126241df",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794583519.137769,
+          "tool": "click",
+          "target": "ARTEMIS_AR03_R1_COM_RAU",
+          "preImage": "7a1812b8bd0595be8b94b7ab392555438e6f10efc3215829a10c1ffe126241df",
+          "postImage": "e53aed2221ef5d5f30ae1ebd7fa19982fefad5260d811de67f63fe0bcebd7fc8",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794583531.7874362,
+          "tool": "click",
+          "target": "Mở trình đơn tính năng",
+          "preImage": "e53aed2221ef5d5f30ae1ebd7fa19982fefad5260d811de67f63fe0bcebd7fc8",
+          "postImage": "20d9586c07883c393210fe6aec610af83cf4e4197592be7d1a6b61c4306a8ff4",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794583546.0900872,
+          "tool": "click",
+          "target": "Đóng",
+          "preImage": "20d9586c07883c393210fe6aec610af83cf4e4197592be7d1a6b61c4306a8ff4",
+          "postImage": "449e08903d3314c7ac8cfe6654ec33d22eb39c601039fa15b14632798f0ad3e2",
+          "decisive": false
+        },
+        {
+          "step": 11,
+          "timestamp": 1794583558.6181524,
+          "tool": "click",
+          "target": "Lưu bữa ăn",
+          "preImage": "449e08903d3314c7ac8cfe6654ec33d22eb39c601039fa15b14632798f0ad3e2",
+          "postImage": "350faf0d238ccbd15a6741e493afd439b696e1f045744b9fa7e91d2b16d07b60",
+          "decisive": false
+        },
+        {
+          "step": 12,
+          "timestamp": 1794583574.553667,
+          "tool": "press_key",
+          "target": "",
+          "key": "HOME",
+          "preImage": "350faf0d238ccbd15a6741e493afd439b696e1f045744b9fa7e91d2b16d07b60",
+          "postImage": "f9ef9d3937685254e8a694548a549f5c61c046b0ab8bf9d0d32c1a6c6589f695",
+          "decisive": false
+        },
+        {
+          "step": 13,
+          "timestamp": 1794583578.2398381,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "f9ef9d3937685254e8a694548a549f5c61c046b0ab8bf9d0d32c1a6c6589f695",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR03",
+      "name": "AR03-R2",
+      "run": 2,
+      "flow": "F02 / create meal",
+      "session": "aed4e499-ed5b-4601-8960-20fe18f01727",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 2,
+      "rawAttemptsForName": 2,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:37:37.955Z",
+      "end": "2026-11-13T16:38:41.682Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "Lặp Home → Nhật ký; không mở form mới, không nhập và không lưu record đúng nhãn.",
+      "remediation": "Chuẩn bị form mới; kiểm tra màn trước nhập; backend oracle theo nhãn riêng mỗi campaign.",
+      "expected": "F02 / create meal; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794587885.729668,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "b051bbc7b0d6b9f80ba2587d70993546cb4c9c88642d46639e488648057d26e9",
+          "postImage": "9f7a58dee08848b9945a95990aadb201dc2d7524983ddfee9c64a4ffe827679f",
+          "decisive": true
+        },
+        {
+          "step": 2,
+          "timestamp": 1794587894.5808785,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "9f7a58dee08848b9945a95990aadb201dc2d7524983ddfee9c64a4ffe827679f",
+          "postImage": "fae4ff6df7cd96237bd03ddc1cc0685f198408eaa124cb6dcb2479483a0250eb",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794587901.1782463,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "fae4ff6df7cd96237bd03ddc1cc0685f198408eaa124cb6dcb2479483a0250eb",
+          "postImage": "9f7a58dee08848b9945a95990aadb201dc2d7524983ddfee9c64a4ffe827679f",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794587907.1602328,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "9f7a58dee08848b9945a95990aadb201dc2d7524983ddfee9c64a4ffe827679f",
+          "postImage": "fae4ff6df7cd96237bd03ddc1cc0685f198408eaa124cb6dcb2479483a0250eb",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794587912.0605059,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "fae4ff6df7cd96237bd03ddc1cc0685f198408eaa124cb6dcb2479483a0250eb",
+          "postImage": "9f7a58dee08848b9945a95990aadb201dc2d7524983ddfee9c64a4ffe827679f",
+          "decisive": true
+        },
+        {
+          "step": 6,
+          "timestamp": 1794587917.3017256,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "9f7a58dee08848b9945a95990aadb201dc2d7524983ddfee9c64a4ffe827679f",
+          "postImage": "fae4ff6df7cd96237bd03ddc1cc0685f198408eaa124cb6dcb2479483a0250eb",
+          "decisive": true
+        },
+        {
+          "step": 7,
+          "timestamp": 1794587920.116346,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "fae4ff6df7cd96237bd03ddc1cc0685f198408eaa124cb6dcb2479483a0250eb",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR03",
+      "name": "AR03-R3",
+      "run": 3,
+      "flow": "F02 / create meal",
+      "session": "ead0575f-5587-4a48-9427-13093819371f",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:48:01.315Z",
+      "end": "2026-11-13T16:49:04.945Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "Nhấn tọa độ/target rỗng từ Nhật ký; không có action nhập mô tả hoặc lưu; record đúng nhãn không xuất hiện trong snapshot cloud.",
+      "remediation": "Kiểm tra target hợp lệ và màn form; read-back trường và kiểm tra đúng một record lunch.",
+      "expected": "F02 / create meal; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794588510.0690176,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "7053409dc2b128974a85ea300440d754d74314ac856d7c31b8b9233eb20aea15",
+          "postImage": "b03a5adfbf1f35452e9731b66943e3bf4eb185b433110a23d62a60e7d6d1f746",
+          "decisive": true
+        },
+        {
+          "step": 2,
+          "timestamp": 1794588514.8322108,
+          "tool": "click",
+          "target": "",
+          "preImage": "b03a5adfbf1f35452e9731b66943e3bf4eb185b433110a23d62a60e7d6d1f746",
+          "postImage": null,
+          "decisive": true
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588519.783272,
+          "tool": "click",
+          "target": "",
+          "preImage": "b03a5adfbf1f35452e9731b66943e3bf4eb185b433110a23d62a60e7d6d1f746",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588524.3823495,
+          "tool": "click",
+          "target": "",
+          "preImage": "b03a5adfbf1f35452e9731b66943e3bf4eb185b433110a23d62a60e7d6d1f746",
+          "postImage": "90943aff75695805f01cdc900d3885890b6d901388442b9fea9f5370bbdd7ae9",
+          "decisive": true
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588530.1914003,
+          "tool": "click",
+          "target": "",
+          "preImage": "90943aff75695805f01cdc900d3885890b6d901388442b9fea9f5370bbdd7ae9",
+          "postImage": "7b1aa047a5495930452558dddf122d0cae4589b17a2ebd19ffdd259b640679a2",
+          "decisive": true
+        },
+        {
+          "step": 6,
+          "timestamp": 1794588538.1571722,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "7b1aa047a5495930452558dddf122d0cae4589b17a2ebd19ffdd259b640679a2",
+          "postImage": "6932eae7999a2b40a1b54ebe49be5c6ec07d356a31f43546fee4fa3c2abb809e",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794588542.1724443,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "6932eae7999a2b40a1b54ebe49be5c6ec07d356a31f43546fee4fa3c2abb809e",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR04",
+      "name": "AR04-R1",
+      "run": 1,
+      "flow": "F02 / required fields",
+      "session": "840e07a8-638c-436b-8b5e-b1bec89c33e4",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 2,
+      "rawAttemptsForName": 2,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:27:30.995Z",
+      "end": "2026-11-13T16:29:23.680Z",
+      "interrupted": false,
+      "category": "B",
+      "rootCause": "Goal viết SCROLL DOWN theo chiều nội dung, tool down kéo ngón tay xuống. Sau một swipe up ngắn, agent bấm Save lại và đưa focus về lỗi đầu.",
+      "remediation": "Mô tả rõ vuốt ngón tay lên, chờ màn ổn định; giữ hai lỗi và quan sát từng trường, không resubmit để cuộn.",
+      "expected": "F02 / required fields; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794587288.3658574,
+          "tool": "click",
+          "target": "",
+          "preImage": "a7ebfe8cabec0921b9a795cb6a4ad68b04d072dfd16670e60cc538b1fc7018dc",
+          "postImage": "d48d2c9e731aa3a1017603787f1ff922c87698d6881ae8a3da4894fd3776e1f8",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794587294.2744477,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "d48d2c9e731aa3a1017603787f1ff922c87698d6881ae8a3da4894fd3776e1f8",
+          "postImage": "19b1cc209551e1efb58c87cf38c3e0f054bf0b6b146913f49f8fd8cd880843a5",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794587299.8841116,
+          "tool": "click",
+          "target": "Thêm bữa ăn",
+          "preImage": "19b1cc209551e1efb58c87cf38c3e0f054bf0b6b146913f49f8fd8cd880843a5",
+          "postImage": "e7ed12c2cd904bbfc97c75d0d5eeecaa13d66bfe007e8c0a1516241b8e6b6346",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794587306.0531855,
+          "tool": "click",
+          "target": "Lưu bữa ăn",
+          "preImage": "e7ed12c2cd904bbfc97c75d0d5eeecaa13d66bfe007e8c0a1516241b8e6b6346",
+          "postImage": "385750985b37b39aeac4c618baaa566cf7de3acbeb6eb0b869d0842985302433",
+          "decisive": true
+        },
+        {
+          "step": 5,
+          "timestamp": 1794587312.8154142,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "385750985b37b39aeac4c618baaa566cf7de3acbeb6eb0b869d0842985302433",
+          "postImage": "12f05bcb0e27c880288c3381157c03f1ecb59c3d99cef55cc8866e754125159a",
+          "decisive": true
+        },
+        {
+          "step": 6,
+          "timestamp": 1794587319.668988,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "12f05bcb0e27c880288c3381157c03f1ecb59c3d99cef55cc8866e754125159a",
+          "postImage": "cd8c1679adeea605f3d170c72f4d60c83f1df05ba3c03d46584c45de11d6be47",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794587329.3870115,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "cd8c1679adeea605f3d170c72f4d60c83f1df05ba3c03d46584c45de11d6be47",
+          "postImage": "44827e6ae343219a9e006469effac5250c599d7a7c12d0bd4b19c06a939c1782",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794587337.032237,
+          "tool": "swipe",
+          "target": "",
+          "direction": "up",
+          "preImage": "44827e6ae343219a9e006469effac5250c599d7a7c12d0bd4b19c06a939c1782",
+          "postImage": "9d78b49c927e6188b8ff30e8b64267ed3404b7610ea7ed6f2942c0133140bd44",
+          "decisive": true
+        },
+        {
+          "step": 9,
+          "timestamp": 1794587344.2681513,
+          "tool": "click",
+          "target": "Lưu bữa ăn",
+          "preImage": "9d78b49c927e6188b8ff30e8b64267ed3404b7610ea7ed6f2942c0133140bd44",
+          "postImage": "47d7cb4a3c603efd2149510831c6bf51aef48a7c03c7bf7199eeb2c12492a29f",
+          "decisive": true
+        },
+        {
+          "step": 10,
+          "timestamp": 1794587349.6903982,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "47d7cb4a3c603efd2149510831c6bf51aef48a7c03c7bf7199eeb2c12492a29f",
+          "postImage": "ecaa04aa0e86a6a7c405c8332c036a0f4dbffd58c6faf91820b187e3a10d554d",
+          "decisive": false
+        },
+        {
+          "step": 11,
+          "timestamp": 1794587357.4632037,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "ecaa04aa0e86a6a7c405c8332c036a0f4dbffd58c6faf91820b187e3a10d554d",
+          "postImage": "79284f913a2fdf25525d9ff46d8debc2bbd922bf3a8f76e8443f63fc21c95211",
+          "decisive": false
+        },
+        {
+          "step": 12,
+          "timestamp": 1794587361.1556652,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "79284f913a2fdf25525d9ff46d8debc2bbd922bf3a8f76e8443f63fc21c95211",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR04",
+      "name": "AR04-R2",
+      "run": 2,
+      "flow": "F02 / required fields",
+      "session": "2e9f279c-3d66-49c4-b5f7-9c6766aa2946",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 2,
+      "rawAttemptsForName": 2,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:38:41.687Z",
+      "end": "2026-11-13T16:39:27.843Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "Trace chỉ có ba click trước kết luận, dừng ở Nhật ký thay vì form validation.",
+      "remediation": "Preflight form route; không cho kết luận nếu thiếu các mốc Save và lỗi bắt buộc.",
+      "expected": "F02 / required fields; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794587952.854646,
+          "tool": "click",
+          "target": "Nhật ký\nTab 2 trong tổng số 4",
+          "preImage": "564f7c70920555e9f48ff50bc610b85c6f0853d651d4d65684599373507022d2",
+          "postImage": "917007549e2dc7d1606cda2b9dc7a386a91ad84b6b4d95bc3b58183b2e19ef5c",
+          "decisive": true
+        },
+        {
+          "step": 2,
+          "timestamp": 1794587958.608554,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "917007549e2dc7d1606cda2b9dc7a386a91ad84b6b4d95bc3b58183b2e19ef5c",
+          "postImage": "564f7c70920555e9f48ff50bc610b85c6f0853d651d4d65684599373507022d2",
+          "decisive": true
+        },
+        {
+          "step": 3,
+          "timestamp": 1794587963.8650486,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "564f7c70920555e9f48ff50bc610b85c6f0853d651d4d65684599373507022d2",
+          "postImage": "917007549e2dc7d1606cda2b9dc7a386a91ad84b6b4d95bc3b58183b2e19ef5c",
+          "decisive": true
+        },
+        {
+          "step": 4,
+          "timestamp": 1794587966.441762,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "917007549e2dc7d1606cda2b9dc7a386a91ad84b6b4d95bc3b58183b2e19ef5c",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR04",
+      "name": "AR04-R3",
+      "run": 3,
+      "flow": "F02 / required fields",
+      "session": "e168fc6e-7a60-4b63-be96-a6b0137bace4",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:49:04.955Z",
+      "end": "2026-11-13T16:52:32.689Z",
+      "interrupted": false,
+      "category": "B",
+      "rootCause": "Lặp tool swipe down; hai swipe up chỉ quay về vùng loại bữa/ảnh, chưa đến lỗi tên món.",
+      "remediation": "Hướng cuộn theo tọa độ ngón tay; label/identifier trường; summary lỗi cho form dài.",
+      "expected": "F02 / required fields; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794588574.941553,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "17ed9822b577cd35b45bf7f75eb3a0d5dcbd58c6e20a1579ee003c879f4cdea5",
+          "postImage": "5d604aee380e0bfab1c38e593da6b850e8aec7358c25cf03da20ecf30c49959c",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794588584.8147628,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "5d604aee380e0bfab1c38e593da6b850e8aec7358c25cf03da20ecf30c49959c",
+          "postImage": "c94cd4dcaf09967a572df7468361a3c8f13b697c8181e73cbe274e472ab74384",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588589.756833,
+          "tool": "click",
+          "target": "Thêm bữa ăn",
+          "preImage": "c94cd4dcaf09967a572df7468361a3c8f13b697c8181e73cbe274e472ab74384",
+          "postImage": "f6668b31759bab0711a111e4aa8c2d8c0737fd4e71d3c35b425c71dec42c3dc8",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588597.2072184,
+          "tool": "click",
+          "target": "Lưu bữa ăn",
+          "preImage": "f6668b31759bab0711a111e4aa8c2d8c0737fd4e71d3c35b425c71dec42c3dc8",
+          "postImage": "0f95ebfb00647b2f4b6986ea43d0d6ccf296ea28c7e70b41b21eca18ddc59dde",
+          "decisive": true
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588605.0417135,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "0f95ebfb00647b2f4b6986ea43d0d6ccf296ea28c7e70b41b21eca18ddc59dde",
+          "postImage": "bfb537c2bf87267db3b05bddde0a9c347c3b7a424be2c12a0f87cbec326dee42",
+          "decisive": true
+        },
+        {
+          "step": 6,
+          "timestamp": 1794588612.2577078,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "bfb537c2bf87267db3b05bddde0a9c347c3b7a424be2c12a0f87cbec326dee42",
+          "postImage": "a5645d4b60c4dcc79f337c9ba2c7ebf3841760bef30b4f979986e6d0f6e3499e",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794588622.1187894,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "a5645d4b60c4dcc79f337c9ba2c7ebf3841760bef30b4f979986e6d0f6e3499e",
+          "postImage": "99122cd4ae9a9e71530d535f38db4fb259c7b14c5b3668c6009f42c7bc47ae58",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794588635.018275,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "99122cd4ae9a9e71530d535f38db4fb259c7b14c5b3668c6009f42c7bc47ae58",
+          "postImage": "0b35cd28b91dce1787ce2053514048745d6135e694e2342a75731b6b34586800",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794588643.322364,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "0b35cd28b91dce1787ce2053514048745d6135e694e2342a75731b6b34586800",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794588649.0362563,
+          "tool": "swipe",
+          "target": "",
+          "direction": "up",
+          "preImage": "0b35cd28b91dce1787ce2053514048745d6135e694e2342a75731b6b34586800",
+          "postImage": "387bc754708638a4053435399809348c814c510fb85e0f5605e8cb0d161a4623",
+          "decisive": true
+        },
+        {
+          "step": 11,
+          "timestamp": 1794588656.0448587,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "387bc754708638a4053435399809348c814c510fb85e0f5605e8cb0d161a4623",
+          "postImage": "e354f3a2cc8cd7bc9fae71cbb869edfa2de1b8319ecdf85e141a2b4b2a25c2cb",
+          "decisive": false
+        },
+        {
+          "step": 12,
+          "timestamp": 1794588666.3680978,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "e354f3a2cc8cd7bc9fae71cbb869edfa2de1b8319ecdf85e141a2b4b2a25c2cb",
+          "postImage": "3f35294674483bf2994f75acb3bedf89f13b09ae9e36f905ded923c75944bfef",
+          "decisive": false
+        },
+        {
+          "step": 13,
+          "timestamp": 1794588673.2560265,
+          "tool": "swipe",
+          "target": "",
+          "direction": "up",
+          "preImage": "3f35294674483bf2994f75acb3bedf89f13b09ae9e36f905ded923c75944bfef",
+          "postImage": "9e7f1f94795c002fa4838642d88ecccdd64fb7524328b24a782e819194eb341f",
+          "decisive": true
+        },
+        {
+          "step": 14,
+          "timestamp": 1794588681.0796313,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "9e7f1f94795c002fa4838642d88ecccdd64fb7524328b24a782e819194eb341f",
+          "postImage": "06ec2b38384aa27d185aa812eaf7b0834c3723cc961a180ed663048caa0531cb",
+          "decisive": true
+        },
+        {
+          "step": 15,
+          "timestamp": 1794588688.7707274,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "06ec2b38384aa27d185aa812eaf7b0834c3723cc961a180ed663048caa0531cb",
+          "postImage": "3f35294674483bf2994f75acb3bedf89f13b09ae9e36f905ded923c75944bfef",
+          "decisive": false
+        },
+        {
+          "step": 16,
+          "timestamp": 1794588694.968641,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "3f35294674483bf2994f75acb3bedf89f13b09ae9e36f905ded923c75944bfef",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 17,
+          "timestamp": 1794588700.5220175,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "3f35294674483bf2994f75acb3bedf89f13b09ae9e36f905ded923c75944bfef",
+          "postImage": "1990bfaa2a774510c636c9a14a75995bfd7cd75ce8830147ea7870b2c28e1ece",
+          "decisive": false
+        },
+        {
+          "step": 18,
+          "timestamp": 1794588706.5461023,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "1990bfaa2a774510c636c9a14a75995bfd7cd75ce8830147ea7870b2c28e1ece",
+          "postImage": "320371b6d35653f2e7838d2d6cdef71c453bcfa57142e86b5b0623aeb2288740",
+          "decisive": false
+        },
+        {
+          "step": 19,
+          "timestamp": 1794588712.893777,
+          "tool": "click",
+          "target": "",
+          "preImage": "320371b6d35653f2e7838d2d6cdef71c453bcfa57142e86b5b0623aeb2288740",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 20,
+          "timestamp": 1794588719.2179396,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "320371b6d35653f2e7838d2d6cdef71c453bcfa57142e86b5b0623aeb2288740",
+          "postImage": "3e866f990c496a5ad42f1dd799483222dd73028e36d25070d49bfb3d76d0b13f",
+          "decisive": false
+        },
+        {
+          "step": 21,
+          "timestamp": 1794588750.5434916,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "3e866f990c496a5ad42f1dd799483222dd73028e36d25070d49bfb3d76d0b13f",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR05",
+      "name": "AR05-R1",
+      "run": 1,
+      "flow": "F02 / discard",
+      "session": "d30b441d-d673-4dba-a6b6-1f798959a509",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:28:44.622Z",
+      "end": "2026-11-13T15:31:14.220Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F02 / discard; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794583786.8562813,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "d579c4817231f5bf8b29eba2d06b4667c2fc5de41bddb227abd4e792ff33160e",
+          "postImage": "7ac821c61590a82382c9980cb1c6e94c124643a261280edad4dc7dd7af566144",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794583816.072593,
+          "tool": "swipe",
+          "target": "",
+          "direction": "up",
+          "preImage": "7ac821c61590a82382c9980cb1c6e94c124643a261280edad4dc7dd7af566144",
+          "postImage": "d15b149474247c131ed9e2600177fe7b2779277ea1389b0aeeb3af622b5fd69f",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794583831.941949,
+          "tool": "input_text",
+          "target": "Bạn đã ăn món gì? *\n0/120\nVí dụ: Cơm gạo lứt, rau luộc, đậu hũ…\nNhập ngắn gọn tên món, tối đa 120 ký tự.\nHãy nhập món ăn trước khi lưu.",
+          "clear_exist": true,
+          "text": "ARTEMIS_AR05_R1_DISCARD",
+          "preImage": "d15b149474247c131ed9e2600177fe7b2779277ea1389b0aeeb3af622b5fd69f",
+          "postImage": "b3ec2acded5321321b3e54293d96ca29fad58a52628a6362732f29f3a1175d89",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794583841.9248827,
+          "tool": "click",
+          "target": "ARTEMIS_AR05_R1_DISCARD",
+          "preImage": "b3ec2acded5321321b3e54293d96ca29fad58a52628a6362732f29f3a1175d89",
+          "postImage": "f4c77dbf0500cfc8f77a614de42f7781a04bfc1d06a5311d093258550a915839",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794583848.3318648,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "f4c77dbf0500cfc8f77a614de42f7781a04bfc1d06a5311d093258550a915839",
+          "postImage": "e3fd083064824287890f8581e0d80dbde8765ee39db5766b1039445804a503ed",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794583853.4014063,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "e3fd083064824287890f8581e0d80dbde8765ee39db5766b1039445804a503ed",
+          "postImage": "58023e5ce4cf5e9828c22ec5e73d13540b20236e58218f7adef9a83b4f34110f",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794583858.236193,
+          "tool": "click",
+          "target": "Bỏ thay đổi",
+          "preImage": "58023e5ce4cf5e9828c22ec5e73d13540b20236e58218f7adef9a83b4f34110f",
+          "postImage": "4140235e4b8b4aa0cc08612a8ebdcb90c73bb724809de4a4e44db34d61b0a5eb",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794583867.7153952,
+          "tool": "press_key",
+          "target": "",
+          "key": "HOME",
+          "preImage": "4140235e4b8b4aa0cc08612a8ebdcb90c73bb724809de4a4e44db34d61b0a5eb",
+          "postImage": "443ab4493a66b315506ff28bb8e811cabeec1ea05be0d699c780b7da7e28e39e",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794583870.5177572,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "443ab4493a66b315506ff28bb8e811cabeec1ea05be0d699c780b7da7e28e39e",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR05",
+      "name": "AR05-R2",
+      "run": 2,
+      "flow": "F02 / discard",
+      "session": "cc749371-f797-4c26-a2ea-1c9154a406db",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:52:55.577Z",
+      "end": "2026-11-13T15:54:19.460Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F02 / discard; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794585201.7940912,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "5f9a7bc5023c20c646774f0fd1359efa3d48a26cf1934f2f6b9c2412e73b69b8",
+          "postImage": "605b3c4d60d3b84d41142bf73e1b86485e9551170538edabb1cdf57212a15e53",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794585206.5469358,
+          "tool": "click",
+          "target": "Thêm bữa ăn",
+          "preImage": "605b3c4d60d3b84d41142bf73e1b86485e9551170538edabb1cdf57212a15e53",
+          "postImage": "afce8facb5ac4f2eba62fcb1b325cc3b85434f2af46008eae4dc8defe9f632cf",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794585211.4387877,
+          "tool": "click",
+          "target": "Bữa tối",
+          "preImage": "afce8facb5ac4f2eba62fcb1b325cc3b85434f2af46008eae4dc8defe9f632cf",
+          "postImage": "74798acf6170e665b4da84b4babb2bb510b74794f82c6c99924d64a02f0d57a9",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794585217.4914875,
+          "tool": "swipe",
+          "target": "",
+          "direction": "up",
+          "preImage": "74798acf6170e665b4da84b4babb2bb510b74794f82c6c99924d64a02f0d57a9",
+          "postImage": "6b952e958b816e9786f0c6ddb43e8bac18cb3ded38ef2b45f43ea4a3643b9a6d",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794585228.5720105,
+          "tool": "input_text",
+          "target": "Bạn đã ăn món gì? *\n0/120\nVí dụ: Cơm gạo lứt, rau luộc, đậu hũ…\nNhập ngắn gọn tên món, tối đa 120 ký tự.",
+          "text": "ARTEMIS_AR05_R2_DISCARD",
+          "preImage": "6b952e958b816e9786f0c6ddb43e8bac18cb3ded38ef2b45f43ea4a3643b9a6d",
+          "postImage": "ff402232d3a919f1b30860751f8167e4ecaf36d7794acf7df6fbdb64e704c1c1",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794585234.915695,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "ff402232d3a919f1b30860751f8167e4ecaf36d7794acf7df6fbdb64e704c1c1",
+          "postImage": "43c0bb89ac759d2c37e73a2ed5706d9f202b10d26169b581d7b965eb1b3b4d15",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794585239.793083,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "43c0bb89ac759d2c37e73a2ed5706d9f202b10d26169b581d7b965eb1b3b4d15",
+          "postImage": "ceeb9ffc457e16b6df75bf8317cbf9b88f0a9dfa5dbd53e6ba87fd96ca8f2099",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794585245.550053,
+          "tool": "click",
+          "target": "Bỏ thay đổi",
+          "preImage": "ceeb9ffc457e16b6df75bf8317cbf9b88f0a9dfa5dbd53e6ba87fd96ca8f2099",
+          "postImage": "9b178abf9ae26ff46d41e8188b4a3a3a534d05f30a6f94e154c33ba736687a00",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794585254.5114,
+          "tool": "click",
+          "target": "Home",
+          "preImage": "9b178abf9ae26ff46d41e8188b4a3a3a534d05f30a6f94e154c33ba736687a00",
+          "postImage": "8634d19bf47a77231e22369de8b728abcce36c57e0f9610556ec0bf7e0d162fd",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794585257.716113,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "8634d19bf47a77231e22369de8b728abcce36c57e0f9610556ec0bf7e0d162fd",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR05",
+      "name": "AR05-R3",
+      "run": 3,
+      "flow": "F02 / discard",
+      "session": "d6cdb56f-a4ab-4b68-9734-c7487dfe21c1",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:52:32.719Z",
+      "end": "2026-11-13T16:54:04.304Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "Rời Nhật ký tới launcher rồi mở lại app; không có input mô tả hoặc hộp bỏ bản nháp.",
+      "remediation": "Phân biệt tab Hôm nay với Android Home; chặn phím Home trong campaign và đòi dialog + record absence.",
+      "expected": "F02 / discard; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794588784.9815366,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "d964397676d040bf0beeb1cd56516d78ea7209388cbec4809aee312d74d84945",
+          "postImage": "0b7ead50eb536bb9d90e615b04278f417d154fefaa468856ff753d5d86b58559",
+          "decisive": true
+        },
+        {
+          "step": 2,
+          "timestamp": 1794588795.9607687,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "0b7ead50eb536bb9d90e615b04278f417d154fefaa468856ff753d5d86b58559",
+          "postImage": "5a09dbc6effd7d4621f716515506519812a81f445ed56cebedd8cfbc4313ad0a",
+          "decisive": true
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588806.714852,
+          "tool": "click",
+          "target": "Home",
+          "preImage": "5a09dbc6effd7d4621f716515506519812a81f445ed56cebedd8cfbc4313ad0a",
+          "postImage": "06e0d56814fa423f6d26453244e97e12054f0ddc747d6b733ed8147802cfb218",
+          "decisive": true
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588817.7436662,
+          "tool": "manage_app",
+          "target": "[app-management action; see scope finding]",
+          "preImage": "06e0d56814fa423f6d26453244e97e12054f0ddc747d6b733ed8147802cfb218",
+          "postImage": "5a09dbc6effd7d4621f716515506519812a81f445ed56cebedd8cfbc4313ad0a",
+          "decisive": true
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588826.473848,
+          "tool": "click",
+          "target": "Home",
+          "preImage": "5a09dbc6effd7d4621f716515506519812a81f445ed56cebedd8cfbc4313ad0a",
+          "postImage": "06e0d56814fa423f6d26453244e97e12054f0ddc747d6b733ed8147802cfb218",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794588831.2047696,
+          "tool": "click",
+          "target": "Longevity Plate",
+          "preImage": "06e0d56814fa423f6d26453244e97e12054f0ddc747d6b733ed8147802cfb218",
+          "postImage": "bff1a6c68106cb0b6df03b6d62141246f4c9f0141f52a33241c6154b2dd4a14e",
+          "decisive": true
+        },
+        {
+          "step": 7,
+          "timestamp": 1794588838.7947984,
+          "tool": "wait_for_delay",
+          "target": "",
+          "preImage": "bff1a6c68106cb0b6df03b6d62141246f4c9f0141f52a33241c6154b2dd4a14e",
+          "postImage": "46c6a604d3c556aaeea4a7fbefffeb01f5bba398a5100e00f11c86cfafeef1de",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794588842.6654515,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "46c6a604d3c556aaeea4a7fbefffeb01f5bba398a5100e00f11c86cfafeef1de",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR06",
+      "name": "AR06-R1",
+      "run": 1,
+      "flow": "F03 / knowledge to meal plan",
+      "session": "04212146-6b97-450f-9b89-574d464f502e",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:31:14.281Z",
+      "end": "2026-11-13T15:34:32.327Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F03 / knowledge to meal plan; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794584013.4056346,
+          "tool": "click",
+          "target": "Kiến thức\nTab 4 trong tổng số 4",
+          "preImage": "42970b6b5b50c198c16d2fcfcd7404c0aa387c9a25838374055fc3a09cf81cbd",
+          "postImage": "c505ea060f9e6062ac10d4a0d03f24c27969579a520962a58918f44515e7d54b",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794584021.4260008,
+          "tool": "click",
+          "target": "Đọc bài →",
+          "preImage": "c505ea060f9e6062ac10d4a0d03f24c27969579a520962a58918f44515e7d54b",
+          "postImage": "613052029e4392bc569bc0c74c7e01e037dd4d93a60981397bcbee8f1e98eddb",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794584032.6101828,
+          "tool": "click",
+          "target": "Lập kế hoạch bữa ăn →",
+          "preImage": "613052029e4392bc569bc0c74c7e01e037dd4d93a60981397bcbee8f1e98eddb",
+          "postImage": "55311202ef998dfe3baba47710b8a7c2fb896ce60ab5d7cc470e8f5ac5d4749e",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794584037.4945116,
+          "tool": "click",
+          "target": "Tuần sau",
+          "preImage": "55311202ef998dfe3baba47710b8a7c2fb896ce60ab5d7cc470e8f5ac5d4749e",
+          "postImage": "6a47f0c697e6fe1d3c28dedf4e03c71c915d991cc20bfd1cc756d5cacc9cce23",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794584043.320135,
+          "tool": "click",
+          "target": "Chọn món",
+          "preImage": "6a47f0c697e6fe1d3c28dedf4e03c71c915d991cc20bfd1cc756d5cacc9cce23",
+          "postImage": "fa17e56f6632905bf91d072d61052ff3be6401f0cb1c52d69cbf8856315ff306",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794584050.8510723,
+          "tool": "click",
+          "target": "Cơm rau củ và đậu\nCông thức minh họa",
+          "preImage": "fa17e56f6632905bf91d072d61052ff3be6401f0cb1c52d69cbf8856315ff306",
+          "postImage": "2c236ef5c719f95c38af4d920ccfa059ba76930dfa318ff02d6a2a71095106f0",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794584059.6515162,
+          "tool": "click",
+          "target": "Thêm vào kế hoạch",
+          "preImage": "2c236ef5c719f95c38af4d920ccfa059ba76930dfa318ff02d6a2a71095106f0",
+          "postImage": "7e09b83daf28a2b5ecbf0b687240cd167575ada47fadc7ca4fa5c6e780dad0e7",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794584067.7932477,
+          "tool": "press_key",
+          "target": "",
+          "key": "HOME",
+          "preImage": "7e09b83daf28a2b5ecbf0b687240cd167575ada47fadc7ca4fa5c6e780dad0e7",
+          "postImage": "61b64c921da6e5402aeeaa35c199f9146dca9d6fcdf550d0b34b8f0186df3bff",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794584070.5866797,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "61b64c921da6e5402aeeaa35c199f9146dca9d6fcdf550d0b34b8f0186df3bff",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR06",
+      "name": "AR06-R2",
+      "run": 2,
+      "flow": "F03 / knowledge to meal plan",
+      "session": "4943811e-3784-49c0-aa42-c2e7c48e173b",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:54:19.465Z",
+      "end": "2026-11-13T15:56:54.497Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F03 / knowledge to meal plan; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794585286.7997909,
+          "tool": "click",
+          "target": "Kiến thức\nTab 4 trong tổng số 4",
+          "preImage": "9b178abf9ae26ff46d41e8188b4a3a3a534d05f30a6f94e154c33ba736687a00",
+          "postImage": "9b7c390a2c059579145eea004ed57b4e448f391f803d2d3792fd299b4be4a81a",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794585294.8778849,
+          "tool": "click",
+          "target": "Đọc bài →",
+          "preImage": "9b7c390a2c059579145eea004ed57b4e448f391f803d2d3792fd299b4be4a81a",
+          "postImage": "83c62157d4c916262454a668bfaf3d8954a316bc8ae668ba45382d5f1410a073",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794585300.0740542,
+          "tool": "click",
+          "target": "Lập kế hoạch bữa ăn →",
+          "preImage": "83c62157d4c916262454a668bfaf3d8954a316bc8ae668ba45382d5f1410a073",
+          "postImage": "167c532c9e9bfbf2f6bc44c143c1d74bed5590f359298fb00deed58973f78547",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794585305.6037004,
+          "tool": "swipe",
+          "target": "",
+          "direction": "right",
+          "preImage": "167c532c9e9bfbf2f6bc44c143c1d74bed5590f359298fb00deed58973f78547",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794585312.705599,
+          "tool": "click",
+          "target": "Tuần sau",
+          "preImage": "167c532c9e9bfbf2f6bc44c143c1d74bed5590f359298fb00deed58973f78547",
+          "postImage": "d1edc1601931a076839ffa7c24a8f29ed7524e59a79c33b62235b814b3242a6f",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794585322.1338868,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "d1edc1601931a076839ffa7c24a8f29ed7524e59a79c33b62235b814b3242a6f",
+          "postImage": "45bc799add62cc7500a9450bd618e55aaf71260314d2faa36db5ac9456e78271",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794585331.4725065,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "45bc799add62cc7500a9450bd618e55aaf71260314d2faa36db5ac9456e78271",
+          "postImage": "10ae02afa96105e00c6c9e3e6a9ea061c6bd988e0dad6c1e364b7fc82350741f",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794585340.9229906,
+          "tool": "click",
+          "target": "Kế hoạch\nTab 3 trong tổng số 4",
+          "preImage": "10ae02afa96105e00c6c9e3e6a9ea061c6bd988e0dad6c1e364b7fc82350741f",
+          "postImage": "623663ca3ed80850ec6345b008ee09463854b1fdd1a1bfa0305565bf16de91d7",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794585349.5098007,
+          "tool": "click",
+          "target": "Tuần sau",
+          "preImage": "623663ca3ed80850ec6345b008ee09463854b1fdd1a1bfa0305565bf16de91d7",
+          "postImage": "5ae53dc0622708dc61e1b833152f8f6847902cb2746041d9dc95c4443eadd10f",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794585357.5640445,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "5ae53dc0622708dc61e1b833152f8f6847902cb2746041d9dc95c4443eadd10f",
+          "postImage": "88cdfadb13c9e0bfb7835320fc5da7d9a59a9e79b89071f24fabb09b3e33dd4d",
+          "decisive": false
+        },
+        {
+          "step": 11,
+          "timestamp": 1794585363.1616197,
+          "tool": "click",
+          "target": "Kế hoạch\nTab 3 trong tổng số 4",
+          "preImage": "88cdfadb13c9e0bfb7835320fc5da7d9a59a9e79b89071f24fabb09b3e33dd4d",
+          "postImage": "5988a7b94141ced729db818924b6329d7b522eda54c99f49a1217c4e0a8c8080",
+          "decisive": false
+        },
+        {
+          "step": 12,
+          "timestamp": 1794585374.5987794,
+          "tool": "press_key",
+          "target": "",
+          "key": "HOME",
+          "preImage": "5988a7b94141ced729db818924b6329d7b522eda54c99f49a1217c4e0a8c8080",
+          "postImage": "97df2b25fd4fc89fb988e39416c5eb06f9c059fa54ce451bb43a924c81131d68",
+          "decisive": false
+        },
+        {
+          "step": 13,
+          "timestamp": 1794585382.5547073,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "97df2b25fd4fc89fb988e39416c5eb06f9c059fa54ce451bb43a924c81131d68",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR06",
+      "name": "AR06-R3",
+      "run": 3,
+      "flow": "F03 / knowledge to meal plan",
+      "session": "375a43b9-400c-47cb-9b3e-7b2c2f8ee530",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:54:04.309Z",
+      "end": "2026-11-13T16:55:36.751Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "F03 / knowledge to meal plan; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794588873.4737568,
+          "tool": "click",
+          "target": "Kiến thức\nTab 4 trong tổng số 4",
+          "preImage": "ef9e4b0836485b7a35baae8c94e8e2d2536c5f39933c608247967c81e9a80407",
+          "postImage": "dd3f77f1c6a34ca2fcfb82c0cb622a2e80466a6d7e4a69887d74dd6ef2f9ee97",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794588881.68666,
+          "tool": "click",
+          "target": "Đọc bài →",
+          "preImage": "dd3f77f1c6a34ca2fcfb82c0cb622a2e80466a6d7e4a69887d74dd6ef2f9ee97",
+          "postImage": "3c4017d469a7d5244bdab1a0eff1d3328da7e3e254b294c610c21d49077c8438",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588887.8901818,
+          "tool": "click",
+          "target": "Lập kế hoạch bữa ăn →",
+          "preImage": "3c4017d469a7d5244bdab1a0eff1d3328da7e3e254b294c610c21d49077c8438",
+          "postImage": "b4689bf52f28680d5d4752cce487d62cd9c184f1b86f76eed5ef6d28b2a17774",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588896.2411687,
+          "tool": "click",
+          "target": "Khoảng thời gian\n09/11 – 15/11/2026",
+          "preImage": "b4689bf52f28680d5d4752cce487d62cd9c184f1b86f76eed5ef6d28b2a17774",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588901.2675953,
+          "tool": "swipe",
+          "target": "",
+          "direction": "right",
+          "preImage": "b4689bf52f28680d5d4752cce487d62cd9c184f1b86f76eed5ef6d28b2a17774",
+          "postImage": "151fec1a01f6284aa863a59cd00162b9518a57fde7e570be5b8579b425a16314",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794588907.5636885,
+          "tool": "click",
+          "target": "Tuần sau",
+          "preImage": "151fec1a01f6284aa863a59cd00162b9518a57fde7e570be5b8579b425a16314",
+          "postImage": "c278686c73cac7c065f42919aa5e8a69bdb1750f089063629785d54bde66a980",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794588914.3308616,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "c278686c73cac7c065f42919aa5e8a69bdb1750f089063629785d54bde66a980",
+          "postImage": "ba9f6021711e6aeb42df6f48076816f61d61d75f42f3fe36d2797a27ac14e84c",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794588920.7751372,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "ba9f6021711e6aeb42df6f48076816f61d61d75f42f3fe36d2797a27ac14e84c",
+          "postImage": "f60f960639304157c801c1c049037f1c56ba36028cc45d4bc3b8a30308d398cf",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794588929.2707198,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "f60f960639304157c801c1c049037f1c56ba36028cc45d4bc3b8a30308d398cf",
+          "postImage": "6580debf2c88b92d72ee3fe17c0c6ac02bcc4bf2e6ac4be86b34678ce1d45623",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794588935.0153205,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "6580debf2c88b92d72ee3fe17c0c6ac02bcc4bf2e6ac4be86b34678ce1d45623",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR07",
+      "name": "AR07-R1",
+      "run": 1,
+      "flow": "F03 / cancel replacement",
+      "session": "af1438ee-892c-4086-9ab8-1f8eb26abe25",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 2,
+      "rawAttemptsForName": 2,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:29:23.700Z",
+      "end": "2026-11-13T16:31:47.847Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "Mở Xem chi tiết của món đang có, rồi quay lại; không chọn công thức khác và không mở dialog thay thế.",
+      "remediation": "Đi qua Chọn món ở slot trống, chọn Bánh mì và trứng, đặt lại slot test rồi mới submit và Hủy.",
+      "expected": "F03 / cancel replacement; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794587394.8770795,
+          "tool": "click",
+          "target": "Kế hoạch\nTab 3 trong tổng số 4",
+          "preImage": "786baac3ec7a9e1a8c888c521adc292b3642d67d0c033c175b38e83dfb8aa5d6",
+          "postImage": "3bc5547d09f0a8b03f73079df29a4bd74de7f0fb1bddc4f318a361d46eeb01bb",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794587401.3968987,
+          "tool": "swipe",
+          "target": "",
+          "direction": "right",
+          "preImage": "3bc5547d09f0a8b03f73079df29a4bd74de7f0fb1bddc4f318a361d46eeb01bb",
+          "postImage": "7df03beb8acdff3a8f24a603181fb88d6abfdf93860b2545c307cd0776e58a6a",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794587406.9876564,
+          "tool": "click",
+          "target": "Tuần trước",
+          "preImage": "7df03beb8acdff3a8f24a603181fb88d6abfdf93860b2545c307cd0776e58a6a",
+          "postImage": "63f182ce468ee4a9fb643b0810a1082be83586ddec62d01b21f66cc3060ee684",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794587412.946523,
+          "tool": "click",
+          "target": "Tuần trước",
+          "preImage": "63f182ce468ee4a9fb643b0810a1082be83586ddec62d01b21f66cc3060ee684",
+          "postImage": "9b443483c1a1b6e32cbc83273a4466a973d43676c40197e51a98995af6fd533f",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794587418.5658371,
+          "tool": "click",
+          "target": "Tuần trước",
+          "preImage": "9b443483c1a1b6e32cbc83273a4466a973d43676c40197e51a98995af6fd533f",
+          "postImage": "3c47cf2f65874fec21e04f7a2467ff2939e4e61dfacaffdffacf004432119791",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794587427.3809907,
+          "tool": "click",
+          "target": "Tuần sau",
+          "preImage": "3c47cf2f65874fec21e04f7a2467ff2939e4e61dfacaffdffacf004432119791",
+          "postImage": "9b443483c1a1b6e32cbc83273a4466a973d43676c40197e51a98995af6fd533f",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794587431.9769201,
+          "tool": "click",
+          "target": "Tuần sau",
+          "preImage": "9b443483c1a1b6e32cbc83273a4466a973d43676c40197e51a98995af6fd533f",
+          "postImage": "63f182ce468ee4a9fb643b0810a1082be83586ddec62d01b21f66cc3060ee684",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794587437.7946165,
+          "tool": "swipe",
+          "target": "",
+          "direction": "right",
+          "preImage": "63f182ce468ee4a9fb643b0810a1082be83586ddec62d01b21f66cc3060ee684",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794587442.746126,
+          "tool": "click",
+          "target": "Tuần sau",
+          "preImage": "63f182ce468ee4a9fb643b0810a1082be83586ddec62d01b21f66cc3060ee684",
+          "postImage": "7df03beb8acdff3a8f24a603181fb88d6abfdf93860b2545c307cd0776e58a6a",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794587447.3581748,
+          "tool": "click",
+          "target": "Tuần sau",
+          "preImage": "7df03beb8acdff3a8f24a603181fb88d6abfdf93860b2545c307cd0776e58a6a",
+          "postImage": "c5b37eccc308e9ea45a3fff2365e2f3fd4a77aa760f6a723e01242eb47dfd492",
+          "decisive": false
+        },
+        {
+          "step": 11,
+          "timestamp": 1794587453.5069058,
+          "tool": "click",
+          "target": "Bữa Sáng\nDự kiến 07:00\nCơm rau củ và đậu",
+          "preImage": "c5b37eccc308e9ea45a3fff2365e2f3fd4a77aa760f6a723e01242eb47dfd492",
+          "postImage": null,
+          "decisive": true
+        },
+        {
+          "step": 12,
+          "timestamp": 1794587460.4124355,
+          "tool": "click",
+          "target": "Xem chi tiết",
+          "preImage": "c5b37eccc308e9ea45a3fff2365e2f3fd4a77aa760f6a723e01242eb47dfd492",
+          "postImage": "14f99b0123e1e0ddd4dbbc7803798a492d7cf65c6e5747622838a9a9d2ace122",
+          "decisive": true
+        },
+        {
+          "step": 13,
+          "timestamp": 1794587466.1896005,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "14f99b0123e1e0ddd4dbbc7803798a492d7cf65c6e5747622838a9a9d2ace122",
+          "postImage": "a7e9fe191721796a3db83a5e1f8688c92ab7b57ceb1956d095413942b740b7d3",
+          "decisive": false
+        },
+        {
+          "step": 14,
+          "timestamp": 1794587474.708662,
+          "tool": "click",
+          "target": "Bữa Sáng\nDự kiến 07:00\nCơm rau củ và đậu",
+          "preImage": "a7e9fe191721796a3db83a5e1f8688c92ab7b57ceb1956d095413942b740b7d3",
+          "postImage": null,
+          "decisive": true
+        },
+        {
+          "step": 15,
+          "timestamp": 1794587482.4183447,
+          "tool": "click",
+          "target": "Overview",
+          "preImage": "a7e9fe191721796a3db83a5e1f8688c92ab7b57ceb1956d095413942b740b7d3",
+          "postImage": "362fd5a041bb21f1dcd34cca64d4bb0a49fbf7c6ea2ff86b7567d4a2b758d5a5",
+          "decisive": false
+        },
+        {
+          "step": 16,
+          "timestamp": 1794587488.2885752,
+          "tool": "click",
+          "target": "Longevity Plate",
+          "preImage": "362fd5a041bb21f1dcd34cca64d4bb0a49fbf7c6ea2ff86b7567d4a2b758d5a5",
+          "postImage": "66d6db69408c22f0fde47fc1cfa8596a6455d8fdc65d65117fd74f7a7ffbd11a",
+          "decisive": false
+        },
+        {
+          "step": 17,
+          "timestamp": 1794587495.0216413,
+          "tool": "wait_for_delay",
+          "target": "",
+          "preImage": "66d6db69408c22f0fde47fc1cfa8596a6455d8fdc65d65117fd74f7a7ffbd11a",
+          "postImage": "a7e9fe191721796a3db83a5e1f8688c92ab7b57ceb1956d095413942b740b7d3",
+          "decisive": false
+        },
+        {
+          "step": 18,
+          "timestamp": 1794587501.5301218,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "a7e9fe191721796a3db83a5e1f8688c92ab7b57ceb1956d095413942b740b7d3",
+          "postImage": "54d5944d9a2efc2b778d529e139983e47558a9d2d8cc994e13f47eee05ee93ee",
+          "decisive": true
+        },
+        {
+          "step": 19,
+          "timestamp": 1794587505.9932985,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "54d5944d9a2efc2b778d529e139983e47558a9d2d8cc994e13f47eee05ee93ee",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR07",
+      "name": "AR07-R2",
+      "run": 2,
+      "flow": "F03 / cancel replacement",
+      "session": "1a5eef48-7471-4d2f-8b67-c66ac64f1ea6",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 2,
+      "rawAttemptsForName": 2,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:39:27.849Z",
+      "end": "2026-11-13T16:40:26.032Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "Chỉ mở món hiện tại rồi chuyển tab; không có submit hay thao tác Hủy dialog.",
+      "remediation": "Fixture đúng slot và recipe candidate khác recipe gốc; oracle so sánh server revision trước/sau.",
+      "expected": "F03 / cancel replacement; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794587992.692434,
+          "tool": "click",
+          "target": "Kế hoạch\nTab 3 trong tổng số 4",
+          "preImage": "75e5016865f02bacd6cd09fc412d23686ac8ad16ff47f44459e09af2f8a94f19",
+          "postImage": "0af60673c48418af2cc6935f2c2c4f54633205fec284426c0fd0b0b3659a89e4",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794587999.86275,
+          "tool": "click",
+          "target": "Xem chi tiết",
+          "preImage": "0af60673c48418af2cc6935f2c2c4f54633205fec284426c0fd0b0b3659a89e4",
+          "postImage": "ea1777a89bff8cae9a544d8f3d5c6f58ecf16ef3a4a8e37ef6f354a4d1ab9cc0",
+          "decisive": true
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588005.6745548,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "ea1777a89bff8cae9a544d8f3d5c6f58ecf16ef3a4a8e37ef6f354a4d1ab9cc0",
+          "postImage": "b9c3ac2e33c4aa0593831a37261a4ee1cfd0a82788da9962078fdc9ab789062b",
+          "decisive": true
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588012.2928233,
+          "tool": "click",
+          "target": "Kiến thức\nTab 4 trong tổng số 4",
+          "preImage": "b9c3ac2e33c4aa0593831a37261a4ee1cfd0a82788da9962078fdc9ab789062b",
+          "postImage": "42c0d53c7c1b1d16c948c70d21efa30a884eb51cac6e08a12e8d4190fe846745",
+          "decisive": true
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588020.4531167,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "42c0d53c7c1b1d16c948c70d21efa30a884eb51cac6e08a12e8d4190fe846745",
+          "postImage": "83c14e3b336359596a2db4d398d39ed80050e732c314e82f8a31189fb2041020",
+          "decisive": true
+        },
+        {
+          "step": 6,
+          "timestamp": 1794588024.3921163,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "83c14e3b336359596a2db4d398d39ed80050e732c314e82f8a31189fb2041020",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR07",
+      "name": "AR07-R3",
+      "run": 3,
+      "flow": "F03 / cancel replacement",
+      "session": "459f2924-0509-4f05-a103-a6508a320046",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:55:36.763Z",
+      "end": "2026-11-13T16:57:45.230Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "Tìm kiếm trong thư viện bài viết thay vì chọn công thức; tiếp tục mở recipe hiện tại và Back.",
+      "remediation": "Phân biệt bài viết và công thức; mở bộ chọn món; xác nhận tên candidate trước thao tác.",
+      "expected": "F03 / cancel replacement; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794588965.7159293,
+          "tool": "click",
+          "target": "Kế hoạch\nTab 3 trong tổng số 4",
+          "preImage": "b43a8bf04600c1bdd793ff96783c63165a6303a6b09bb6d25e0ef0049da4d5b0",
+          "postImage": "19c09aa8822bff9b292ae42fcd6464c9a2ede5ab1146f42e07882da642ba3945",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794588971.8386989,
+          "tool": "swipe",
+          "target": "",
+          "direction": "right",
+          "preImage": "19c09aa8822bff9b292ae42fcd6464c9a2ede5ab1146f42e07882da642ba3945",
+          "postImage": "58e02db81c7944e9967a940d616bf88d02a10ac069b56432ac52d84231533c9c",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588979.984572,
+          "tool": "click",
+          "target": "Tuần sau",
+          "preImage": "58e02db81c7944e9967a940d616bf88d02a10ac069b56432ac52d84231533c9c",
+          "postImage": "4459a6923aa51d3b2ceef0ea5831d2532eaf8d86b3cda6e406b58565b93273ea",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588987.639033,
+          "tool": "click",
+          "target": "Xem chi tiết",
+          "preImage": "4459a6923aa51d3b2ceef0ea5831d2532eaf8d86b3cda6e406b58565b93273ea",
+          "postImage": "5eedeb6b1d67c7e7419dd927f595a8c1a56b88c3a5dfc8892c28be63aaf14624",
+          "decisive": true
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588995.7615042,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "5eedeb6b1d67c7e7419dd927f595a8c1a56b88c3a5dfc8892c28be63aaf14624",
+          "postImage": "4459a6923aa51d3b2ceef0ea5831d2532eaf8d86b3cda6e406b58565b93273ea",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794589001.9564435,
+          "tool": "click",
+          "target": "Kiến thức\nTab 4 trong tổng số 4",
+          "preImage": "4459a6923aa51d3b2ceef0ea5831d2532eaf8d86b3cda6e406b58565b93273ea",
+          "postImage": "1cd95856dcdcb43f72a7804d680e181f57c460762036248d0586f15eead727e8",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794589015.147209,
+          "tool": "input_text",
+          "target": "Tìm bài viết",
+          "clear_exist": true,
+          "text": "[input omitted]",
+          "preImage": "1cd95856dcdcb43f72a7804d680e181f57c460762036248d0586f15eead727e8",
+          "postImage": "ac26f1d518b33dc89a355ac53097fdd65d1881d181b9a9da44f4d82f050ce48b",
+          "decisive": true
+        },
+        {
+          "step": 8,
+          "timestamp": 1794589022.8723996,
+          "tool": "click",
+          "target": "Tìm kiếm",
+          "preImage": "ac26f1d518b33dc89a355ac53097fdd65d1881d181b9a9da44f4d82f050ce48b",
+          "postImage": "ff320b2f3fc1f3c5c56973604eb156e45c5b0b4545701acd39cbba44e8c51fa0",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794589028.5595458,
+          "tool": "click",
+          "target": "Kế hoạch\nTab 3 trong tổng số 4",
+          "preImage": "ff320b2f3fc1f3c5c56973604eb156e45c5b0b4545701acd39cbba44e8c51fa0",
+          "postImage": "671c47dd6f8c1e33f647823549a7dd6bea68a604d625b22d8a0bf390f2328758",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794589035.4824352,
+          "tool": "click",
+          "target": "Xem chi tiết",
+          "preImage": "671c47dd6f8c1e33f647823549a7dd6bea68a604d625b22d8a0bf390f2328758",
+          "postImage": "46f67a635b770d5ade009e75f9707d820df910b6ad705372b737d87cd64671c3",
+          "decisive": true
+        },
+        {
+          "step": 11,
+          "timestamp": 1794589041.8162372,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "46f67a635b770d5ade009e75f9707d820df910b6ad705372b737d87cd64671c3",
+          "postImage": "671c47dd6f8c1e33f647823549a7dd6bea68a604d625b22d8a0bf390f2328758",
+          "decisive": true
+        },
+        {
+          "step": 12,
+          "timestamp": 1794589048.2102437,
+          "tool": "click",
+          "target": "Kiến thức\nTab 4 trong tổng số 4",
+          "preImage": "671c47dd6f8c1e33f647823549a7dd6bea68a604d625b22d8a0bf390f2328758",
+          "postImage": "ff320b2f3fc1f3c5c56973604eb156e45c5b0b4545701acd39cbba44e8c51fa0",
+          "decisive": false
+        },
+        {
+          "step": 13,
+          "timestamp": 1794589056.8093243,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "ff320b2f3fc1f3c5c56973604eb156e45c5b0b4545701acd39cbba44e8c51fa0",
+          "postImage": "5df24bbd43e7afa72caaa71ca2ceccadb28123f5b6382f36c772cd92d8534661",
+          "decisive": false
+        },
+        {
+          "step": 14,
+          "timestamp": 1794589063.7302108,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "5df24bbd43e7afa72caaa71ca2ceccadb28123f5b6382f36c772cd92d8534661",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR08",
+      "name": "AR08-R1",
+      "run": 1,
+      "flow": "knowledge search / empty state",
+      "session": "a3402525-c174-4951-80da-2d6aa39a665a",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:35:20.269Z",
+      "end": "2026-11-13T15:40:17.935Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "knowledge search / empty state; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794584151.9451745,
+          "tool": "manage_app",
+          "target": "[app-management action; see scope finding]",
+          "preImage": "16bf118ff49f383bf044400d640a45cb781d94c45a2f596bbe1c95dfe1973e8f",
+          "postImage": "8a2c08f8bc8ff67329975fbedd33dd1cefb4ed697e2ca89a8bcd08273efe408d",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794584162.8150854,
+          "tool": "wait_for_delay",
+          "target": "",
+          "preImage": "8a2c08f8bc8ff67329975fbedd33dd1cefb4ed697e2ca89a8bcd08273efe408d",
+          "postImage": "854610c32b128a37f053282596a1dd55de9464208b83e00671a8a94f242c8683",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794584174.8485494,
+          "tool": "click",
+          "target": "CHẤP NHẬN",
+          "preImage": "854610c32b128a37f053282596a1dd55de9464208b83e00671a8a94f242c8683",
+          "postImage": "cf3284e981a12910c2158e024844a91ee5e78a530be8a21cd08c0d30ec4f81ff",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794584192.1292975,
+          "tool": "input_text",
+          "target": "Nhập từ khóa",
+          "clear_exist": false,
+          "text": "dia an",
+          "preImage": "cf3284e981a12910c2158e024844a91ee5e78a530be8a21cd08c0d30ec4f81ff",
+          "postImage": "b990095c43679214eb49aabef2692a7aae06ee026c48d9759d70578ebe3cb18d",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794584207.4713395,
+          "tool": "press_key",
+          "target": "",
+          "key": "ENTER",
+          "preImage": "b990095c43679214eb49aabef2692a7aae06ee026c48d9759d70578ebe3cb18d",
+          "postImage": "1fb4ab312de9d59abf15fc3b8e3a2c0aa369b69cbaa63ff7014812a355c95a3b",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794584217.8622408,
+          "tool": "click",
+          "target": "Trang chủ",
+          "preImage": "1fb4ab312de9d59abf15fc3b8e3a2c0aa369b69cbaa63ff7014812a355c95a3b",
+          "postImage": "4418bf56d41089eaca89b0922ce25c8fec5ac91ad78f81ea21a902a25f32083c",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794584225.6723554,
+          "tool": "click",
+          "target": "",
+          "preImage": "4418bf56d41089eaca89b0922ce25c8fec5ac91ad78f81ea21a902a25f32083c",
+          "postImage": "dd64186ad6e27b9573539721c662e5aae28a627c35804d6566646672fb13a6c7",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794584233.501535,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "dd64186ad6e27b9573539721c662e5aae28a627c35804d6566646672fb13a6c7",
+          "postImage": "0e4e48fe6533effffec7f9be0d43d36157c3c52128ec85b2922386f9af5f64c5",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794584243.2849705,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "0e4e48fe6533effffec7f9be0d43d36157c3c52128ec85b2922386f9af5f64c5",
+          "postImage": "a0e5e64cce41d01e9f26c3d50e20698272b469188ad38e36c1aa4ca9647c294f",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794584256.1158087,
+          "tool": "input_text",
+          "target": "Tìm bài viết",
+          "clear_exist": false,
+          "text": "dia an",
+          "preImage": "a0e5e64cce41d01e9f26c3d50e20698272b469188ad38e36c1aa4ca9647c294f",
+          "postImage": "4f195abfcde73a1e0554c8b7878158629569c141cbd85474036ff68e6f23d0e9",
+          "decisive": false
+        },
+        {
+          "step": 11,
+          "timestamp": 1794584264.477942,
+          "tool": "click",
+          "target": "Tìm kiếm",
+          "preImage": "4f195abfcde73a1e0554c8b7878158629569c141cbd85474036ff68e6f23d0e9",
+          "postImage": "a0e5e64cce41d01e9f26c3d50e20698272b469188ad38e36c1aa4ca9647c294f",
+          "decisive": false
+        },
+        {
+          "step": 12,
+          "timestamp": 1794584278.4194257,
+          "tool": "input_text",
+          "target": "Tìm bài viết",
+          "clear_exist": false,
+          "text": "dia an",
+          "preImage": "a0e5e64cce41d01e9f26c3d50e20698272b469188ad38e36c1aa4ca9647c294f",
+          "postImage": "8de6d4bb2a7bdb72e929f4ef43b0d220eda90191bcc56229b7b65b21dbcd8458",
+          "decisive": false
+        },
+        {
+          "step": 13,
+          "timestamp": 1794584285.9184327,
+          "tool": "click",
+          "target": "Tìm bài viết",
+          "preImage": "8de6d4bb2a7bdb72e929f4ef43b0d220eda90191bcc56229b7b65b21dbcd8458",
+          "postImage": "de567fa7b6b2abd5e67260a232dd7d523a749c89def01ff0972ac29c49cc1a75",
+          "decisive": false
+        },
+        {
+          "step": 14,
+          "timestamp": 1794584293.872276,
+          "tool": "click",
+          "target": "Tìm kiếm",
+          "preImage": "de567fa7b6b2abd5e67260a232dd7d523a749c89def01ff0972ac29c49cc1a75",
+          "postImage": "84ecb16f62cce7fb971df71501dbe41f69135a8b789cd9eb039f283445b9936c",
+          "decisive": false
+        },
+        {
+          "step": 15,
+          "timestamp": 1794584305.816287,
+          "tool": "input_text",
+          "target": "Tìm bài viết",
+          "clear_exist": false,
+          "text": "dia an",
+          "preImage": "84ecb16f62cce7fb971df71501dbe41f69135a8b789cd9eb039f283445b9936c",
+          "postImage": "d3241f9c5bd2b68da479afebfaa33ad1d06141646f6a0253551435b84a78458e",
+          "decisive": false
+        },
+        {
+          "step": 16,
+          "timestamp": 1794584315.669675,
+          "tool": "click",
+          "target": "Tìm bài viết",
+          "preImage": "d3241f9c5bd2b68da479afebfaa33ad1d06141646f6a0253551435b84a78458e",
+          "postImage": "de567fa7b6b2abd5e67260a232dd7d523a749c89def01ff0972ac29c49cc1a75",
+          "decisive": false
+        },
+        {
+          "step": 17,
+          "timestamp": 1794584323.9474657,
+          "tool": "click",
+          "target": "Tìm kiếm",
+          "preImage": "de567fa7b6b2abd5e67260a232dd7d523a749c89def01ff0972ac29c49cc1a75",
+          "postImage": "84ecb16f62cce7fb971df71501dbe41f69135a8b789cd9eb039f283445b9936c",
+          "decisive": false
+        },
+        {
+          "step": 18,
+          "timestamp": 1794584333.8716962,
+          "tool": "input_text",
+          "target": "Tìm bài viết",
+          "clear_exist": false,
+          "text": "dia an",
+          "preImage": "84ecb16f62cce7fb971df71501dbe41f69135a8b789cd9eb039f283445b9936c",
+          "postImage": "0f46d38f9d155d107262ba6eb3f03b484ed0ae0f9de08eb69d5d734e23910eda",
+          "decisive": false
+        },
+        {
+          "step": 19,
+          "timestamp": 1794584346.2577586,
+          "tool": "click",
+          "target": "Tìm bài viết",
+          "preImage": "0f46d38f9d155d107262ba6eb3f03b484ed0ae0f9de08eb69d5d734e23910eda",
+          "postImage": "3f676f991bbc1eb0a9e10c20df294d3870dc66ed2b3b1d9ffa6c27ae208abdb0",
+          "decisive": false
+        },
+        {
+          "step": 20,
+          "timestamp": 1794584352.7611725,
+          "tool": "click",
+          "target": "Tìm kiếm",
+          "preImage": "3f676f991bbc1eb0a9e10c20df294d3870dc66ed2b3b1d9ffa6c27ae208abdb0",
+          "postImage": "33bd97a4c6c3c0d72fba504298513b5b56f9bcdb7db3d0ee6ff2b14147fec4be",
+          "decisive": false
+        },
+        {
+          "step": 21,
+          "timestamp": 1794584367.523033,
+          "tool": "click",
+          "target": "Xóa tìm kiếm",
+          "preImage": "33bd97a4c6c3c0d72fba504298513b5b56f9bcdb7db3d0ee6ff2b14147fec4be",
+          "postImage": "267bfa8c1f584cd373530472007f714b7602fa777fe7d9f4952b275d0ed81da8",
+          "decisive": false
+        },
+        {
+          "step": 22,
+          "timestamp": 1794584385.4951544,
+          "tool": "input_text",
+          "target": "Tìm bài viết",
+          "clear_exist": false,
+          "text": "ARTEMIS_NO_SUCH_ARTICLE_R1",
+          "preImage": "267bfa8c1f584cd373530472007f714b7602fa777fe7d9f4952b275d0ed81da8",
+          "postImage": "b3074919f8418af1c98d132a59addfbb3461e9a9e460dbcbfa2220abfd7e3592",
+          "decisive": false
+        },
+        {
+          "step": 23,
+          "timestamp": 1794584395.0082245,
+          "tool": "press_key",
+          "target": "",
+          "key": "ENTER",
+          "preImage": "b3074919f8418af1c98d132a59addfbb3461e9a9e460dbcbfa2220abfd7e3592",
+          "postImage": "8122c7c50fee70f2aaa0e0571b0939f8313ce58c57a793576d4469ba783596cb",
+          "decisive": false
+        },
+        {
+          "step": 24,
+          "timestamp": 1794584406.7331314,
+          "tool": "press_key",
+          "target": "",
+          "key": "HOME",
+          "preImage": "8122c7c50fee70f2aaa0e0571b0939f8313ce58c57a793576d4469ba783596cb",
+          "postImage": "59794955e8e7e5d21bfb9f305b47bf2b532cea203a3c61d5add5c6fa5c08325e",
+          "decisive": false
+        },
+        {
+          "step": 25,
+          "timestamp": 1794584410.420029,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "59794955e8e7e5d21bfb9f305b47bf2b532cea203a3c61d5add5c6fa5c08325e",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR08",
+      "name": "AR08-R2",
+      "run": 2,
+      "flow": "knowledge search / empty state",
+      "session": "c384ecdc-b14e-4c78-8902-e60daf1a41c4",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:40:26.044Z",
+      "end": "2026-11-13T16:41:55.872Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "Ảnh cho thấy ô app vẫn trống; chuỗi chỉ ở gợi ý clipboard của bàn phím sau input_text.",
+      "remediation": "Read-back đúng EditText thuộc package app; driver nhập không được xác nhận từ clipboard.",
+      "expected": "knowledge search / empty state; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794588059.3748846,
+          "tool": "click",
+          "target": "Kiến thức\nTab 4 trong tổng số 4",
+          "preImage": "d00a4cb7734cc1eb49cc653432207444410567b156cb8da67af5409c6e44fe10",
+          "postImage": "15ea1d64d09e8fe8afde505eb048d7237c13952208ab5be2eab64ac6f5d4b6b8",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794588072.4464078,
+          "tool": "input_text",
+          "target": "Tìm bài viết",
+          "clear_exist": true,
+          "text": "dia an",
+          "preImage": "15ea1d64d09e8fe8afde505eb048d7237c13952208ab5be2eab64ac6f5d4b6b8",
+          "postImage": "35e91507f62ad1af5b01de78652f2a3788c62515d6dcf5f52e545527d7c241fd",
+          "decisive": true
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588080.443836,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "35e91507f62ad1af5b01de78652f2a3788c62515d6dcf5f52e545527d7c241fd",
+          "postImage": "1564fe1761b5f0f62999eb1eac6148d372e845dc731f4f716864e3817948bc3f",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588096.022025,
+          "tool": "input_text",
+          "target": "Tìm bài viết",
+          "clear_exist": true,
+          "text": "ARTEMIS_NO_SUCH_ARTICLE_R2",
+          "preImage": "1564fe1761b5f0f62999eb1eac6148d372e845dc731f4f716864e3817948bc3f",
+          "postImage": "c25eab81afa32831c4b246e39d0ea711f3619c43575e1eab68929d235d612d17",
+          "decisive": true
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588103.5537338,
+          "tool": "click",
+          "target": "Tìm kiếm",
+          "preImage": "c25eab81afa32831c4b246e39d0ea711f3619c43575e1eab68929d235d612d17",
+          "postImage": "ab6628126ba322049fda1c87e721ae264d4b3b1a6c57af3c75081842d9036c4e",
+          "decisive": true
+        },
+        {
+          "step": 6,
+          "timestamp": 1794588110.5628304,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "ab6628126ba322049fda1c87e721ae264d4b3b1a6c57af3c75081842d9036c4e",
+          "postImage": "572e9e9e68ff8f88208f134156af028cdba404a4e27af2fef914a5f26a3b79fb",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794588114.5463767,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "572e9e9e68ff8f88208f134156af028cdba404a4e27af2fef914a5f26a3b79fb",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR08",
+      "name": "AR08-R3",
+      "run": 3,
+      "flow": "knowledge search / empty state",
+      "session": "8cfbefdc-5a32-47c5-b17e-89d0f29fc9e0",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:57:45.235Z",
+      "end": "2026-11-13T16:59:38.258Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "input_text đặt chuỗi ở clipboard, app không hiện truy vấn hoặc empty state.",
+      "remediation": "ASCII fixture qua input native có kiểm tra focus và giá trị; lỗi read-back phải trả lỗi thao tác.",
+      "expected": "knowledge search / empty state; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794589094.8195672,
+          "tool": "click",
+          "target": "Kiến thức\nTab 4 trong tổng số 4",
+          "preImage": "63a4f9c7e077d05c3a3939c05591ec34c6d66560c10c1604464eeb7376c069d0",
+          "postImage": "dca1c0417cb88dae37d638fb2f81c62f8c69c5a510a465d98b27c551484e6b62",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794589106.74459,
+          "tool": "input_text",
+          "target": "Tìm bài viết",
+          "clear_exist": true,
+          "text": "dia an",
+          "preImage": "dca1c0417cb88dae37d638fb2f81c62f8c69c5a510a465d98b27c551484e6b62",
+          "postImage": "2efec704cc4ec5760b65413a3e3c439bf973e4b17d11480f10cb56684a66f20c",
+          "decisive": true
+        },
+        {
+          "step": 3,
+          "timestamp": 1794589113.6353464,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "2efec704cc4ec5760b65413a3e3c439bf973e4b17d11480f10cb56684a66f20c",
+          "postImage": "4cb2f9a66f106bd28649ebed505160a4bd2720173e743d0ceeaf81f00545e1c9",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794589120.4522877,
+          "tool": "click",
+          "target": "Tìm bài viết",
+          "preImage": "4cb2f9a66f106bd28649ebed505160a4bd2720173e743d0ceeaf81f00545e1c9",
+          "postImage": "cd10f4b975d09d716a38b102567c385455018e1022faddcbc5e6d973e242525e",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794589130.1798575,
+          "tool": "click",
+          "target": "Tìm kiếm",
+          "preImage": "cd10f4b975d09d716a38b102567c385455018e1022faddcbc5e6d973e242525e",
+          "postImage": "816677bfc28b654bccc1112554942e519ef28b15ca70d712d04f6e4aaf742627",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794589135.7360046,
+          "tool": "click",
+          "target": "Tài khoản",
+          "preImage": "816677bfc28b654bccc1112554942e519ef28b15ca70d712d04f6e4aaf742627",
+          "postImage": "6bd63bf7b5312b3b6f9e7feeac9ad3c54bf6f46b0fab6bdec8c20a07da674ee6",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794589143.6747088,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "6bd63bf7b5312b3b6f9e7feeac9ad3c54bf6f46b0fab6bdec8c20a07da674ee6",
+          "postImage": "5dd32c696a9113d222e5fd3c8b7f6f6d823cb999d7105c78e972ed6327dc04e5",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794589159.351148,
+          "tool": "input_text",
+          "target": "Tìm bài viết",
+          "clear_exist": true,
+          "text": "ARTEMIS_NO_SUCH_ARTICLE_R3",
+          "preImage": "5dd32c696a9113d222e5fd3c8b7f6f6d823cb999d7105c78e972ed6327dc04e5",
+          "postImage": "1b6334bd17fa52a4039abbd33071b7064f1d3f984f149e3556d58341ea655117",
+          "decisive": true
+        },
+        {
+          "step": 9,
+          "timestamp": 1794589165.9767344,
+          "tool": "click",
+          "target": "Tìm kiếm",
+          "preImage": "1b6334bd17fa52a4039abbd33071b7064f1d3f984f149e3556d58341ea655117",
+          "postImage": "5dd32c696a9113d222e5fd3c8b7f6f6d823cb999d7105c78e972ed6327dc04e5",
+          "decisive": true
+        },
+        {
+          "step": 10,
+          "timestamp": 1794589172.7508001,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "5dd32c696a9113d222e5fd3c8b7f6f6d823cb999d7105c78e972ed6327dc04e5",
+          "postImage": "b6d7b40946c1cf43924afee2d8b7dffccd6e60e58c4da4d40a1fde343e1fe60e",
+          "decisive": false
+        },
+        {
+          "step": 11,
+          "timestamp": 1794589176.3526764,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "b6d7b40946c1cf43924afee2d8b7dffccd6e60e58c4da4d40a1fde343e1fe60e",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR10",
+      "name": "AR10-R1",
+      "run": 1,
+      "flow": "native Android browser / system Back",
+      "session": "cd1b8b4f-24b9-4db7-9899-72ee1f2dad32",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T15:40:17.982Z",
+      "end": "2026-11-13T15:41:50.573Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "native Android browser / system Back; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794584459.5481803,
+          "tool": "click",
+          "target": "Longevity Plate",
+          "preImage": "0ea3ef2fa76f6258c067b62d96efaf1e623d1fa647058f2f095420dd35e815d4",
+          "postImage": "0208118de007d3e76b3a750130dccdb3e9253f5588d940a4b0e222dee7a5d872",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794584467.6241093,
+          "tool": "click",
+          "target": "Đọc bài →",
+          "preImage": "0208118de007d3e76b3a750130dccdb3e9253f5588d940a4b0e222dee7a5d872",
+          "postImage": "23557390f8de85457e83e76a674570b65b7f5a7febf116c083492b0d31060454",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794584474.1866205,
+          "tool": "click",
+          "target": "Xem nguồn WHO",
+          "preImage": "23557390f8de85457e83e76a674570b65b7f5a7febf116c083492b0d31060454",
+          "postImage": "9b4981e0e786d3a45314c88f687d5774750c106e5f1970f53a688bbe1eed0702",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794584486.4758363,
+          "tool": "wait_for_delay",
+          "target": "",
+          "preImage": "9b4981e0e786d3a45314c88f687d5774750c106e5f1970f53a688bbe1eed0702",
+          "postImage": "f34ab9f3e6cf7a9b965eb219483d6e95032e560431b3df8b00c3d8c92398990b",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794584493.8751574,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "f34ab9f3e6cf7a9b965eb219483d6e95032e560431b3df8b00c3d8c92398990b",
+          "postImage": "23557390f8de85457e83e76a674570b65b7f5a7febf116c083492b0d31060454",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794584502.6954541,
+          "tool": "press_key",
+          "target": "",
+          "key": "HOME",
+          "preImage": "23557390f8de85457e83e76a674570b65b7f5a7febf116c083492b0d31060454",
+          "postImage": "e5ce8d6d55a0a46e768c396a6132d62d09363805d638a018f49ff57ed86fe523",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794584509.0326426,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "e5ce8d6d55a0a46e768c396a6132d62d09363805d638a018f49ff57ed86fe523",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR10",
+      "name": "AR10-R2",
+      "run": 2,
+      "flow": "native Android browser / system Back",
+      "session": "68f2670f-fde5-4dac-97ed-89294504634f",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:41:55.882Z",
+      "end": "2026-11-13T16:43:13.621Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "native Android browser / system Back; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794588145.3997138,
+          "tool": "click",
+          "target": "Kiến thức\nTab 4 trong tổng số 4",
+          "preImage": "0449c59316e32b4ccad35c98e7b993336a2196ff08f7c587b1d0f3274106c598",
+          "postImage": "4d961bb4211226dbe0691dc4bcd6f0f10d396cdecf382ef44fc1c3e054ec952b",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794588154.9189806,
+          "tool": "click",
+          "target": "Đọc bài →",
+          "preImage": "4d961bb4211226dbe0691dc4bcd6f0f10d396cdecf382ef44fc1c3e054ec952b",
+          "postImage": "30c86823bab2b90180987680ab353182ca4d2b74cf375e264bfc0dba92fe013f",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588162.4073303,
+          "tool": "click",
+          "target": "Xem nguồn WHO",
+          "preImage": "30c86823bab2b90180987680ab353182ca4d2b74cf375e264bfc0dba92fe013f",
+          "postImage": "e8b7a2d30120cd59edbdad635abb47ef1dfaa2117ed72c6b92c726d35b4d4c73",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588171.0247514,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "e8b7a2d30120cd59edbdad635abb47ef1dfaa2117ed72c6b92c726d35b4d4c73",
+          "postImage": "30d79326a4adfe954e06c071a65d54510e7e162da721c5b7d85bb4646ed91eeb",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588178.8540275,
+          "tool": "click",
+          "target": "Quay lại",
+          "preImage": "30d79326a4adfe954e06c071a65d54510e7e162da721c5b7d85bb4646ed91eeb",
+          "postImage": "a61f706cd67ae43bf41068da1be7d65e69330dfb52659d739a0e673f24a3ec44",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794588186.9506795,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "a61f706cd67ae43bf41068da1be7d65e69330dfb52659d739a0e673f24a3ec44",
+          "postImage": "ec3f6d63835b403d9bd8edb582eef1425fe406dba4933d9ac7d0e5dcc4b88a84",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794588191.7819753,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "ec3f6d63835b403d9bd8edb582eef1425fe406dba4933d9ac7d0e5dcc4b88a84",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR10",
+      "name": "AR10-R3",
+      "run": 3,
+      "flow": "native Android browser / system Back",
+      "session": "67673f4e-a609-4fc7-ba50-337b0a20a736",
+      "baselineResult": "PASS",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:59:38.269Z",
+      "end": "2026-11-13T17:01:10.126Z",
+      "interrupted": false,
+      "category": null,
+      "rootCause": "Baseline được giữ nguyên; không tái diễn giải thành kết quả chạy mới.",
+      "remediation": "Giữ expected và kiểm tra lại trong campaign mới.",
+      "expected": "native Android browser / system Back; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794589217.0179398,
+          "tool": "click",
+          "target": "Kiến thức\nTab 4 trong tổng số 4",
+          "preImage": "4e901a0b38b31729c9f91d2ff22462c420589e09f972f0138033e2443c814221",
+          "postImage": "7ae1598a90dbf1685142c58cc6eb31c62a563c666dfe0a23f768e5c99bc081e6",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794589224.7614386,
+          "tool": "click",
+          "target": "Đọc bài →",
+          "preImage": "7ae1598a90dbf1685142c58cc6eb31c62a563c666dfe0a23f768e5c99bc081e6",
+          "postImage": "c923dd0870ebf9d816e2a4fa7644e91bdb727dbcfd8f6ce90bab8abaf87b7085",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794589239.477833,
+          "tool": "click",
+          "target": "Xem nguồn WHO",
+          "preImage": "c923dd0870ebf9d816e2a4fa7644e91bdb727dbcfd8f6ce90bab8abaf87b7085",
+          "postImage": "72d2ba7fa52488ffe78b51af31d08e312868bd447f1838bf1b8f26a55caff6de",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794589246.800665,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "72d2ba7fa52488ffe78b51af31d08e312868bd447f1838bf1b8f26a55caff6de",
+          "postImage": "c923dd0870ebf9d816e2a4fa7644e91bdb727dbcfd8f6ce90bab8abaf87b7085",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794589252.3788898,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "c923dd0870ebf9d816e2a4fa7644e91bdb727dbcfd8f6ce90bab8abaf87b7085",
+          "postImage": "a702eeed21c6e8602729f4ac48ca81e4d9cbe48abff8b9ec2ec8296f6389c8fa",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794589261.9650106,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "a702eeed21c6e8602729f4ac48ca81e4d9cbe48abff8b9ec2ec8296f6389c8fa",
+          "postImage": "fae266f5f44dc53ad9e07a5c3514106389967df1f13f11be960478c3bd9f32f8",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794589268.3236568,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "fae266f5f44dc53ad9e07a5c3514106389967df1f13f11be960478c3bd9f32f8",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR13",
+      "name": "AR13-R1",
+      "run": 1,
+      "flow": "native Android photo picker / F02",
+      "session": "e350fbb9-ac1d-4fcc-9ab4-86c59631b99a",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 2,
+      "rawAttemptsForName": 2,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:31:47.864Z",
+      "end": "2026-11-13T16:37:37.933Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "Picker có mở nhưng preview/asset là ảnh người dùng đã chọn trước đó, không phải bowl fixture yêu cầu. Asset228597bytes khác fixture8589bytes.",
+      "remediation": "Fixture trong album riêng có tên duy nhất và manifest hash; đối chiếu ảnh input/asset, không chọn ảnh khác để hoàn thành ca.",
+      "expected": "native Android photo picker / F02; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794587541.6681435,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "bc49572e490b40da425838f41fcf175e990cccdf503eb8a4d28c1922db5adc4f",
+          "postImage": "ddf5351e7140a18d5d4fd991d53599bde73a987683eb6f6248dfcbd4266f2aad",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794587549.7774098,
+          "tool": "click",
+          "target": "Thêm bữa ăn",
+          "preImage": "ddf5351e7140a18d5d4fd991d53599bde73a987683eb6f6248dfcbd4266f2aad",
+          "postImage": "9b3ea5aea84775878647bb5542c1a155b888bdcbb90eb8b34d48b04f24f34499",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794587555.683773,
+          "tool": "click",
+          "target": "Bữa trưa",
+          "preImage": "9b3ea5aea84775878647bb5542c1a155b888bdcbb90eb8b34d48b04f24f34499",
+          "postImage": "a8ba0e2e0493ac28a5a5aa8ed2121cc3bcb130e0c9affa7ec5236432fdd81e82",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794587562.9874852,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "a8ba0e2e0493ac28a5a5aa8ed2121cc3bcb130e0c9affa7ec5236432fdd81e82",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794587568.1341207,
+          "tool": "swipe",
+          "target": "",
+          "direction": "up",
+          "preImage": "a8ba0e2e0493ac28a5a5aa8ed2121cc3bcb130e0c9affa7ec5236432fdd81e82",
+          "postImage": "d31905bcfa3160fdffbcc9f5d9d19d12b3a775fad18fbc743a5018296dfb1732",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794587573.8330214,
+          "tool": "click",
+          "target": "Chọn từ thư viện",
+          "preImage": "d31905bcfa3160fdffbcc9f5d9d19d12b3a775fad18fbc743a5018296dfb1732",
+          "postImage": "440a93836cb6b42c0cab42e66084e8b9e2cc68e3797fd47b3eb114b99c539e76",
+          "decisive": true
+        },
+        {
+          "step": 7,
+          "timestamp": 1794587580.5240843,
+          "tool": "click",
+          "target": "Collections",
+          "preImage": "440a93836cb6b42c0cab42e66084e8b9e2cc68e3797fd47b3eb114b99c539e76",
+          "postImage": "469f2cb98fbd6c27aa0c7eed28c7dbbf04be69227662f4826f430e9564693e96",
+          "decisive": true
+        },
+        {
+          "step": 8,
+          "timestamp": 1794587588.1251955,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "469f2cb98fbd6c27aa0c7eed28c7dbbf04be69227662f4826f430e9564693e96",
+          "postImage": "ee5c4a961767ee569ce11854154dd427df6c8f146b52dc4668c5adb0d3b2c96d",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794587595.581485,
+          "tool": "click",
+          "target": "Chọn từ thư viện",
+          "preImage": "ee5c4a961767ee569ce11854154dd427df6c8f146b52dc4668c5adb0d3b2c96d",
+          "postImage": "418dc0e4e5cd3775944d0e9008819c99ddcbab293c9b41c7bc689c9eeebbc8b1",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794587602.303883,
+          "tool": "click",
+          "target": "Collections",
+          "preImage": "418dc0e4e5cd3775944d0e9008819c99ddcbab293c9b41c7bc689c9eeebbc8b1",
+          "postImage": "469f2cb98fbd6c27aa0c7eed28c7dbbf04be69227662f4826f430e9564693e96",
+          "decisive": false
+        },
+        {
+          "step": 11,
+          "timestamp": 1794587607.9184551,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "469f2cb98fbd6c27aa0c7eed28c7dbbf04be69227662f4826f430e9564693e96",
+          "postImage": "ee5c4a961767ee569ce11854154dd427df6c8f146b52dc4668c5adb0d3b2c96d",
+          "decisive": false
+        },
+        {
+          "step": 12,
+          "timestamp": 1794587614.5168612,
+          "tool": "click",
+          "target": "Chọn từ thư viện",
+          "preImage": "ee5c4a961767ee569ce11854154dd427df6c8f146b52dc4668c5adb0d3b2c96d",
+          "postImage": "418dc0e4e5cd3775944d0e9008819c99ddcbab293c9b41c7bc689c9eeebbc8b1",
+          "decisive": false
+        },
+        {
+          "step": 13,
+          "timestamp": 1794587621.6699986,
+          "tool": "click",
+          "target": "Collections",
+          "preImage": "418dc0e4e5cd3775944d0e9008819c99ddcbab293c9b41c7bc689c9eeebbc8b1",
+          "postImage": "469f2cb98fbd6c27aa0c7eed28c7dbbf04be69227662f4826f430e9564693e96",
+          "decisive": false
+        },
+        {
+          "step": 14,
+          "timestamp": 1794587627.236198,
+          "tool": "click",
+          "target": "More",
+          "preImage": "469f2cb98fbd6c27aa0c7eed28c7dbbf04be69227662f4826f430e9564693e96",
+          "postImage": "e60929f92734141be67fc5dff837909a571e73d49904d79f2cfc2265071a613c",
+          "decisive": false
+        },
+        {
+          "step": 15,
+          "timestamp": 1794587635.5127125,
+          "tool": "click",
+          "target": "Home",
+          "preImage": "e60929f92734141be67fc5dff837909a571e73d49904d79f2cfc2265071a613c",
+          "postImage": "edba9f8721c398ebbc4edfb7bbfc7aa190e5989ed2db24faf4c063c9723e1ae6",
+          "decisive": false
+        },
+        {
+          "step": 16,
+          "timestamp": 1794587644.8000255,
+          "tool": "manage_app",
+          "target": "[app-management action; see scope finding]",
+          "preImage": "edba9f8721c398ebbc4edfb7bbfc7aa190e5989ed2db24faf4c063c9723e1ae6",
+          "postImage": "e3f12e140c4719c055c76a8efe969738febcf5d882c0ccefb53332cf130fb81b",
+          "decisive": false
+        },
+        {
+          "step": 17,
+          "timestamp": 1794587655.8596528,
+          "tool": "wait_for_delay",
+          "target": "",
+          "preImage": "e3f12e140c4719c055c76a8efe969738febcf5d882c0ccefb53332cf130fb81b",
+          "postImage": "2a720f703e72f46ea75902b79e1e3ebf4e188596427a7ed377582bd831603823",
+          "decisive": false
+        },
+        {
+          "step": 18,
+          "timestamp": 1794587668.298553,
+          "tool": "wait_for_delay",
+          "target": "",
+          "preImage": "2a720f703e72f46ea75902b79e1e3ebf4e188596427a7ed377582bd831603823",
+          "postImage": "823938ed1e2fd7357b9110467775802501a56d2bfe11ef170cc452f958fb6d54",
+          "decisive": false
+        },
+        {
+          "step": 19,
+          "timestamp": 1794587676.220637,
+          "tool": "manage_app",
+          "target": "[app-management action; see scope finding]",
+          "preImage": "823938ed1e2fd7357b9110467775802501a56d2bfe11ef170cc452f958fb6d54",
+          "postImage": "0b38da4b0ca05a496f6f631fac14f195c91278d5c67a1cbe6b74bcbbd7107e47",
+          "decisive": false
+        },
+        {
+          "step": 20,
+          "timestamp": 1794587690.435467,
+          "tool": "click",
+          "target": "Back",
+          "preImage": "0b38da4b0ca05a496f6f631fac14f195c91278d5c67a1cbe6b74bcbbd7107e47",
+          "postImage": "0d56492ba1a4f5a4fe45538e5b81910ecfb5caa50ac9239d2bda878736c5dccf",
+          "decisive": false
+        },
+        {
+          "step": 21,
+          "timestamp": 1794587710.1669986,
+          "tool": "click",
+          "target": "Collections",
+          "preImage": "0d56492ba1a4f5a4fe45538e5b81910ecfb5caa50ac9239d2bda878736c5dccf",
+          "postImage": "2c902fbf96c0193c559e44edc17763ebd8d6ebe7fc4ed08f09d998887bc85e15",
+          "decisive": false
+        },
+        {
+          "step": 22,
+          "timestamp": 1794587717.3905957,
+          "tool": "click",
+          "target": "More",
+          "preImage": "2c902fbf96c0193c559e44edc17763ebd8d6ebe7fc4ed08f09d998887bc85e15",
+          "postImage": "5c65f214dd570727e4486bda0ae319b7212a0a8056cd8e4cd526ef39006df593",
+          "decisive": false
+        },
+        {
+          "step": 23,
+          "timestamp": 1794587724.4479265,
+          "tool": "click",
+          "target": "Back",
+          "preImage": "5c65f214dd570727e4486bda0ae319b7212a0a8056cd8e4cd526ef39006df593",
+          "postImage": "2c902fbf96c0193c559e44edc17763ebd8d6ebe7fc4ed08f09d998887bc85e15",
+          "decisive": false
+        },
+        {
+          "step": 24,
+          "timestamp": 1794587730.323919,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "2c902fbf96c0193c559e44edc17763ebd8d6ebe7fc4ed08f09d998887bc85e15",
+          "postImage": "a4d22db5d20f86dc6b056e31eb8863a061c916d5f69990272e1eef0645610720",
+          "decisive": false
+        },
+        {
+          "step": 25,
+          "timestamp": 1794587738.0360236,
+          "tool": "click",
+          "target": "Chọn từ thư viện",
+          "preImage": "a4d22db5d20f86dc6b056e31eb8863a061c916d5f69990272e1eef0645610720",
+          "postImage": "e68d4bcb3f53ee82b6794fed980a4fdd6bbd2e78f5de52d7e289b8c9776fb086",
+          "decisive": false
+        },
+        {
+          "step": 26,
+          "timestamp": 1794587746.5511239,
+          "tool": "click",
+          "target": "Collections",
+          "preImage": "e68d4bcb3f53ee82b6794fed980a4fdd6bbd2e78f5de52d7e289b8c9776fb086",
+          "postImage": "c1f170154dae59ecb7b6d9e7e129fd4c074275edcad2349c4678f024a11f8233",
+          "decisive": false
+        },
+        {
+          "step": 27,
+          "timestamp": 1794587756.8153532,
+          "tool": "click",
+          "target": "More",
+          "preImage": "c1f170154dae59ecb7b6d9e7e129fd4c074275edcad2349c4678f024a11f8233",
+          "postImage": "7058f3e03232e967a5d7a9cb2c2e3d42f88d5fbb8be7559696a7fe67d575f4ce",
+          "decisive": false
+        },
+        {
+          "step": 28,
+          "timestamp": 1794587769.6986754,
+          "tool": "input_text",
+          "target": "Bạn đã ăn món gì? *\n0/120\nVí dụ: Cơm gạo lứt, rau luộc, đậu hũ…\nNhập ngắn gọn tên món, tối đa 120 ký tự.",
+          "clear_exist": true,
+          "text": "ARTEMIS_AR13_R1_PHOTO",
+          "preImage": "7058f3e03232e967a5d7a9cb2c2e3d42f88d5fbb8be7559696a7fe67d575f4ce",
+          "postImage": "487da42d9f60a374bf10dec74628f1f7530787156ba4a84e11c643a7221e27c8",
+          "decisive": true
+        },
+        {
+          "step": 29,
+          "timestamp": 1794587774.9197578,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "487da42d9f60a374bf10dec74628f1f7530787156ba4a84e11c643a7221e27c8",
+          "postImage": "285f663461e9a11af55a97177df5d4f66898e152669c7a0d6d04712d894088ce",
+          "decisive": false
+        },
+        {
+          "step": 30,
+          "timestamp": 1794587783.9403245,
+          "tool": "input_text",
+          "target": "Bạn đã ăn món gì? *\n0/120\nVí dụ: Cơm gạo lứt, rau luộc, đậu hũ…\nNhập ngắn gọn tên món, tối đa 120 ký tự.",
+          "clear_exist": false,
+          "text": "ARTEMIS_AR13_R1_PHOTO",
+          "preImage": "285f663461e9a11af55a97177df5d4f66898e152669c7a0d6d04712d894088ce",
+          "postImage": "4374233ae67c05442ba0d0f0b6832581960684cfc379583d446f5d6d2493fe9f",
+          "decisive": false
+        },
+        {
+          "step": 31,
+          "timestamp": 1794587790.7907393,
+          "tool": "click",
+          "target": "Bạn đã ăn món gì? *\n0/120\nVí dụ: Cơm gạo lứt, rau luộc, đậu hũ…\nNhập ngắn gọn tên món, tối đa 120 ký tự.",
+          "preImage": "4374233ae67c05442ba0d0f0b6832581960684cfc379583d446f5d6d2493fe9f",
+          "postImage": "74bfc6ffd25a0b5207a7263a122fb5182b5aa0ab0dd4820d2eb1a376927b0251",
+          "decisive": false
+        },
+        {
+          "step": 32,
+          "timestamp": 1794587798.4278836,
+          "tool": "click",
+          "target": "Dán mục này",
+          "preImage": "74bfc6ffd25a0b5207a7263a122fb5182b5aa0ab0dd4820d2eb1a376927b0251",
+          "postImage": "802a2cb995aeb2aa2e104d75d330a9c45f5db5759a962ab3a0c315c81c272d29",
+          "decisive": false
+        },
+        {
+          "step": 33,
+          "timestamp": 1794587805.024863,
+          "tool": "click",
+          "target": "Nhập",
+          "preImage": "802a2cb995aeb2aa2e104d75d330a9c45f5db5759a962ab3a0c315c81c272d29",
+          "postImage": "ff1f1cfc99dcda2a1fa052385777b72fa73f134f40107ba70bbed509d529265f",
+          "decisive": false
+        },
+        {
+          "step": 34,
+          "timestamp": 1794587811.971775,
+          "tool": "press_key",
+          "target": "",
+          "key": "BACK",
+          "preImage": "ff1f1cfc99dcda2a1fa052385777b72fa73f134f40107ba70bbed509d529265f",
+          "postImage": "3d9d4adc02a4b26e69d1066367733ed17c618d332cedad853a9c4c4d11f95785",
+          "decisive": false
+        },
+        {
+          "step": 35,
+          "timestamp": 1794587818.211819,
+          "tool": "click",
+          "target": "Lưu bữa ăn",
+          "preImage": "3d9d4adc02a4b26e69d1066367733ed17c618d332cedad853a9c4c4d11f95785",
+          "postImage": "78ced3ac98a18499dc4b893a34cfe00f97080395831f13ee91d9f4e43aa5c822",
+          "decisive": true
+        },
+        {
+          "step": 36,
+          "timestamp": 1794587825.6666934,
+          "tool": "click",
+          "target": "Xuất báo cáo PDF",
+          "preImage": "78ced3ac98a18499dc4b893a34cfe00f97080395831f13ee91d9f4e43aa5c822",
+          "postImage": "7319615b7e57b08cccde35c57417df3fcdf6a81e52fa6e0e33d41ad604b2c2e1",
+          "decisive": false
+        },
+        {
+          "step": 37,
+          "timestamp": 1794587837.8526154,
+          "tool": "click",
+          "target": "Ảnh bữa ăn",
+          "preImage": "7319615b7e57b08cccde35c57417df3fcdf6a81e52fa6e0e33d41ad604b2c2e1",
+          "postImage": "1c9efe73fd7ac6551eba95e72c669406c6c2b8f7891e0ab80be20d9acf821dfe",
+          "decisive": true
+        },
+        {
+          "step": 38,
+          "timestamp": 1794587844.6162136,
+          "tool": "click",
+          "target": "Đóng ảnh",
+          "preImage": "1c9efe73fd7ac6551eba95e72c669406c6c2b8f7891e0ab80be20d9acf821dfe",
+          "postImage": "4506be4d362ea736f1609977e45ced1f8608b34836d2f0f41af3143bdc311cbe",
+          "decisive": false
+        },
+        {
+          "step": 39,
+          "timestamp": 1794587852.3095329,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "4506be4d362ea736f1609977e45ced1f8608b34836d2f0f41af3143bdc311cbe",
+          "postImage": "f84304540f0ac1649a7882644fd2d058ccb727bfcc60c266e51339f054f5e441",
+          "decisive": false
+        },
+        {
+          "step": 40,
+          "timestamp": 1794587856.1499627,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "f84304540f0ac1649a7882644fd2d058ccb727bfcc60c266e51339f054f5e441",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR13",
+      "name": "AR13-R2",
+      "run": 2,
+      "flow": "native Android photo picker / F02",
+      "session": "68fb60e2-83f9-4f74-be42-7f78ea2852eb",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": true,
+      "start": "2026-11-13T16:43:13.647Z",
+      "end": "2026-11-13T16:44:28.045Z",
+      "interrupted": false,
+      "category": "C",
+      "rootCause": "Chỉ xem ảnh của record có sẵn rồi đóng viewer; không có picker hoặc record mới đúng nhãn.",
+      "remediation": "Form sạch theo campaign; yêu cầu picker transition và ready asset gắn đúng record mới.",
+      "expected": "native Android photo picker / F02; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794588225.4160562,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "a8ca78591cb68aa30762669adfa3063a6f6e4cf969c53efe876a9f2c3b810dc1",
+          "postImage": "55f14cb46e493baa4ff3c2692fe006422e2fcf63243fa477e594053cc78dce7a",
+          "decisive": true
+        },
+        {
+          "step": 2,
+          "timestamp": 1794588232.0724897,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "55f14cb46e493baa4ff3c2692fe006422e2fcf63243fa477e594053cc78dce7a",
+          "postImage": "52b59e25816118fb41f67babc52951b93c7af8baacfb641419b24293db789366",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794588238.2552814,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "52b59e25816118fb41f67babc52951b93c7af8baacfb641419b24293db789366",
+          "postImage": "51871f12c932c2a03db37dd7c5af3c6278bdfe7633b31b29efaa96ccd20a73a2",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794588246.1904187,
+          "tool": "click",
+          "target": "Ảnh bữa ăn",
+          "preImage": "51871f12c932c2a03db37dd7c5af3c6278bdfe7633b31b29efaa96ccd20a73a2",
+          "postImage": "14fa04da1f00115dc4bd189a65ee13a77520a9326bb67e82e2751a1696a3485a",
+          "decisive": true
+        },
+        {
+          "step": 5,
+          "timestamp": 1794588254.5573342,
+          "tool": "click",
+          "target": "Đóng ảnh",
+          "preImage": "14fa04da1f00115dc4bd189a65ee13a77520a9326bb67e82e2751a1696a3485a",
+          "postImage": "fa78f148b07dc4ab75eebefc8ae04c0337e49174a402c1dcab80cc5073c9fb7b",
+          "decisive": true
+        },
+        {
+          "step": 6,
+          "timestamp": 1794588261.676819,
+          "tool": "click",
+          "target": "Hôm nay\nTab 1 trong tổng số 4",
+          "preImage": "fa78f148b07dc4ab75eebefc8ae04c0337e49174a402c1dcab80cc5073c9fb7b",
+          "postImage": "adae16ed1f8e8cf7315f95aef2252d9b81b75e5b961bf64c24e82875ce5c6f4e",
+          "decisive": false
+        },
+        {
+          "step": 7,
+          "timestamp": 1794588265.941356,
+          "tool": "report_task_status",
+          "target": "",
+          "preImage": "adae16ed1f8e8cf7315f95aef2252d9b81b75e5b961bf64c24e82875ce5c6f4e",
+          "postImage": null,
+          "decisive": false
+        }
+      ]
+    },
+    {
+      "testId": "AR13",
+      "name": "AR13-R3",
+      "run": 3,
+      "flow": "native Android photo picker / F02",
+      "session": "18d86694-e6fc-4381-aada-06343e2e5984",
+      "baselineResult": "FAIL",
+      "selectedAttempt": 1,
+      "rawAttemptsForName": 1,
+      "agentReportedResult": false,
+      "start": "2026-11-13T17:01:10.136Z",
+      "end": null,
+      "interrupted": true,
+      "category": "C",
+      "rootCause": "Sau picker, agent gọi manage_app launch package khác; người vận hành dừng phiên.",
+      "remediation": "Scope guard trước dispatch và screenshot; manage_app chỉ launch package app; từ chối launcher và app khác.",
+      "expected": "native Android photo picker / F02; detailed preconditions and expected values in docs/ARTEMIS_CASES.md",
+      "evidence": [
+        {
+          "step": 1,
+          "timestamp": 1794589300.6262944,
+          "tool": "click",
+          "target": "Ghi nhận bữa ăn",
+          "preImage": "fae266f5f44dc53ad9e07a5c3514106389967df1f13f11be960478c3bd9f32f8",
+          "postImage": "5fd33e82204ac6ff7d7eb5175b7ea667857568652b34aff9c54c1f8967dda61d",
+          "decisive": false
+        },
+        {
+          "step": 2,
+          "timestamp": 1794589305.6555948,
+          "tool": "swipe",
+          "target": "",
+          "direction": "up",
+          "preImage": "5fd33e82204ac6ff7d7eb5175b7ea667857568652b34aff9c54c1f8967dda61d",
+          "postImage": "77b716e5c1f2bcf26f9cbd3083c548dc76cfd650a104a991270cd243992f82df",
+          "decisive": false
+        },
+        {
+          "step": 3,
+          "timestamp": 1794589311.7104328,
+          "tool": "click",
+          "target": "Thêm bữa ăn",
+          "preImage": "77b716e5c1f2bcf26f9cbd3083c548dc76cfd650a104a991270cd243992f82df",
+          "postImage": "73346e8c603f32deca25f2e693907e7aea115e0be73c419dc39a5f50e9db2319",
+          "decisive": false
+        },
+        {
+          "step": 4,
+          "timestamp": 1794589322.0540109,
+          "tool": "click",
+          "target": "Bữa trưa",
+          "preImage": "73346e8c603f32deca25f2e693907e7aea115e0be73c419dc39a5f50e9db2319",
+          "postImage": "2e7bec82f7445424985352ff2c2573f3117227a4bf9ea8c3b9ec3b2fd1862987",
+          "decisive": false
+        },
+        {
+          "step": 5,
+          "timestamp": 1794589329.5028567,
+          "tool": "swipe",
+          "target": "",
+          "direction": "up",
+          "preImage": "2e7bec82f7445424985352ff2c2573f3117227a4bf9ea8c3b9ec3b2fd1862987",
+          "postImage": "3bbd192677c9fac0becfdb22d6f2500619b73413e83cb75c7bd581a81b42382a",
+          "decisive": false
+        },
+        {
+          "step": 6,
+          "timestamp": 1794589336.6130495,
+          "tool": "click",
+          "target": "Chọn từ thư viện",
+          "preImage": "3bbd192677c9fac0becfdb22d6f2500619b73413e83cb75c7bd581a81b42382a",
+          "postImage": "825ebf920f7dd5f4adc2099e2d403687df1f929a74e6bc0732f27d1a24f70f3c",
+          "decisive": true
+        },
+        {
+          "step": 7,
+          "timestamp": 1794589343.9795613,
+          "tool": "click",
+          "target": "Collections",
+          "preImage": "825ebf920f7dd5f4adc2099e2d403687df1f929a74e6bc0732f27d1a24f70f3c",
+          "postImage": "876f9cba4db6fdea920565fe8d5500970539e1429d366639484125ec41046533",
+          "decisive": false
+        },
+        {
+          "step": 8,
+          "timestamp": 1794589349.6652498,
+          "tool": "click",
+          "target": "Xóa ảnh",
+          "preImage": "876f9cba4db6fdea920565fe8d5500970539e1429d366639484125ec41046533",
+          "postImage": "cef5662664cbc33195a902252f6e200c2d9b63146ac47c68767a84993e94aae4",
+          "decisive": false
+        },
+        {
+          "step": 9,
+          "timestamp": 1794589356.5900903,
+          "tool": "click",
+          "target": "Chọn từ thư viện",
+          "preImage": "cef5662664cbc33195a902252f6e200c2d9b63146ac47c68767a84993e94aae4",
+          "postImage": "8591d76d13a27cf620d519a689b349c94485c31976764a6eb911588e4d068aa5",
+          "decisive": false
+        },
+        {
+          "step": 10,
+          "timestamp": 1794589367.9197621,
+          "tool": "click",
+          "target": "Collections",
+          "preImage": "8591d76d13a27cf620d519a689b349c94485c31976764a6eb911588e4d068aa5",
+          "postImage": "c6627583ee2a57d9bcd21973e5e8eb87e727fe9aa6618b66ac70c93d202bcebf",
+          "decisive": false
+        },
+        {
+          "step": 11,
+          "timestamp": 1794589375.8476071,
+          "tool": "click",
+          "target": "More",
+          "preImage": "c6627583ee2a57d9bcd21973e5e8eb87e727fe9aa6618b66ac70c93d202bcebf",
+          "postImage": "155ee37003aa65eea99986c78e80e8a1cffc242ed8b7b17306a842b62b3b2a42",
+          "decisive": false
+        },
+        {
+          "step": 12,
+          "timestamp": 1794589383.8200712,
+          "tool": "swipe",
+          "target": "",
+          "direction": "down",
+          "preImage": "155ee37003aa65eea99986c78e80e8a1cffc242ed8b7b17306a842b62b3b2a42",
+          "postImage": "aefc1c49ce6f200d46c42118baa149be55f4449bb7f2cbf55002dd1eb28c6df7",
+          "decisive": false
+        },
+        {
+          "step": 13,
+          "timestamp": 1794589391.266577,
+          "tool": "click",
+          "target": "Collections",
+          "preImage": "aefc1c49ce6f200d46c42118baa149be55f4449bb7f2cbf55002dd1eb28c6df7",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 14,
+          "timestamp": 1794589397.292934,
+          "tool": "click",
+          "target": "More",
+          "preImage": "aefc1c49ce6f200d46c42118baa149be55f4449bb7f2cbf55002dd1eb28c6df7",
+          "postImage": "1d953d2f2b06115a503c08d20747be23deac9af301b7893725e1a1728a4403e9",
+          "decisive": false
+        },
+        {
+          "step": 15,
+          "timestamp": 1794589404.9174883,
+          "tool": "click",
+          "target": "Back",
+          "preImage": "1d953d2f2b06115a503c08d20747be23deac9af301b7893725e1a1728a4403e9",
+          "postImage": "aefc1c49ce6f200d46c42118baa149be55f4449bb7f2cbf55002dd1eb28c6df7",
+          "decisive": false
+        },
+        {
+          "step": 16,
+          "timestamp": 1794589411.556308,
+          "tool": "click",
+          "target": "Collections",
+          "preImage": "aefc1c49ce6f200d46c42118baa149be55f4449bb7f2cbf55002dd1eb28c6df7",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 17,
+          "timestamp": 1794589418.205169,
+          "tool": "click",
+          "target": "Collections",
+          "preImage": "aefc1c49ce6f200d46c42118baa149be55f4449bb7f2cbf55002dd1eb28c6df7",
+          "postImage": null,
+          "decisive": false
+        },
+        {
+          "step": 18,
+          "timestamp": 1794589424.5002291,
+          "tool": "click",
+          "target": "More",
+          "preImage": "aefc1c49ce6f200d46c42118baa149be55f4449bb7f2cbf55002dd1eb28c6df7",
+          "postImage": "1d953d2f2b06115a503c08d20747be23deac9af301b7893725e1a1728a4403e9",
+          "decisive": false
+        },
+        {
+          "step": 19,
+          "timestamp": 1794589432.9453406,
+          "tool": "click",
+          "target": "Home",
+          "preImage": "1d953d2f2b06115a503c08d20747be23deac9af301b7893725e1a1728a4403e9",
+          "postImage": "b3b7bfd099e5caa5cea2b8aeca6af1e2e72c1b8650e36e83b865a25f8c8dfec2",
+          "decisive": true
+        },
+        {
+          "step": 20,
+          "timestamp": 1794589444.532902,
+          "tool": "manage_app",
+          "target": "[app-management action; see scope finding]",
+          "preImage": "b3b7bfd099e5caa5cea2b8aeca6af1e2e72c1b8650e36e83b865a25f8c8dfec2",
+          "postImage": "97b9200e207ccf94c9f0f2b09e31a03bcc9a89e223d291a4c2f82812ed50aadb",
+          "decisive": true
+        }
+      ]
+    }
+  ]
+}

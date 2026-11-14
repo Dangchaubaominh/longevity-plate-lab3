@@ -7,9 +7,17 @@ import json
 from pathlib import Path
 import sqlite3
 import unicodedata
+import argparse
 
 root = Path(__file__).resolve().parents[1]
-runs = root / "artifacts/artemis-runs"
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--campaign', help='Read this isolated rerun campaign instead of the historical baseline.')
+args = parser.parse_args()
+if args.campaign:
+    import re
+    if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,63}', args.campaign):
+        parser.error('Invalid campaign ID')
+runs = root / ('artifacts/artemis-campaigns/' + args.campaign if args.campaign else 'artifacts/artemis-runs')
 results = json.loads((runs / "suite-results.json").read_text(encoding="utf8"))
 db = sqlite3.connect(f"file:{(runs / 'traces/data_engine.db').as_posix()}?mode=ro", uri=True)
 

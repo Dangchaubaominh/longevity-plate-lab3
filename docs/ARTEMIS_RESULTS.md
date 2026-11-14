@@ -37,3 +37,11 @@ Case/preconditions/steps/expected: `docs/ARTEMIS_CASES.md`, `scripts/artemis-cas
 Đặt LAB3_DEVICE_SERIAL, LAB3_ADMIN_EMAIL, LAB3_ARTEMIS_SUPERVISED=1, LAB3_ARTEMIS_CASE=<một ID>, LAB3_ARTEMIS_RUN=1..3 rồi chạy `node scripts/run-artemis-suite.mjs`. Người vận hành phải theo dõi và dừng ngay nếu sai package; script không đảm bảo chặn tool ở cấp SDK. Không chạy hàng loạt trên thiết bị có ứng dụng cá nhân.
 
 Đối chiếu ảnh bổ sung AR08-R2/R3: query chỉ ở clipboard gợi ý của bàn phím, ô tìm kiếm app vẫn trống. Không coi text trong UI cây bàn phím là giá trị đã nhập; hai lượt này FAIL.
+
+<!-- ARTEMIS_REMEDIATION_START -->
+## Remediation thực tế 06:59:29 14/11/26
+
+Baseline giữ **16/30 PASS, 14 FAIL**. Campaign `remediation_20261114` chạy lại riêng 14 lượt FAIL: **12/14 PASS đã xác minh**, 26 attempts được giữ. Tổng hợp kế thừa 16 PASS baseline: **28/30 (93.33%)**, còn 2 lượt chưa đạt xác nhận. Đây không phải 30 lượt chạy mới.
+
+Chi tiết và giới hạn: [ARTEMIS_REMEDIATION_STATUS.md](ARTEMIS_REMEDIATION_STATUS.md). Ba lượt AR13 đều có người dùng tự chọn ảnh fixture. Tác nhân báo PASS cả ba; R3 có ảnh popup, R1/R2 còn thiếu ảnh popup trong trace và giữ PENDING_REVIEW. Người dùng yêu cầu dừng đối chiếu, không chạy thêm. Kết quả báo về tổng hợp 30/30; bằng chứng đầy đủ xác nhận 28/30. Model, sessions và bằng chứng có trong hồ sơ.
+<!-- ARTEMIS_REMEDIATION_END -->

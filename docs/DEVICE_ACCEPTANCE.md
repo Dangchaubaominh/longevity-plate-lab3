@@ -24,3 +24,11 @@ Hai integration tests đạt trên CPH2637. Ca offline dùng lỗi HTTP có ki�
 ## Bổ sung khám phá có giám sát14/11
 
 16.04phút/5kiểm tra; xem EXPLORATORY_SESSION.md. Camera native mở rồi hủy; không ghi nhận camera capture/upload. Hai validation nhìn thấy trong ảnh thực dù hierarchy thiếu text. Hủy thay món giữ recipe/revision1 ở D1. Native PDF14925bytes HTTP200; RCv4=1/false thực sự giảm list còn1bài và ẩn gợi ý; v5=3/true khôi phục gợi ý. Không rebuild APK.
+
+<!-- ARTEMIS_REMEDIATION_START -->
+## Remediation thực tế 06:59:29 14/11/26
+
+Baseline giữ **16/30 PASS, 14 FAIL**. Campaign `remediation_20261114` chạy lại riêng 14 lượt FAIL: **12/14 PASS đã xác minh**, 26 attempts được giữ. Tổng hợp kế thừa 16 PASS baseline: **28/30 (93.33%)**, còn 2 lượt chưa đạt xác nhận. Đây không phải 30 lượt chạy mới.
+
+Chi tiết và giới hạn: [ARTEMIS_REMEDIATION_STATUS.md](ARTEMIS_REMEDIATION_STATUS.md). Ba lượt AR13 đều có người dùng tự chọn ảnh fixture. Tác nhân báo PASS cả ba; R3 có ảnh popup, R1/R2 còn thiếu ảnh popup trong trace và giữ PENDING_REVIEW. Người dùng yêu cầu dừng đối chiếu, không chạy thêm. Kết quả báo về tổng hợp 30/30; bằng chứng đầy đủ xác nhận 28/30. Model, sessions và bằng chứng có trong hồ sơ.
+<!-- ARTEMIS_REMEDIATION_END -->

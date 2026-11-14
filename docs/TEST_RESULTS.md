@@ -39,3 +39,11 @@ Các lỗi tìm thấy và đã sửa: fetch bị mất browser context; timeout
 Ví dụ cấu hình public có giá trị giống credential đã được chuyển sang bản backup private bị Git bỏ qua, example nộp chỉ còn biến rỗng. Không có credential được in vào kết quả. GitHub CI đã chạy trên nhánh riêng và hai job đều success; không merge main.
 
 Lịch sử lỗi: Cloudinary 401 được giải quyết khi chuyển sang đúng backup; Web SDK key/JSON quoting đã sửa; bật Crashlytics API và thêm Reader sau phê duyệt để xử lý403; một lượt staging bị lỗi network giữa flow và đã cleanup, lượt ổn định cuối đạt40/40. CSP lỗi thật trên Google popup đã được user báo, sửa, thêm regression test và xác minh trên host. Không cộng mocked/local tests thành evidence giao nhận FCM hoặc đa thiết bị thật.
+
+<!-- ARTEMIS_REMEDIATION_START -->
+## Remediation thực tế 06:59:29 14/11/26
+
+Baseline giữ **16/30 PASS, 14 FAIL**. Campaign `remediation_20261114` chạy lại riêng 14 lượt FAIL: **12/14 PASS đã xác minh**, 26 attempts được giữ. Tổng hợp kế thừa 16 PASS baseline: **28/30 (93.33%)**, còn 2 lượt chưa đạt xác nhận. Đây không phải 30 lượt chạy mới.
+
+Chi tiết và giới hạn: [ARTEMIS_REMEDIATION_STATUS.md](ARTEMIS_REMEDIATION_STATUS.md). Ba lượt AR13 đều có người dùng tự chọn ảnh fixture. Tác nhân báo PASS cả ba; R3 có ảnh popup, R1/R2 còn thiếu ảnh popup trong trace và giữ PENDING_REVIEW. Người dùng yêu cầu dừng đối chiếu, không chạy thêm. Kết quả báo về tổng hợp 30/30; bằng chứng đầy đủ xác nhận 28/30. Model, sessions và bằng chứng có trong hồ sơ.
+<!-- ARTEMIS_REMEDIATION_END -->
