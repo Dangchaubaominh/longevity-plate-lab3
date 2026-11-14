@@ -640,6 +640,14 @@ function NotificationForm({ api }: { api: ApiClient }) {
     [error, setError] = useState(""),
     [result, setResult] = useState<Json | null>(null);
   const requestKey = useRef<string | null>(null);
+  const deliveries = array(result?.deliveries);
+  // A confirmed rejection is safe to submit as a new campaign. Keep the key
+  // for accepted, partial, pending or unknown outcomes to avoid duplicate push.
+  const allFailed =
+    deliveries.length > 0 && deliveries.every((row) => row.status === "failed");
+  const hasUnregisteredToken = deliveries.some(
+    (row) => row.errorCode === "UNREGISTERED",
+  );
   function changed() {
     requestKey.current = null;
     setResult(null);
@@ -651,11 +659,15 @@ function NotificationForm({ api }: { api: ApiClient }) {
       setError("Điền người nhận, tiêu đề và nội dung.");
       return;
     }
+    if (allFailed) requestKey.current = null;
     setConfirm(true);
   }
   async function send() {
     setBusy(true);
     setError("");
+    // The previous rejection must not allow another new key if this attempt
+    // times out after the server may already have accepted it.
+    setResult(null);
     requestKey.current ??= crypto.randomUUID();
     try {
       setResult(
@@ -734,7 +746,7 @@ function NotificationForm({ api }: { api: ApiClient }) {
             </select>
             <button type="submit">
               <Icon name="check" />
-              Xem trước
+              {allFailed ? "Xem trước lượt gửi mới" : "Xem trước"}
             </button>
           </fieldset>
         </form>
@@ -747,8 +759,9 @@ function NotificationForm({ api }: { api: ApiClient }) {
             <li>Mở tab Người dùng, tìm theo tên hoặc UID, sao chép cột UID.</li>
             <li>Tối đa 5 thiết bị đang hoạt động nhận được mỗi lượt gửi.</li>
             <li>
-              Cùng một nội dung gửi lại nhiều lần chỉ tính một lượt (chống gửi
-              trùng theo requestKey).
+              Khi chưa rõ kết quả, thử lại sẽ kiểm tra cùng lượt gửi để tránh
+              thông báo trùng. Nếu tất cả thiết bị đã báo thất bại, bạn có thể
+              xem trước và xác nhận một lượt gửi mới.
             </li>
           </ul>
         </div>
@@ -757,7 +770,20 @@ function NotificationForm({ api }: { api: ApiClient }) {
       {result && (
         <div className="send-result">
           <h2>Kết quả gửi</h2>
-          {array(result.deliveries).map((row) => {
+          {hasUnregisteredToken && (
+            <p role="status">
+              Token thông báo của thiết bị cũ đã hết hiệu lực. Mở Longevity Plate
+              trên điện thoại, bật quyền thông báo và kết nối mạng để đăng ký
+              thiết bị hiện tại. Kiểm tra tab Thiết bị trước khi gửi lại.
+            </p>
+          )}
+          {allFailed && (
+            <p>
+              Lượt này đã thất bại trên tất cả thiết bị. Sau khi xử lý nguyên
+              nhân, bấm “Xem trước lượt gửi mới” rồi xác nhận để gửi lại.
+            </p>
+          )}
+          {deliveries.map((row) => {
             const text =
               row.status === "accepted"
                 ? "FCM đã chấp nhận"
@@ -765,11 +791,17 @@ function NotificationForm({ api }: { api: ApiClient }) {
                   ? "Đang chờ thử lại"
                   : row.status === "unknown"
                     ? "Chưa xác định kết quả"
-                    : `Thất bại (${String(row.errorCode ?? row.status)})`;
+                    : row.status === "pending" || row.status === "sending"
+                      ? "Đang xử lý gửi"
+                      : row.errorCode === "UNREGISTERED"
+                        ? "Thất bại: token thiết bị đã hết hiệu lực (UNREGISTERED)"
+                        : `Thất bại (${String(row.errorCode ?? row.status)})`;
             const kind =
               row.status === "accepted"
                 ? "success"
-                : row.status === "retry" || row.status === "unknown"
+                : ["retry", "unknown", "pending", "sending"].includes(
+                    String(row.status),
+                  )
                   ? "warn"
                   : "danger";
             return (

@@ -41,6 +41,33 @@ async function api(page: Page, isAdmin = true) {
     await route.fulfill({ json: data });
   });
 }
+test("a rejected old device can be retried as a new confirmed campaign", async ({ page }) => {
+  await api(page);
+  const requests: Record<string, unknown>[] = [];
+  await page.route("**/api/v1/admin/push", async (route) => {
+    requests.push(route.request().postDataJSON());
+    await route.fulfill({ json: {
+      deliveries: requests.length === 1
+        ? [{ id: "old", installationId: "old-phone", status: "failed", errorCode: "UNREGISTERED" }]
+        : [{ id: "new", installationId: "new-phone", status: "accepted" }],
+    } });
+  });
+  await page.goto("/test/harness.html");
+  await page.getByRole("button", { name: "Gửi thông báo", exact: true }).click();
+  await page.getByLabel("UID người nhận").fill("userA");
+  await page.getByLabel("Tiêu đề", { exact: true }).fill("Nhắc bữa ăn");
+  await page.getByLabel("Nội dung", { exact: true }).fill("Ghi lại bữa trưa");
+  await page.getByRole("button", { name: "Xem trước", exact: true }).click();
+  await page.getByRole("button", { name: "Xác nhận gửi", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText("thiết bị cũ đã hết hiệu lực");
+  await page.getByRole("button", { name: "Xem trước lượt gửi mới" }).click();
+  expect(requests).toHaveLength(1);
+  await page.getByRole("button", { name: "Xác nhận gửi", exact: true }).click();
+  await expect(page.getByText("FCM đã chấp nhận", { exact: true })).toBeVisible();
+  expect(requests).toHaveLength(2);
+  expect(requests[1].requestKey).not.toBe(requests[0].requestKey);
+});
+
 test("server role controls whether privileged pages render", async ({
   page,
 }) => {

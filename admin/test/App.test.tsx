@@ -2,14 +2,20 @@ import { render, screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import { App } from "../src/App";
-import { ApiClient } from "../src/api";
+import { ApiClient, type Json } from "../src/api";
 import type { AuthGateway, Session } from "../src/auth";
 
 function fixture({
   signedIn = true,
   admin = true,
   fail = false,
-}: { signedIn?: boolean; admin?: boolean; fail?: boolean } = {}) {
+  pushOutcomes = [],
+}: {
+  signedIn?: boolean;
+  admin?: boolean;
+  fail?: boolean;
+  pushOutcomes?: (Json | Error)[];
+} = {}) {
   let listener: (s: Session | null) => void = () => {};
   const sent: unknown[] = [];
   const auth: AuthGateway = {
@@ -64,7 +70,9 @@ function fixture({
       });
     if (url.endsWith("/admin/push")) {
       sent.push(JSON.parse(String(init?.body)));
-      return Response.json({
+      const outcome = pushOutcomes.shift();
+      if (outcome instanceof Error) throw outcome;
+      return Response.json(outcome ?? {
         deliveries: [{ id: "d1", installationId: "phone", status: "accepted" }],
       });
     }
@@ -162,6 +170,75 @@ describe("Admin authenticated user journeys", () => {
     );
     expect(await screen.findByText(/FCM đã chấp nhận/)).toBeInTheDocument();
     expect(f.sent).toHaveLength(1);
+  });
+  async function fillPushForm() {
+    await screen.findByRole("heading", { name: "Tổng quan" });
+    await userEvent.click(screen.getByRole("button", { name: "Gửi thông báo" }));
+    await userEvent.type(screen.getByLabelText("UID người nhận"), "userA");
+    await userEvent.type(screen.getByLabelText("Tiêu đề"), "Nhắc bữa ăn");
+    await userEvent.type(screen.getByLabelText("Nội dung"), "Ghi lại bữa trưa");
+    await userEvent.click(screen.getByRole("button", { name: /^Xem trước$/ }));
+    await userEvent.click(screen.getByRole("button", { name: "Xác nhận gửi" }));
+  }
+  it("creates a new confirmed campaign after UNREGISTERED instead of replaying the failed campaign", async () => {
+    const f = fixture({ pushOutcomes: [{ deliveries: [{ id: "old", installationId: "old-phone", status: "failed", errorCode: "UNREGISTERED" }] }] });
+    await fillPushForm();
+    expect(await screen.findByRole("status")).toHaveTextContent("thiết bị cũ đã hết hiệu lực");
+    const first = f.sent[0] as Json;
+    await userEvent.click(screen.getByRole("button", { name: "Xem trước lượt gửi mới" }));
+    expect(f.sent).toHaveLength(1);
+    await userEvent.click(screen.getByRole("button", { name: "Xác nhận gửi" }));
+    expect(await screen.findByText(/FCM đã chấp nhận/)).toBeInTheDocument();
+    const second = f.sent[1] as Json;
+    expect(second.requestKey).not.toBe(first.requestKey);
+    expect({ ...second, requestKey: first.requestKey }).toEqual(first);
+  });
+  it("keeps the request key after a network timeout with an unknown server outcome", async () => {
+    const f = fixture({ pushOutcomes: [new Error("network timeout")] });
+    await fillPushForm();
+    await screen.findAllByText("Không kết nối được máy chủ. Hãy thử lại.");
+    await userEvent.click(screen.getByRole("button", { name: "Xác nhận gửi" }));
+    expect(await screen.findByText(/FCM đã chấp nhận/)).toBeInTheDocument();
+    expect((f.sent[1] as Json).requestKey).toBe((f.sent[0] as Json).requestKey);
+  });
+  it("does not let an old rejection rotate the key after a new attempt times out", async () => {
+    const f = fixture({ pushOutcomes: [
+      { deliveries: [{ id: "old", installationId: "phone", status: "failed", errorCode: "UNREGISTERED" }] },
+      new Error("network timeout"),
+    ] });
+    await fillPushForm();
+    await userEvent.click(await screen.findByRole("button", { name: "Xem trước lượt gửi mới" }));
+    await userEvent.click(screen.getByRole("button", { name: "Xác nhận gửi" }));
+    await screen.findAllByText("Không kết nối được máy chủ. Hãy thử lại.");
+    await userEvent.click(screen.getByRole("button", { name: "Quay lại" }));
+    await userEvent.click(screen.getByRole("button", { name: /^Xem trước$/ }));
+    await userEvent.click(screen.getByRole("button", { name: "Xác nhận gửi" }));
+    expect(await screen.findByText(/FCM đã chấp nhận/)).toBeInTheDocument();
+    expect((f.sent[1] as Json).requestKey).not.toBe((f.sent[0] as Json).requestKey);
+    expect((f.sent[2] as Json).requestKey).toBe((f.sent[1] as Json).requestKey);
+  });
+  it.each(["accepted", "unknown", "retry", "pending", "sending"])("keeps the request key for a %s delivery", async (status) => {
+    const f = fixture({ pushOutcomes: [{ deliveries: [{ id: "old", installationId: "phone", status }] }] });
+    await fillPushForm();
+    await screen.findByRole("heading", { name: "Kết quả gửi" });
+    expect(screen.queryByRole("button", { name: "Xem trước lượt gửi mới" })).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /^Xem trước$/ }));
+    await userEvent.click(screen.getByRole("button", { name: "Xác nhận gửi" }));
+    await waitFor(() => expect(f.sent).toHaveLength(2));
+    expect((f.sent[1] as Json).requestKey).toBe((f.sent[0] as Json).requestKey);
+  });
+  it("does not resend to accepted devices when another device was rejected", async () => {
+    const f = fixture({ pushOutcomes: [{ deliveries: [
+      { id: "one", installationId: "phone-1", status: "accepted" },
+      { id: "two", installationId: "phone-2", status: "failed", errorCode: "UNREGISTERED" },
+    ] }] });
+    await fillPushForm();
+    await screen.findByRole("heading", { name: "Kết quả gửi" });
+    expect(screen.queryByRole("button", { name: "Xem trước lượt gửi mới" })).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /^Xem trước$/ }));
+    await userEvent.click(screen.getByRole("button", { name: "Xác nhận gửi" }));
+    await waitFor(() => expect(f.sent).toHaveLength(2));
+    expect((f.sent[1] as Json).requestKey).toBe((f.sent[0] as Json).requestKey);
   });
   it("displays Crashlytics provenance and actual issue details safely", async () => {
     fixture();

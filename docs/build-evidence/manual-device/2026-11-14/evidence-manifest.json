@@ -1,0 +1,52 @@
+[
+  {
+    "path": "TC-D01/00-admin-unregistered-before-fix.png",
+    "bytes": 104597,
+    "sha256": "334BC7029759A73ED6744F78D38A1A071A2FC627AC6F24A8909005F7B06060D1"
+  },
+  {
+    "path": "TC-D02/01-web-access-denied.png",
+    "bytes": 451322,
+    "sha256": "0B4B05834CDC3B151D37F89BFA1E77CC59C993C7D9F7FF9AE68C7FF790301921"
+  },
+  {
+    "path": "TC-D03/01-phone-synced.png",
+    "bytes": 174215,
+    "sha256": "6ED671EEF1FBE45B75439F216F46718561CADF8B33B8AB2EADF7CA3965A67375"
+  },
+  {
+    "path": "TC-D04/01-phone-offline-pending.png",
+    "bytes": 158832,
+    "sha256": "991BEAA5A5BF48382A176F7B6BDA289797482342094DB48CB9821306034FE63F"
+  },
+  {
+    "path": "TC-D04/03-phone-online-synced.png",
+    "bytes": 297427,
+    "sha256": "A14F77AC7993D5983E0E8472DB74AB43BCC2087D676CB8C5DE188A92A1D3C2EF"
+  },
+  {
+    "path": "TC-D04b/01-phone-before-delete.png",
+    "bytes": 293057,
+    "sha256": "A9A4AD100E8E42B32CFDEFCAFE71338234496519014FC2BAB85C236B579C3042"
+  },
+  {
+    "path": "TC-D04b/02-phone-offline-deleted.png",
+    "bytes": 163466,
+    "sha256": "F26029A61A10678BCD0755DE0D66075EF889815F9FEE32B6505F694EB63875C3"
+  },
+  {
+    "path": "TC-D05/03-phone-pdf-meal.png",
+    "bytes": 168824,
+    "sha256": "DA11ED2D4A0F656E49B81D19A1065194D716E7703151784FAA2D0F145FC8C13D"
+  },
+  {
+    "path": "TC-D06/01-phone-empty-report-error.png",
+    "bytes": 141721,
+    "sha256": "7301B2F776CF69B65CCE816C56E3ACCC87C6B8F538E03C07C334AC473E8518FD"
+  },
+  {
+    "path": "TC-D07/01-phone-notification.png",
+    "bytes": 140140,
+    "sha256": "140864253DF510A29C37F74656278E5D151B6AED1F61A71F9BFF472EAA969BEC"
+  }
+]

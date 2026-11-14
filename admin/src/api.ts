@@ -52,7 +52,8 @@ export function errorText(e: unknown) {
           google_credential_not_configured:
             "Máy chủ cần cấu hình quyền truy cập Firebase.",
           refresh_cooldown: "Vui lòng chờ một phút trước khi làm mới.",
-          no_active_devices: "Người nhận chưa có thiết bị đang hoạt động.",
+          no_active_devices:
+            "Người nhận chưa có thiết bị đang hoạt động. Hãy mở app trên điện thoại, bật quyền thông báo và kết nối mạng rồi thử lại.",
           invalid_input: "Thông tin chưa hợp lệ.",
           session_expired: "Phiên đăng nhập hết hạn.",
         } as Record<string, string>
