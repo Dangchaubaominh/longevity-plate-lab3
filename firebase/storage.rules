@@ -1,0 +1,18 @@
+rules_version = '2';
+// Reference policy for the Firebase Storage alternative in the Lab3 guide.
+// The deployed app uses Cloudinary; Worker ownership checks protect its assets.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /reports/{uid}/{fileName=**} {
+      function ownsReport() {
+        return request.auth != null && request.auth.uid == uid;
+      }
+      allow read, delete: if ownsReport();
+      allow create, update: if ownsReport()
+        && request.resource.size > 0
+        && request.resource.size <= 10 * 1024 * 1024
+        && request.resource.contentType == 'application/pdf';
+    }
+    // All other paths are denied by default.
+  }
+}

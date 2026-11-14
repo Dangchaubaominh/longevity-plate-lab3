@@ -1,0 +1,27 @@
+{
+  "case": "AR13-R1",
+  "label": "ARTEMIS_AR13_R1_remediation_20261114_PHOTO",
+  "mealId": "1794612798224642_814726343",
+  "mealVersion": 2,
+  "assetId": "fb9e6b40ba994f33d2c9bf35fe8a457c3907d747478e4695520f7fe92102ce7e",
+  "assetStatus": "ready",
+  "downloadStatus": 200,
+  "inputSha256": "ed997daef928abc00c385f2cdd9aefede683eaeca4740fa9a7dcd7a1a7828480",
+  "downloadSha256": "45df1fd2c321abced678b07f36839d7259bff12fa99abbeda4b2db9bd0332237",
+  "inputSize": [
+    160,
+    160
+  ],
+  "downloadSize": [
+    160,
+    160
+  ],
+  "rgbRmse": 2.3572,
+  "dhashDistance": 0,
+  "thresholds": {
+    "rmseMax": 15,
+    "dhashMax": 8
+  },
+  "identityMatch": true,
+  "boundary": "Backend/image oracle only; native picker and UI flow need separate trace review."
+}

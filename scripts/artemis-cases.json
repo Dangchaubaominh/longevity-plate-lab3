@@ -1,0 +1,53 @@
+[
+  {
+    "id": "AR01",
+    "flow": "F01 / native Google account chooser",
+    "goal": "In Longevity Plate open Tai khoan, log out, use Android Back and verify protected data cannot be accessed. Start Google sign-in and select ONLY {adminEmail} if an account chooser appears. Do not enter passwords or grant new OAuth scopes. Finish at the signed-in Home screen. If goals onboarding appears select the meal logging goal and complete. Verify welcome greeting. Stop and report a blocker if authentication requires the owner."
+  },
+  {
+    "id": "AR02",
+    "flow": "F01 / validation",
+    "goal": "From Home open Tai khoan then Doi muc tieu. Remember which goals were selected. Deselect every goal, press the completion/save button, verify the required-goal validation and that the screen stays open. Then use Back to cancel WITHOUT saving changes. Return Home; do not alter persisted goals."
+  },
+  {
+    "id": "AR03",
+    "flow": "F02 / create meal",
+    "goal": "In Longevity Plate open the app meal journal, tap Them bua an. Existing journal records with DIFFERENT descriptions (including other AR03 runs) are unrelated: leave them untouched and create this run's NEW record. Choose Bua trua and verify the lunch option is selected. Scroll to the food description, enter exactly ARTEMIS_AR03_R{run}_COM_RAU. Close the keyboard with Android BACK before tapping Luu bua an. Verify the journal shows this EXACT description AND Bua trua, and success feedback. Create only one record. ONLY if the EXACT required description already exists, inspect that matching record instead of adding a duplicate; report FAIL if that exact matching record has the wrong type. A record for R2 must never be treated as the required R3 record. Return to the APP Hom nay tab, not the Android launcher."
+  },
+  {
+    "id": "AR04",
+    "flow": "F02 / required fields",
+    "goal": "Open the app meal journal and tap Them bua an. Confirm this is a fresh form. Leave meal type and description empty and tap Luu bua an ONCE. FIRST observe Hay chon loai bua. THEN swipe your finger UP, from the lower part of the form towards the upper part, to reveal content further BELOW the photo area. Repeat upward finger swipes until the food description and Hay nhap mon an truoc khi luu are visible. Wait for scrolling to stop before observing. Do not tap Save again to scroll because submission returns focus to the first invalid field. Both visible errors are required: do not report PASS after seeing only the first. No meal may be saved. Close any keyboard with Android BACK before navigation, then return to the APP Hom nay tab, not Android launcher."
+  },
+  {
+    "id": "AR05",
+    "flow": "F02 / discard",
+    "goal": "Open the APP Nhat ky meal journal, then tap Them bua an to open a fresh add-meal FORM. The journal itself is not the form. Reveal the actual food text field and type exactly ARTEMIS_AR05_R{run}_DISCARD. Dismiss the keyboard with Android BACK, then press the form Back button, verify the unsaved-changes dialog, choose Bo thay doi. Verify this description does not appear in the journal. Return to the APP Hom nay tab, and do not press Android HOME."
+  },
+  {
+    "id": "AR06",
+    "flow": "F03 / knowledge to meal plan",
+    "goal": "Open Kien thuc, read the first article, then use Lap ke hoach to open a recipe. Use the recipe date picker to choose 20 November 2026, choose breakfast (Sang), add it to the plan. That specific date/breakfast was confirmed empty before this test suite; only this slot is reserved for this test. Repeats may confirm replacement of this test slot. Verify the recipe is present on 20/11/2026 breakfast. Do not change other dates or slots. Return to the APP Hom nay tab; close the keyboard using Android BACK first, and do not press Android HOME."
+  },
+  {
+    "id": "AR07",
+    "flow": "F03 / cancel replacement",
+    "goal": "In the APP Ke hoach screen inspect breakfast on 20 November 2026 reserved by AR06 (Com rau cu va dau). Suggestions only show the FIRST recipe, so do NOT search suggestions for another. Tap Chon mon in an EMPTY DINNER slot to open the recipe chooser, choose Banh mi va trung. CRITICAL: the detail initially inherits the dinner slot. DO NOT press the bottom Them vao ke hoach button yet. Swipe UP on the WHOLE SCREEN without a target parameter until the form section containing Ngay and Bua an is fully visible. Set the date to exactly 20/11/2026, then tap the Sang choice under Bua an and visually verify Sang is selected, NOT Trua or Toi. ONLY THEN press Them vao ke hoach. A real dialog titled Thay the mon hien tai? must appear; tap its Huy button. Never save to the empty lunch/dinner slot. Verify original breakfast remains unchanged. Do not claim a replacement dialog unless its screenshot and an actual Huy click exist. If no replacement dialog is observed report FAIL. Return to the APP Hom nay tab."
+  },
+  {
+    "id": "AR08",
+    "flow": "knowledge search / empty state",
+    "goal": "In the APP Kien thuc tab tap the Tim bai viet input. Replace its text with dia an (no accents), dismiss the keyboard using Android BACK and observe the results. Clear using Xoa tim kiem, then search ARTEMIS_NO_SUCH_ARTICLE_R{run}. Dismiss keyboard and observe Khong tim thay bai viet phu hop. Clear search using Xoa tim kiem and verify the normal list returns. Do not confuse keyboard letters with bottom navigation: always close the keyboard before tapping tabs. Return to the APP Hom nay tab, not Android HOME."
+  },
+  {
+    "id": "AR10",
+    "flow": "native Android browser / system Back",
+    "external": true,
+    "goal": "In Longevity Plate open Kien thuc, open the WHO diverse-diet article (search WHO if necessary), tap Xem nguon WHO. Verify the official who.int source opens in the Android browser, without accepting optional tracking or signing in. Use Android system Back to return to the same article in Longevity Plate. Do not navigate to unrelated sites. Return to the APP Hom nay tab; close the keyboard using Android BACK first, and do not press Android HOME."
+  },
+  {
+    "id": "AR13",
+    "flow": "native Android photo picker / F02",
+    "goal": "Open the app meal journal, tap Them bua an, choose Bua trua and verify it is selected. SCROLL DOWN through the form until the actual Chon tu thu vien button below the photo illustration is visible. The illustration itself is not a button. Tap Chon tu thu vien to open the Android photo picker. Use Collections > From this device > Lab3Verification to select ONLY lab3-meal-fixture.jpg (the bowl test photo) from that dedicated folder; never select other personal photos. If the folder is not visible scroll the collection list, or use More > Browse to navigate Pictures/Lab3Verification. Return to the form and observe the photo preview. Scroll to the food text field, enter ARTEMIS_AR13_R{run}_PHOTO. Dismiss the keyboard using Android BACK, tap Luu bua an, verify the exact description and image in the journal. Tap its photo to verify enlarged preview, then back to the journal. If a button is offscreen, SCROLL instead of repeatedly tapping the illustration. Return to the APP Hom nay tab."
+  }
+]

@@ -307,6 +307,92 @@
     "popupHost": "accounts.google.com",
     "pass": true
   },
-  "deviceVerification": "in_progress",
-  "artemisVerification": "requires_model_configuration_and_device_run"
+  "deviceVerification": {
+    "status": "VERIFIED_REAL",
+    "device": "CPH2637",
+    "android": 16,
+    "integration": {
+      "passed": 2,
+      "total": 2,
+      "scope": "Native Android SQLite + real Firebase/D1/Cloudinary; online media, controlled HTTP failure, disk reopen, idempotent retry, real second-client revision conflict"
+    },
+    "fcm": {
+      "foreground": "observed Snackbar/history",
+      "background": "observed notification, route /log, openedAt",
+      "terminated": "pid absent before send, notification observed, route /log, openedAt"
+    },
+    "crash": {
+      "issueId": "ece9690113b884780b157ecd849ebd37",
+      "eventTime": "2026-11-13T15:11:28Z",
+      "deviceMatched": true
+    },
+    "evidence": "docs/DEVICE_ACCEPTANCE.md",
+    "gallery": {
+      "time": "2026-11-13T16:14:09.415Z",
+      "device": "CPH2637",
+      "source": "native-gallery-user-selected",
+      "mealVersion": 2,
+      "assetId": "44b03fee4dab8f34d679522820f3ab10a29e67cf17743a629dd1c80da6bb0a5b",
+      "downloadStatus": 200,
+      "contentType": "image/jpeg",
+      "bytes": 228597
+    }
+  },
+  "artemisVerification": "requires_model_configuration_and_device_run",
+  "githubCI": {
+    "status": "success",
+    "commit": "9215cf9",
+    "runId": 43449611839,
+    "jobs": [
+      "backend-admin",
+      "flutter"
+    ]
+  },
+  "remoteConfig": {
+    "project": "longevity-plate-beff9",
+    "publishedVersions": [
+      1,
+      2,
+      3
+    ],
+    "before": {
+      "time": "2026-11-13T16:24:37.918Z",
+      "max": 3,
+      "recipes": true,
+      "source": "native-UI-dump"
+    },
+    "after": {
+      "time": "2026-11-13T16:25:50.803Z",
+      "max": 1,
+      "recipes": false,
+      "source": "native-UI-realtime-no-rebuild"
+    },
+    "restored": {
+      "time": "2026-11-13T16:27:05.430Z",
+      "max": 3,
+      "recipes": true,
+      "source": "native-UI-realtime-no-rebuild"
+    }
+  },
+  "finalDelivery": {
+    "date": "2026-11-14",
+    "artemisObserved": {
+      "runs": 30,
+      "attempts": 36,
+      "pass": 16,
+      "fail": 14
+    },
+    "exploratoryMinutes": 16.04,
+    "remoteConfigFinalVersion": "5",
+    "remoteConfigFinalValues": {
+      "max_knowledge_results": 3,
+      "suggested_recipes_enabled": true
+    },
+    "nativePdf": {
+      "status": 200,
+      "bytes": 14925
+    },
+    "consoleEvidenceGaps": "docs/ASSIGNMENT_ACCEPTANCE.md",
+    "video": "User records separately"
+  }
 }

@@ -1,30 +1,39 @@
-# Đối chiếu Lab3 và yêu cầu backend
+# Lab3 - đối chiếu cuối ngày 14/11/2026
 
-Nguồn: PRM393_Lab3_Preparation_Guide_v5_ToiUu.pdf, 25 trang; bổ sung của giảng viên trong hội thoại: Cloudinary/S3 thay Storage được phép, chấm trên điện thoại thật, Admin dùng web riêng để xem crash, người dùng tự quay video. Yêu cầu triển khai backend theo Backendtast.docx.
+Nguồn: guide PRM393 v5,25 trang; Cloudinary thay Storage theo giảng viên; chấm trên CPH2637 thật; Admin dùng web. Video5–10phút do người dùng tự quay.
 
-| Guide | Tiêu chí | Code/tài liệu/bằng chứng local | Nghiệm thu thật còn cần |
-|---|---|---|---|
-| p1–4 | 3 flow Lab2, MVVM, loading/data/empty/error | Provider VM, repositories, architecture.md/design-traceability.md, test/flows_test.dart | Điện thoại và ảnh màn các flow |
-| p5–7 | Google login/cancel/logout/guard/Users Console | FirebaseAuthService, Session VM, router, auth_and_guard_test.dart | Auth Console và sign-in/cancel/offline thật |
-| p8–10 | Tạo PDF, progress, reports/UID, quyền owner, lỗi mạng | ReportBuilder, media API và compatibility PDF, storage.rules có sẵn, Workers/Flutter tests | Cloudinary authenticated PDF delivery và thử A/B thật |
-| p11–13 | FCM Android13+, 3 trạng thái, lịch sử/deep link/deny | MessagingService, owner queue, devices/notifications API, Admin confirm, FCM_SETUP.md | Foreground/background/terminated và Console send trên device |
-| p14–16 | ≥7 event, plan, DebugView, không PII | analytics-plan.md, service events và tests, evidence/analysis được giữ | Đối chiếu event DebugView của build cuối và từng flow |
-| p17–19 | handled error + crash, UID/custom key | FirebaseCrashService, demo confirm, route key; actual REST adapter Admin | SDK issue/event Firebase và web Admin sau crash thật |
-| p20–22 | ≥2 Remote Config, defaults/cache, before/after | max_knowledge_results, suggested_recipes_enabled; widget tests | Console publish và UI trước/sau không rebuild |
-| p23 | ≥10 ARTEMIS case ×3, native Android/error, exploratory15–30m | docs/test-cases.md, scripts/artemis-lab3.ps1, công cụ official đã chuẩn bị | Chưa chạy ARTEMIS với model key + device; cần logs/success quan sát được |
-| p24 | AI PR review ≥5 findings/≥2 nhóm/≥3 fixes có trace | docs/code-review.md và hồ sơ review trước đây | Đối chiếu PR/commit thực tế khi chốt nộp |
-| p25 | GitHub, report8–12p, slides12–15p, video5–10m | Repo và PDF/slide đã tồn tại ở output/pdf trước backend | Cập nhật tài liệu theo nghiệm thu cuối; người dùng tự quay video |
-
-## Backendtast.docx
-
-| Phase | Đã triển khai | Ranh giới kiểm chứng |
+| Guide | Kết quả hiện tại | Bằng chứng |
 |---|---|---|
-| P0 | Audit, config, safe checks, staging deploy, secrets, domain, Admin allowlist | Cloud cấu hình xong; device/model ARTEMIS vẫn cần người dùng |
-| P1 | Hono TS, D1, Firebase JWT, Admin allowlist, profile/goals/meals/plans CRUD, pagination/errors/OpenAPI | D1 local + real Firebase JWT/remote D1 CRUD/owner checks đã pass |
-| P2 | Signed photo/PDF, complete/reconcile, metadata/owner, revision/unique attachment, cleanup | Cloudinary provider15/15 và remote Worker upload/download/A-B pass |
-| P3 | Registration proof/generation, token refresh/logout, FCM HTTP v1, campaigns/history/retry | Tests pass, real FCM validate_only pass; phone delivery cần thật |
-| P4 | React Admin, role guard, responsive, users/devices/push/history/PDF/audit/Crashlytics | User xác nhận Google dashboard; CSP regression4/4; actual Crashlytics4 nhóm + issue/events pass |
-| P5 | SQLite migration, transactional outbox, durable retry, cursor/tombstones/conflicts, photo cache, MVVM | Flutter102/102, analyze sạch, APK nối staging; đa thiết bị/camera còn cần ADB |
-| P6 | Automated tests, CI YAML, security scan, documentation, staging integration_test | Local169 cases; API E2E cloud40/40; CI remote sẽ xác nhận sau push |
+| p1–4 | Ba flow, MVVM/Provider, loading/data/empty/error | architecture.md, design-traceability.md;169 automated cases; device/ARTEMIS |
+| p5–7 Auth | Google login/logout/guard thực trên phone; cancel/error unit tests | AR01×3; auth_and_guard_test.dart; Firebase tokens thật. Ảnh Users Console thuộc phần cần chụp thêm bên dưới |
+| p8–10 Storage | Cloudinary authenticated JPEG/PDF, ownerA/B, signed URL/progress/error | Provider15/15; staging40/40; gallery thật; native PDF14925bytes200; firebase/storage.rules trong repo |
+| p11–13 FCM | Android permission; foreground/background/terminated; history/deep link | DEVICE_ACCEPTANCE.md; openedAt thực và screenshots/logs |
+| p14–16 Analytics |17 events có plan, không PII;8 ảnh DebugView có sẵn | analytics-plan.md; evidence/analysis; ảnh còn thiếu được liệt kê riêng |
+| p17–19 Crash | Native crash và non-fatal thật; UID/route custom keys trong service; Web đọc issue/event | Event15:11:28Z trên CPH2637; Admin API HTTP200;5groups; ảnh Console cần bổ sung |
+| p20–22 RC |2keys, defaults/cache, realtime đổi hành vi và khôi phục không rebuild | Library còn1bài và planner ẩn/hiện gợi ý thật; v4→v5; EXPLORATORY_SESSION.md |
+| p23 ARTEMIS |10case×3lượt;36attempts;16/30PASS,14FAIL theo quan sát | ARTEMIS_CASES.md; ARTEMIS_RESULTS.md; session IDs/image hashes; raw log/DB/images private |
+| p23 Explore | Phiên giám sát16.04phút,5kiểm tra, không video | EXPLORATORY_SESSION.md; exploratory-summary.json |
+| p24 AI review |10findings/6nhóm; accept/adjust/reject;6commit sửa truy vết | code-review.md; PR1 và commit anchors |
+| p25 Nộp | Báo cáo12trang;slide15trang;nhánh GitHub riêng | output/pdf/*Final_20261114.pdf; video người dùng tự quay |
 
-Không đánh dấu toàn Assignment DONE chỉ từ local tests. Các điều kiện chưa có evidence phải giữ BLOCKED_REAL_VERIFICATION, đúng chỉ dẫn Backendtast.docx. Không đưa claim hoàn tất chưa kiểm chứng vào slide/PDF.
+## Phần còn thiếu theo đúng rubric, ngoài video
+
+Chức năng và API đã có, nhưng chưa đủ ảnh Console cho toàn bộ checklist. Không ghi các mục dưới đây là hoàn tất bằng ảnh API thay thế:
+
+1. Authentication → Users và ảnh trước/sau đăng nhập theo project hiện tại.
+2. Analytics DebugView: đã có8ảnh `login`, `meal_add_start`, `meal_save_failed`, `meal_saved`, `plan_from_article`, `plan_slot_saved`, `recipe_view`, `select_content`. Cần ảnh cho9event còn lại trong analytics-plan: logout, tutorial_begin, tutorial_complete, meal_draft_discarded, article_search, plan_save_failed, report_exported, report_export_failed, notification_opened.
+3. Crashlytics Console: fatal/non-fatal, UserID và custom key route; Web Admin ảnh dashboard/crash detail. Crash thật đã xác minh qua REST, ảnh Console là yêu cầu bằng chứng riêng.
+4. Remote Config Console:2tham số/publish; app trước/sau đã có ảnh thật. Thử offline defaults ở test fixtures; không gọi đó là ngắt mạng điện thoại thực.
+5. Cloudinary Media Library: asset JPEG/PDF authenticated và đường dẫn reports/UID (không chụp secret). Upload/download/owner thật đã đạt.
+
+Computer Use đã dừng do không xác định được URL trình duyệt đủ chắc để kiểm tra chính sách. Không tiếp tục input trình duyệt trong lượt này. Giữ checklist để người vận hành bổ sung ảnh Console bằng phiên đã đăng nhập, không tạo ảnh giả.
+
+Không cần nâng cấp package hoặc đổi Expo. APK staging hiện tại phù hợp các kiểm tra; code app không thay đổi sau bản APK đã nghiệm thu. Backend dùng Workers/HonoTS+D1; Cloudinary chỉ giữ media; Firebase phục vụ Auth/FCM/Analytics/Crashlytics/RC.
+
+<!-- ARTEMIS_REMEDIATION_START -->
+## Remediation thực tế 06:59:29 14/11/26
+
+Baseline giữ **16/30 PASS, 14 FAIL**. Campaign `remediation_20261114` chạy lại riêng 14 lượt FAIL: **12/14 PASS đã xác minh**, 26 attempts được giữ. Tổng hợp kế thừa 16 PASS baseline: **28/30 (93.33%)**, còn 2 lượt chưa đạt xác nhận. Đây không phải 30 lượt chạy mới.
+
+Chi tiết và giới hạn: [ARTEMIS_REMEDIATION_STATUS.md](ARTEMIS_REMEDIATION_STATUS.md). Ba lượt AR13 đều có người dùng tự chọn ảnh fixture. Tác nhân báo PASS cả ba; R3 có ảnh popup, R1/R2 còn thiếu ảnh popup trong trace và giữ PENDING_REVIEW. Người dùng yêu cầu dừng đối chiếu, không chạy thêm. Kết quả báo về tổng hợp 30/30; bằng chứng đầy đủ xác nhận 28/30. Model, sessions và bằng chứng có trong hồ sơ.
+<!-- ARTEMIS_REMEDIATION_END -->

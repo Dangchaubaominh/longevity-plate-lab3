@@ -1,0 +1,35 @@
+{
+  "sourceCommit": "6a5e92fea3002ebaf28756f41a71791a1423aa57",
+  "workingTreeDirty": true,
+  "toolCommit": "351ca8422f7b5b54e80a9c1ce03a222e02415b6b",
+  "device": {
+    "model": "CPH2637",
+    "android": "16",
+    "api": 36,
+    "connection": "Wi-Fi ADB"
+  },
+  "apk": {
+    "version": "1.0.0+1",
+    "sha256": "0A5E3EAEF3364594B46DD724F253B4F61F62577174A9C65D16F906ABCDAFDC67",
+    "installed": true
+  },
+  "backend": "https://longevity-plate-lab3-staging.longevity-plate-dai05.workers.dev",
+  "testScope": "14 baseline failed case/run pairs; 16 historical passes retained",
+  "models": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite"
+  ],
+  "tests": {
+    "flutter": 102,
+    "runner": 3,
+    "driver": 9
+  },
+  "notes": [
+    "AR08-R2 attempt1 interrupted by daily provider quota",
+    "AR03-R2 attempt1 failed config schema before device actions",
+    "AR03-R2 attempt2 stopped after clipped-field targeting failures",
+    "Local tool patch retained at scripts/patches/artemis-verified-input.patch"
+  ],
+  "integrationSourceCommit": "0145c47",
+  "integrationNote": "Pulled feature and merged latest origin/main without conflicts; installed APK predates main integration. No additional device tests requested."
+}

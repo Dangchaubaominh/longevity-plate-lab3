@@ -1,0 +1,44 @@
+{
+  "start": "2026-11-13T17:20:28.787Z",
+  "device": "CPH2637",
+  "package": "com.longevityplate.longevity_plate",
+  "mode": "supervised exploratory; no video",
+  "observations": [
+    {
+      "id": "EX01",
+      "at": "2026-11-13T17:25:03.959231+00:00",
+      "result": "PASS",
+      "observation": "Both required field errors visually present after submit and upward scroll; no record saved. UI hierarchy omitted description card despite screenshot visibility, so screenshot oracle required.",
+      "evidence": "explore-validation.png"
+    },
+    {
+      "id": "EX02",
+      "at": "2026-11-13T17:31:16.796567+00:00",
+      "result": "PASS",
+      "observation": "Native com.oplus.camera/.component.CapturePhotoActivity launched; Back cancelled without saving a photo; returned to own draft/discard dialog. No camera preview screenshot retained."
+    },
+    {
+      "id": "EX03",
+      "at": "2026-11-13T17:32:19.921882+00:00",
+      "result": "PASS",
+      "observation": "Different recipe Banh mi va trung selected through Chon mon; 20/11 breakfast triggers replace dialog. Huy; live GET plan retains rice-veg-beans, version1, updatedAt15:34:25.343Z.",
+      "evidence": "explore-replacement.png; live plan API"
+    },
+    {
+      "id": "EX04",
+      "result": "PASS",
+      "observation": "Native export reports 7 meals uploaded; Admin metadata ready PDF14925bytes; private download200 and %PDF- header.",
+      "evidence": "device-pdf-proof.json; device-export.pdf",
+      "at": "2026-11-13T17:36:31.109722+00:00"
+    },
+    {
+      "id": "EX05",
+      "result": "PASS",
+      "observation": "RC live template v4=1/false: knowledge list ends after WHO article; planner ends after dinner, no suggestions. v5 restored3/true; suggestions visible again in same APK.",
+      "evidence": "explore-rc-one-article.png; explore-rc-suggestions-off.png; explore-rc-suggestions-restored.png",
+      "at": "2026-11-13T17:36:31.109722+00:00"
+    }
+  ],
+  "end": "2026-11-13T17:36:31.109722+00:00",
+  "durationMinutes": 16.04
+}

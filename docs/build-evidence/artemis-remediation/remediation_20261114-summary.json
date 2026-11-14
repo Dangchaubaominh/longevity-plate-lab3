@@ -1,0 +1,591 @@
+{
+  "campaign": "remediation_20261114",
+  "baselineSha256": "988336e50331e7af311b36fbaf0de5566c6ac1e414d18a7ad40549e3991e7856",
+  "baseline": {
+    "passed": 16,
+    "failed": 14,
+    "officialRuns": 30,
+    "rawAttempts": 36
+  },
+  "rerun": {
+    "attempts": 26,
+    "distinctRuns": 14,
+    "passed": 12,
+    "agentReportedPassed": 14,
+    "assisted": 3,
+    "failed": 0,
+    "blocked": 0,
+    "pendingReview": 2
+  },
+  "combined": {
+    "passed": 28,
+    "unresolved": 2,
+    "reportedPassed": 30,
+    "passRatePercent": 93.33,
+    "basis": "Mixed historical and reviewed rerun evidence. This is not a fresh 30-run campaign."
+  },
+  "runs": [
+    {
+      "name": "AR01-R1",
+      "flow": "F01 / native Google account chooser",
+      "baselineResult": "PASS",
+      "baselineSession": "23c4a7b0-e9d3-4cab-8a24-4479dcd4fb05",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR01-R2",
+      "flow": "F01 / native Google account chooser",
+      "baselineResult": "PASS",
+      "baselineSession": "742758fb-ef13-4c10-9b7f-689713e3200d",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR01-R3",
+      "flow": "F01 / native Google account chooser",
+      "baselineResult": "PASS",
+      "baselineSession": "95fb5be8-789e-497f-b10b-d04cc5060319",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR02-R1",
+      "flow": "F01 / validation",
+      "baselineResult": "PASS",
+      "baselineSession": "aa117132-4830-4c6d-963a-7c8505787c8b",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR02-R2",
+      "flow": "F01 / validation",
+      "baselineResult": "PASS",
+      "baselineSession": "39b400c0-2500-46f7-bed3-7ae8d5884bad",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR02-R3",
+      "flow": "F01 / validation",
+      "baselineResult": "PASS",
+      "baselineSession": "88786ddc-0e37-4cff-a178-0599f80231e6",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR03-R1",
+      "flow": "F02 / create meal",
+      "baselineResult": "PASS",
+      "baselineSession": "6b153094-acb7-4fb0-ae1f-eb631c42a411",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR03-R2",
+      "flow": "F02 / create meal",
+      "baselineResult": "FAIL",
+      "baselineSession": "aed4e499-ed5b-4601-8960-20fe18f01727",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "d986c3a6-dbb2-47fd-8873-7eaf33ff97a3",
+      "attempt": 4,
+      "start": "2026-11-13T22:48:44.018Z",
+      "end": "2026-11-13T22:50:39.184Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "Visual trace confirms exact fixture and lunch with saved feedback, returned Home. Staging GET HTTP200 contains exactly one matching lunch record, version1.",
+      "evidence": {
+        "steps": [
+          3,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "backend": "AR03-R2-cloud.json",
+        "model": "gemini-3.1-flash-lite"
+      }
+    },
+    {
+      "name": "AR03-R3",
+      "flow": "F02 / create meal",
+      "baselineResult": "FAIL",
+      "baselineSession": "ead0575f-5587-4a48-9427-13093819371f",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "392c23a8-1889-4935-9977-deddaa070b8f",
+      "attempt": 2,
+      "start": "2026-11-13T22:53:18.932Z",
+      "end": "2026-11-13T22:54:38.739Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "Trace shows exact ASCII R3 label, lunch, saved feedback and Home. D1 HTTP200 has exactly one matching lunch record version1, while R2 remains intact.",
+      "evidence": {
+        "steps": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "backend": "AR03-R3-cloud.json",
+        "model": "gemini-3.1-flash-lite"
+      }
+    },
+    {
+      "name": "AR04-R1",
+      "flow": "F02 / required fields",
+      "baselineResult": "FAIL",
+      "baselineSession": "840e07a8-638c-436b-8b5e-b1bec89c33e4",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "da797c92-0af0-495a-9947-9f12491c57f1",
+      "attempt": 1,
+      "start": "2026-11-13T22:26:08.513Z",
+      "end": "2026-11-13T22:27:11.688Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "Visual review: blank form, required type error in step 3, required description error in step 4, returned Home. Backend HTTP200 daily meals count zero.",
+      "evidence": {
+        "steps": [
+          3,
+          4
+        ],
+        "backend": "AR04-cloud-absence.json"
+      }
+    },
+    {
+      "name": "AR04-R2",
+      "flow": "F02 / required fields",
+      "baselineResult": "FAIL",
+      "baselineSession": "2e9f279c-3d66-49c4-b5f7-9c6766aa2946",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "da8e8b47-20e6-474e-a37c-491bb480ca82",
+      "attempt": 1,
+      "start": "2026-11-13T22:27:51.540Z",
+      "end": "2026-11-13T22:28:56.098Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "Visual review: blank form, required type error in step 3, required description error in step 4, returned Home. Backend HTTP200 daily meals count zero.",
+      "evidence": {
+        "steps": [
+          3,
+          4
+        ],
+        "backend": "AR04-cloud-absence.json"
+      }
+    },
+    {
+      "name": "AR04-R3",
+      "flow": "F02 / required fields",
+      "baselineResult": "FAIL",
+      "baselineSession": "e168fc6e-7a60-4b63-be96-a6b0137bace4",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "346327ca-527d-40ff-8c19-b64e98446016",
+      "attempt": 1,
+      "start": "2026-11-13T22:29:41.300Z",
+      "end": "2026-11-13T22:30:34.226Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "Visual review: blank form, required type error in step 3, required description error in step 4, returned Home. Backend HTTP200 daily meals count zero.",
+      "evidence": {
+        "steps": [
+          3,
+          4
+        ],
+        "backend": "AR04-cloud-absence.json"
+      }
+    },
+    {
+      "name": "AR05-R1",
+      "flow": "F02 / discard",
+      "baselineResult": "PASS",
+      "baselineSession": "d30b441d-d673-4dba-a6b6-1f798959a509",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR05-R2",
+      "flow": "F02 / discard",
+      "baselineResult": "PASS",
+      "baselineSession": "cc749371-f797-4c26-a2ea-1c9154a406db",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR05-R3",
+      "flow": "F02 / discard",
+      "baselineResult": "FAIL",
+      "baselineSession": "d6cdb56f-a4ab-4b68-9734-c7487dfe21c1",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "df6191d5-deaa-4593-9b9e-a57215ff8ac2",
+      "attempt": 1,
+      "start": "2026-11-13T22:55:24.833Z",
+      "end": "2026-11-13T22:56:53.926Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "Visual trace confirms exact draft label, real unsaved-changes dialog, explicit discard action and journal without the draft. Staging HTTP200 contains only the two AR03 records, no discard label.",
+      "evidence": {
+        "steps": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "backend": "AR05-R3-absence.json",
+        "model": "gemini-3.1-flash-lite",
+        "cleanup": "Agent visited Home then returned Journal to verify absence; final journal retained."
+      }
+    },
+    {
+      "name": "AR06-R1",
+      "flow": "F03 / knowledge to meal plan",
+      "baselineResult": "PASS",
+      "baselineSession": "04212146-6b97-450f-9b89-574d464f502e",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR06-R2",
+      "flow": "F03 / knowledge to meal plan",
+      "baselineResult": "PASS",
+      "baselineSession": "4943811e-3784-49c0-aa42-c2e7c48e173b",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR06-R3",
+      "flow": "F03 / knowledge to meal plan",
+      "baselineResult": "PASS",
+      "baselineSession": "375a43b9-400c-47cb-9b3e-7b2c2f8ee530",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR07-R1",
+      "flow": "F03 / cancel replacement",
+      "baselineResult": "FAIL",
+      "baselineSession": "af1438ee-892c-4086-9ab8-1f8eb26abe25",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "d363889c-28b2-46a3-97d7-23e5a98ad6b3",
+      "attempt": 2,
+      "start": "2026-11-13T23:18:26.327Z",
+      "end": "2026-11-13T23:20:11.817Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "Trace shows different recipe, Sang selected for 20/11, actual replacement dialog and Huy click. Staging before/after deep comparison retains exactly original breakfast recipe/version1/timestamps with no extra slot.",
+      "evidence": {
+        "steps": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "backendBefore": "AR07-R1-A2-before.json",
+        "backendAfter": "AR07-R1-A2-after.json",
+        "model": "gemini-3.1-flash-lite"
+      }
+    },
+    {
+      "name": "AR07-R2",
+      "flow": "F03 / cancel replacement",
+      "baselineResult": "FAIL",
+      "baselineSession": "1a5eef48-7471-4d2f-8b67-c66ac64f1ea6",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "4c307945-5e33-4fdc-b929-f88c5fe69e39",
+      "attempt": 1,
+      "start": "2026-11-13T23:20:47.355Z",
+      "end": "2026-11-13T23:22:37.695Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "Visual trace confirms toast/egg recipe, 20/11 date, Sang selected, real replacement dialog and actual Huy. Backend exact before/after comparison unchanged: original breakfast rice-veg-beans revision1 and no extra slot.",
+      "evidence": {
+        "steps": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "backendBefore": "AR07-R2-before.json",
+        "backendAfter": "AR07-R2-after.json",
+        "model": "gemini-3.1-flash-lite"
+      }
+    },
+    {
+      "name": "AR07-R3",
+      "flow": "F03 / cancel replacement",
+      "baselineResult": "FAIL",
+      "baselineSession": "459f2924-0509-4f05-a103-a6508a320046",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "37f2ea8e-0275-42f3-a586-5cddefce3f28",
+      "attempt": 1,
+      "start": "2026-11-13T23:23:02.501Z",
+      "end": "2026-11-13T23:24:27.868Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "Visual trace confirms 20/11 Sang, actual replacement dialog and Huy; before/after API deep comparison preserves exactly the original breakfast recipe, version1 and timestamps, with no additional slot.",
+      "evidence": {
+        "steps": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "backendBefore": "AR07-R3-before.json",
+        "backendAfter": "AR07-R3-after.json",
+        "model": "gemini-3.1-flash-lite"
+      }
+    },
+    {
+      "name": "AR08-R1",
+      "flow": "knowledge search / empty state",
+      "baselineResult": "PASS",
+      "baselineSession": "a3402525-c174-4951-80da-2d6aa39a665a",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR08-R2",
+      "flow": "knowledge search / empty state",
+      "baselineResult": "FAIL",
+      "baselineSession": "c384ecdc-b14e-4c78-8902-e60daf1a41c4",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "4851c73e-9dbd-4ec6-8e7a-c7e32042cdc7",
+      "attempt": 3,
+      "start": "2026-11-13T23:07:59.867Z",
+      "end": "2026-11-13T23:09:47.719Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "After ACTION_SET_TEXT remediation, exact ASCII query exists in app UI tree, no read-back failure. Visual review confirms matching Harvard article, empty-state query and restored list; Home/completion recorded.",
+      "evidence": {
+        "steps": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "exactQuery": "ARTEMIS_NO_SUCH_ARTICLE_R2_remediation_20261114",
+        "model": "gemini-3.1-flash-lite"
+      }
+    },
+    {
+      "name": "AR08-R3",
+      "flow": "knowledge search / empty state",
+      "baselineResult": "FAIL",
+      "baselineSession": "8cfbefdc-5a32-47c5-b17e-89d0f29fc9e0",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "0c25930e-65d1-4af6-95f5-cf8dfd819fcd",
+      "attempt": 2,
+      "start": "2026-11-13T23:10:49.504Z",
+      "end": "2026-11-13T23:12:38.356Z",
+      "agentReportedPass": true,
+      "assisted": false,
+      "basis": "Exact ASCII query verified in app UI tree after ACTION_SET_TEXT, no read-back failure. Visual trace confirms Harvard result, empty state and restored WHO list; Home and final completion recorded.",
+      "evidence": {
+        "steps": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "exactQuery": "ARTEMIS_NO_SUCH_ARTICLE_R3_remediation_20261114",
+        "model": "gemini-3.1-flash-lite"
+      }
+    },
+    {
+      "name": "AR10-R1",
+      "flow": "native Android browser / system Back",
+      "baselineResult": "PASS",
+      "baselineSession": "cd1b8b4f-24b9-4db7-9899-72ee1f2dad32",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR10-R2",
+      "flow": "native Android browser / system Back",
+      "baselineResult": "PASS",
+      "baselineSession": "68f2670f-fde5-4dac-97ed-89294504634f",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR10-R3",
+      "flow": "native Android browser / system Back",
+      "baselineResult": "PASS",
+      "baselineSession": "67673f4e-a609-4fc7-ba50-337b0a20a736",
+      "rerunStatus": "NOT_RUN",
+      "currentResult": "PASS",
+      "resultSource": "historical_baseline",
+      "agentReportedPass": false,
+      "assisted": false
+    },
+    {
+      "name": "AR13-R1",
+      "flow": "native Android photo picker / F02",
+      "baselineResult": "FAIL",
+      "baselineSession": "e350fbb9-ac1d-4fcc-9ab4-86c59631b99a",
+      "rerunStatus": "PENDING_REVIEW",
+      "currentResult": "FAIL",
+      "resultSource": "historical_baseline",
+      "session": "94b22f51-9783-416e-9e66-fbc374555b95",
+      "attempt": 3,
+      "start": "2026-11-13T23:32:45.603Z",
+      "end": "2026-11-13T23:34:59.558Z",
+      "agentReportedPass": true,
+      "assisted": true,
+      "basis": "User confirmed manual fixture selection. Existing trace shows image preview and saved journal record; backend photo matches fixture. Agent reports PASS, but existing trace does not capture enlarged photo popup. User requested stopping all further checking; retain this evidence gap.",
+      "evidence": {
+        "photoProof": "AR13-R1-photo-proof.json",
+        "steps": [
+          10,
+          11,
+          12
+        ],
+        "manualFixtureSelectionConfirmedByUser": true,
+        "nativePickerScopeGuardUnresolved": true,
+        "popupCaptured": false
+      }
+    },
+    {
+      "name": "AR13-R2",
+      "flow": "native Android photo picker / F02",
+      "baselineResult": "FAIL",
+      "baselineSession": "68fb60e2-83f9-4f74-be42-7f78ea2852eb",
+      "rerunStatus": "PENDING_REVIEW",
+      "currentResult": "FAIL",
+      "resultSource": "historical_baseline",
+      "session": "9049e407-4881-4a83-aa81-edaa43cc0792",
+      "attempt": 2,
+      "start": "2026-11-13T23:38:10.297Z",
+      "end": "2026-11-13T23:41:15.224Z",
+      "agentReportedPass": true,
+      "assisted": true,
+      "basis": "User confirmed manual fixture selection. Existing trace shows image preview and saved journal record; backend photo matches fixture. Agent reports PASS, but existing trace does not capture enlarged photo popup. User requested stopping all further checking; retain this evidence gap.",
+      "evidence": {
+        "photoProof": "AR13-R2-photo-proof.json",
+        "steps": [
+          19,
+          20,
+          22
+        ],
+        "manualFixtureSelectionConfirmedByUser": true,
+        "nativePickerScopeGuardUnresolved": true,
+        "popupCaptured": false
+      }
+    },
+    {
+      "name": "AR13-R3",
+      "flow": "native Android photo picker / F02",
+      "baselineResult": "FAIL",
+      "baselineSession": "18d86694-e6fc-4381-aada-06343e2e5984",
+      "rerunStatus": "PASS",
+      "currentResult": "PASS",
+      "resultSource": "reviewed_rerun",
+      "session": "43901200-dedb-4f22-b1ed-2dfc86eba963",
+      "attempt": 2,
+      "start": "2026-11-13T23:44:39.427Z",
+      "end": "2026-11-13T23:48:48.660Z",
+      "agentReportedPass": true,
+      "assisted": true,
+      "basis": "User confirmed manual fixture selection. Existing trace shows image preview and saved journal record; backend photo matches fixture. Existing step32 shows enlarged photo popup.",
+      "evidence": {
+        "photoProof": "AR13-R3-photo-proof.json",
+        "steps": [
+          29,
+          30,
+          32
+        ],
+        "manualFixtureSelectionConfirmedByUser": true,
+        "nativePickerScopeGuardUnresolved": true,
+        "popupCaptured": true
+      }
+    }
+  ]
+}
