@@ -8,17 +8,54 @@ import {
 import { liveAuth, type AuthGateway, type Session } from "./auth";
 import { ApiClient, array, errorText, object, type Json } from "./api";
 
+// Trang trí thuần túy — không mang nội dung, ẩn khỏi trình đọc màn hình.
+const ICONS = {
+  grid: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z",
+  users: "M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm0 2c-3 0-6 1.5-6 4v2h12v-2c0-2.5-3-4-6-4Zm8-5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm0 1.2c-.7 0-1.4.1-2 .3 1.3.9 2 2.1 2 3.5v2h4v-2c0-1.9-1.8-3.3-4-3.8Z",
+  devices: "M7 3h10v15H7zM10 20h4M9 6h6",
+  bell: "M12 3a5 5 0 0 0-5 5v3.3c0 .6-.2 1.2-.6 1.7L5 15h14l-1.4-2c-.4-.5-.6-1.1-.6-1.7V8a5 5 0 0 0-5-5Zm-2 17a2 2 0 0 0 4 0",
+  clock: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-14v5l3 2",
+  file: "M7 3h7l4 4v14H7Zm7 0v4h4",
+  warn: "M12 4 3 20h18ZM12 10v4m0 3h.01",
+  log: "M4 6h16M4 12h16M4 18h10",
+  logout: "M9 5H5v14h4M15 15l4-3-4-3M19 12H9",
+  check: "M4 12l5 5 11-11",
+  chart: "M4 20h16M7 20v-7M12 20V7M17 20v-11",
+} as const;
+function Icon({ name, className }: { name: keyof typeof ICONS; className?: string }) {
+  return (
+    <svg
+      className={`icon${className ? ` ${className}` : ""}`}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path d={ICONS[name]} />
+    </svg>
+  );
+}
+
 const tabs = [
-  ["overview", "Tổng quan"],
-  ["users", "Người dùng"],
-  ["devices", "Thiết bị"],
-  ["notifications", "Gửi thông báo"],
-  ["history", "Lịch sử gửi"],
-  ["reports", "Báo cáo PDF"],
-  ["crashes", "Crashlytics"],
-  ["audit", "Nhật ký quản trị"],
+  ["overview", "Tổng quan", "grid"],
+  ["users", "Người dùng", "users"],
+  ["devices", "Thiết bị", "devices"],
+  ["notifications", "Gửi thông báo", "bell"],
+  ["history", "Lịch sử gửi", "clock"],
+  ["reports", "Báo cáo PDF", "file"],
+  ["crashes", "Crashlytics", "warn"],
+  ["audit", "Nhật ký quản trị", "log"],
 ] as const;
 type Tab = (typeof tabs)[number][0];
+function statusBadge(value: string) {
+  const v = value.toLowerCase();
+  const kind = ["accepted", "opened", "active", "ready", "1", "true"].includes(v)
+    ? "success"
+    : ["retry", "unknown", "pending", "sending"].includes(v)
+      ? "warn"
+      : ["failed", "rejected", "0", "false", "deleted"].includes(v)
+        ? "danger"
+        : "neutral";
+  return <span className={`badge badge-${kind}`}>{value}</span>;
+}
 export function App({
   auth = liveAuth,
   makeApi = (a: AuthGateway) => new ApiClient((force) => a.token(force)),
@@ -83,53 +120,91 @@ export function App({
     );
   if (!user)
     return (
-      <main className="auth">
-        <div className="login">
-          <span className="brand">Longevity Plate</span>
-          <p className="eyebrow">Không gian quản trị</p>
-          <h1>
-            Theo dõi ứng dụng,
-            <br />
-            đồng hành cùng người dùng.
-          </h1>
-          <p>
-            Quản lý thông báo, báo cáo và chất lượng ứng dụng bằng tài khoản
-            được cấp quyền.
-          </p>
-          {error && <ErrorBox message={error} />}
-          <button onClick={() => void login()} disabled={busy}>
-            {busy ? "Đang đăng nhập…" : "Tiếp tục với Google"}
-          </button>
-          <small>Chỉ dành cho quản trị viên Longevity Plate.</small>
+      <main className="auth auth-split">
+        <div className="auth-panel">
+          <div className="login">
+            <span className="brand">
+              <span className="brand-mark" aria-hidden="true">
+                <Icon name="chart" />
+              </span>
+              Longevity Plate
+            </span>
+            <p className="eyebrow">Không gian quản trị</p>
+            <h1>
+              Theo dõi ứng dụng,
+              <br />
+              đồng hành cùng người dùng.
+            </h1>
+            <p>
+              Quản lý thông báo, báo cáo và chất lượng ứng dụng bằng tài khoản
+              được cấp quyền.
+            </p>
+            {error && <ErrorBox message={error} />}
+            <button onClick={() => void login()} disabled={busy}>
+              {busy ? "Đang đăng nhập…" : "Tiếp tục với Google"}
+            </button>
+            <small>Chỉ dành cho quản trị viên Longevity Plate.</small>
+          </div>
+        </div>
+        <div className="auth-art" aria-hidden="true">
+          <div className="auth-art-copy">
+            <strong>Theo dõi 3 workflow lõi</strong>
+            <span>
+              Gửi lời nhắc · ghi nhận bữa ăn · xuất báo cáo — tất cả dữ liệu
+              có phân quyền theo đúng tài khoản Admin.
+            </span>
+          </div>
         </div>
       </main>
     );
   if (allowed !== true)
     return (
-      <main className="auth">
-        <div className="login">
-          <span className="brand">Longevity Plate</span>
-          <h1>
-            {allowed === false
-              ? "Không có quyền truy cập"
-              : "Đang kiểm tra quyền…"}
-          </h1>
-          <p>
-            {allowed === false
-              ? "Tài khoản đã đăng nhập chưa nằm trong danh sách quản trị viên. Liên hệ người quản lý dự án để được cấp quyền."
-              : "Quyền quản trị được xác nhận bởi máy chủ."}
-          </p>
-          {error && <ErrorBox message={error} />}
-          <button
-            onClick={() =>
-              void auth.signOut().catch((e) => setError(errorText(e)))
-            }
-          >
-            Đăng xuất
-          </button>
+      <main className="auth auth-split">
+        <div className="auth-panel">
+          <div className="login">
+            <span className="brand">
+              <span className="brand-mark" aria-hidden="true">
+                <Icon name="chart" />
+              </span>
+              Longevity Plate
+            </span>
+            <h1>
+              {allowed === false
+                ? "Không có quyền truy cập"
+                : "Đang kiểm tra quyền…"}
+            </h1>
+            <p>
+              {allowed === false
+                ? "Tài khoản đã đăng nhập chưa nằm trong danh sách quản trị viên. Liên hệ người quản lý dự án để được cấp quyền."
+                : "Quyền quản trị được xác nhận bởi máy chủ."}
+            </p>
+            {error && <ErrorBox message={error} />}
+            <button
+              onClick={() =>
+                void auth.signOut().catch((e) => setError(errorText(e)))
+              }
+            >
+              Đăng xuất
+            </button>
+          </div>
+        </div>
+        <div className="auth-art" aria-hidden="true">
+          <div className="auth-art-copy">
+            <strong>Mỗi tài khoản một vai trò</strong>
+            <span>
+              Admin được cấp quyền thủ công trên D1 — không có API tự nâng
+              quyền.
+            </span>
+          </div>
         </div>
       </main>
     );
+  const initials = (user.displayName ?? "Quản trị viên")
+    .split(" ")
+    .slice(-2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
   return (
     <div className="shell">
       <aside>
@@ -138,36 +213,54 @@ export function App({
           href="#overview"
           onClick={() => setTab("overview")}
         >
-          Longevity
-          <br />
-          Plate<span>ADMIN</span>
+          <span className="brand-mark" aria-hidden="true">
+            <Icon name="chart" />
+          </span>
+          <span className="brand-text">
+            Longevity
+            <br />
+            Plate<span className="brand-tag">ADMIN</span>
+          </span>
         </a>
         <nav aria-label="Điều hướng quản trị">
-          {tabs.map(([key, label]) => (
+          {tabs.map(([key, label, icon]) => (
             <button
               key={key}
               aria-current={tab === key ? "page" : undefined}
               onClick={() => setTab(key)}
             >
+              <Icon name={icon} />
               {label}
             </button>
           ))}
         </nav>
         <div className="identity">
-          <strong>{user.displayName ?? "Quản trị viên"}</strong>
+          <span className="identity-avatar" aria-hidden="true">
+            {initials || "?"}
+          </span>
+          <div className="identity-name">
+            <strong>{user.displayName ?? "Quản trị viên"}</strong>
+            <span className="identity-role">Quản trị viên</span>
+          </div>
           <button
+            className="secondary identity-logout"
+            title="Đăng xuất"
+            aria-label="Đăng xuất"
             onClick={() =>
               void auth.signOut().catch((e) => setError(errorText(e)))
             }
           >
-            Đăng xuất
+            <Icon name="logout" />
           </button>
         </div>
       </aside>
       <main className="workspace">
         <header>
           <p>Không gian quản trị / {tabs.find((t) => t[0] === tab)?.[1]}</p>
-          <span>Dữ liệu có phân quyền</span>
+          <span>
+            <Icon name="check" />
+            Dữ liệu có phân quyền
+          </span>
         </header>
         {error && <ErrorBox message={error} />}
         <section key={tab}>
@@ -193,6 +286,13 @@ export function ErrorBox({ message }: { message: string }) {
     </p>
   );
 }
+const METRIC_ICONS = {
+  users: "users",
+  meals: "file",
+  plans: "clock",
+  devices: "devices",
+  campaigns: "bell",
+} as const;
 function Overview({ api }: { api: ApiClient }) {
   const { data, error, loading, reload } = useData(api, "/admin/overview");
   const stats = object(data?.statistics);
@@ -201,6 +301,7 @@ function Overview({ api }: { api: ApiClient }) {
   return (
     <>
       <Title
+        icon="grid"
         label="Tổng quan"
         description="Hoạt động được tổng hợp từ dữ liệu trên máy chủ."
       />
@@ -212,43 +313,115 @@ function Overview({ api }: { api: ApiClient }) {
           <button onClick={reload}>Thử lại</button>
         </>
       ) : (
-        <div className="metrics">
-          {[
-            ["users", "Người dùng"],
-            ["meals", "Bữa ăn"],
-            ["plans", "Ô kế hoạch"],
-            ["devices", "Thiết bị hoạt động"],
-            ["campaigns", "Lượt gửi thông báo"],
-          ].map(([key, label]) => (
-            <article key={key}>
-              <p>{label}</p>
-              <strong>{Number(stats[key] ?? 0).toLocaleString("vi-VN")}</strong>
-            </article>
-          ))}
-        </div>
+        <>
+          <div className="metrics">
+            {[
+              ["users", "Người dùng"],
+              ["meals", "Bữa ăn"],
+              ["plans", "Ô kế hoạch"],
+              ["devices", "Thiết bị hoạt động"],
+              ["campaigns", "Lượt gửi thông báo"],
+            ].map(([key, label]) => (
+              <article key={key}>
+                <span className="metric-icon" aria-hidden="true">
+                  <Icon name={METRIC_ICONS[key as keyof typeof METRIC_ICONS]} />
+                </span>
+                <p>{label}</p>
+                <strong>{Number(stats[key] ?? 0).toLocaleString("vi-VN")}</strong>
+              </article>
+            ))}
+          </div>
+          <OverviewBars stats={stats} />
+        </>
       )}
       <div className="editorial">
-        <h2>Chất lượng ứng dụng</h2>
+        <div className="editorial-head">
+          <span className="page-title-icon" aria-hidden="true">
+            <Icon name="warn" />
+          </span>
+          <h2>Chất lượng ứng dụng</h2>
+        </div>
         <p>
           Crashlytics cung cấp sự cố và ngữ cảnh từ Firebase. Kết quả gửi thông
           báo phân biệt lượt được FCM chấp nhận với lượt người dùng đã mở.
         </p>
-        {recent.length>0&&<><h3>Sự cố trong snapshot gần nhất</h3><ul>{recent.map((group,index)=><li key={index}>{String(object(group.issue).title??'Issue')} · {String(object(group.issue).errorType??'')}</li>)}</ul></>}
+        {recent.length > 0 && (
+          <>
+            <h3>Sự cố trong snapshot gần nhất</h3>
+            <ul>
+              {recent.map((group, index) => (
+                <li key={index}>
+                  <Icon name="warn" />
+                  {String(object(group.issue).title ?? "Issue")} ·{" "}
+                  {String(object(group.issue).errorType ?? "")}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </>
   );
 }
-function Title({ label, description }: { label: string; description: string }) {
+// Biểu đồ cột ngang — dùng đúng số liệu thật từ /admin/overview, không có số
+// nào bịa; chỉ là cách trình bày khác cho cùng 5 con số ở trên.
+function OverviewBars({ stats }: { stats: Json }) {
+  const rows: [string, string][] = [
+    ["users", "Người dùng"],
+    ["meals", "Bữa ăn"],
+    ["plans", "Ô kế hoạch"],
+    ["devices", "Thiết bị hoạt động"],
+    ["campaigns", "Lượt gửi thông báo"],
+  ];
+  const values = rows.map(([key]) => Number(stats[key] ?? 0));
+  const max = Math.max(1, ...values);
+  return (
+    <div className="bars">
+      <h3>So sánh quy mô</h3>
+      {rows.map(([key, label], i) => (
+        <div className="bar-row" key={key}>
+          <span className="bar-label">{label}</span>
+          <div className="bar-track">
+            <div
+              className="bar-fill"
+              style={{ width: `${(values[i] / max) * 100}%` }}
+            />
+          </div>
+          <span className="bar-value">
+            {values[i].toLocaleString("vi-VN")}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+function Title({
+  label,
+  description,
+  icon,
+}: {
+  label: string;
+  description: string;
+  icon?: keyof typeof ICONS;
+}) {
   return (
     <div className="page-title">
-      <h1>{label}</h1>
-      <p>{description}</p>
+      {icon && (
+        <span className="page-title-icon" aria-hidden="true">
+          <Icon name={icon} />
+        </span>
+      )}
+      <div>
+        <h1>{label}</h1>
+        <p>{description}</p>
+      </div>
     </div>
   );
 }
 function Loading() {
   return (
     <p role="status" className="empty">
+      <Icon name="clock" />
       Đang tải dữ liệu…
     </p>
   );
@@ -349,6 +522,7 @@ function Records({
   return (
     <>
       <Title
+        icon={tabs.find((t) => t[0] === tab)![2]}
         label={tabs.find((t) => t[0] === tab)![1]}
         description={
           tab === "history"
@@ -402,7 +576,9 @@ function Records({
                     <td key={key}>
                       {row[key] === null || row[key] === undefined
                         ? "—"
-                        : String(row[key])}
+                        : key === "status" || key === "active"
+                          ? statusBadge(String(row[key]))
+                          : String(row[key])}
                     </td>
                   ))}
                   {tab === "history" && (
@@ -501,80 +677,109 @@ function NotificationForm({ api }: { api: ApiClient }) {
   return (
     <>
       <Title
+        icon="bell"
         label="Gửi thông báo"
         description="Gửi đến các thiết bị đang hoạt động của một tài khoản. Xem trước và xác nhận trước khi gửi."
       />
-      <form className="notification-form" onSubmit={preview}>
-        <fieldset disabled={busy}>
-          <label htmlFor="target">UID người nhận</label>
-          <input
-            id="target"
-            required
-            maxLength={128}
-            value={targetUid}
-            onChange={(e) => {
-              changed();
-              setTargetUid(e.target.value);
-            }}
-          />
-          <small>Tra UID tại mục Người dùng. Tối đa 5 thiết bị mỗi lượt.</small>
-          <label htmlFor="title">Tiêu đề</label>
-          <input
-            id="title"
-            required
-            maxLength={100}
-            value={title}
-            onChange={(e) => {
-              changed();
-              setTitle(e.target.value);
-            }}
-          />
-          <label htmlFor="message">Nội dung</label>
-          <textarea
-            id="message"
-            required
-            maxLength={500}
-            rows={5}
-            value={body}
-            onChange={(e) => {
-              changed();
-              setBody(e.target.value);
-            }}
-          />
-          <label htmlFor="route">Màn hình khi chạm</label>
-          <select
-            id="route"
-            value={route}
-            onChange={(e) => {
-              changed();
-              setRoute(e.target.value);
-            }}
-          >
-            <option value="/log">Nhật ký</option>
-            <option value="/plan">Kế hoạch</option>
-            <option value="/library">Kiến thức</option>
-            <option value="/home">Hôm nay</option>
-          </select>
-          <button type="submit">Xem trước</button>
-        </fieldset>
-      </form>
+      <div className="notification-layout">
+        <form className="notification-form" onSubmit={preview}>
+          <fieldset disabled={busy}>
+            <label htmlFor="target">UID người nhận</label>
+            <input
+              id="target"
+              required
+              maxLength={128}
+              value={targetUid}
+              onChange={(e) => {
+                changed();
+                setTargetUid(e.target.value);
+              }}
+            />
+            <label htmlFor="title">Tiêu đề</label>
+            <input
+              id="title"
+              required
+              maxLength={100}
+              value={title}
+              onChange={(e) => {
+                changed();
+                setTitle(e.target.value);
+              }}
+            />
+            <label htmlFor="message">Nội dung</label>
+            <textarea
+              id="message"
+              required
+              maxLength={500}
+              rows={5}
+              value={body}
+              onChange={(e) => {
+                changed();
+                setBody(e.target.value);
+              }}
+            />
+            <label htmlFor="route">Màn hình khi chạm</label>
+            <select
+              id="route"
+              value={route}
+              onChange={(e) => {
+                changed();
+                setRoute(e.target.value);
+              }}
+            >
+              <option value="/log">Nhật ký</option>
+              <option value="/plan">Kế hoạch</option>
+              <option value="/library">Kiến thức</option>
+              <option value="/home">Hôm nay</option>
+            </select>
+            <button type="submit">
+              <Icon name="check" />
+              Xem trước
+            </button>
+          </fieldset>
+        </form>
+        <div className="tip-card">
+          <h3>
+            <Icon name="users" />
+            Tra UID ở đâu?
+          </h3>
+          <ul>
+            <li>Mở tab Người dùng, tìm theo tên hoặc UID, sao chép cột UID.</li>
+            <li>Tối đa 5 thiết bị đang hoạt động nhận được mỗi lượt gửi.</li>
+            <li>
+              Cùng một nội dung gửi lại nhiều lần chỉ tính một lượt (chống gửi
+              trùng theo requestKey).
+            </li>
+          </ul>
+        </div>
+      </div>
       {error && <ErrorBox message={error} />}{" "}
       {result && (
         <div className="send-result">
           <h2>Kết quả gửi</h2>
-          {array(result.deliveries).map((row) => (
-            <p key={String(row.id)}>
-              <strong>{String(row.installationId)}</strong> ·{" "}
-              {row.status === "accepted"
+          {array(result.deliveries).map((row) => {
+            const text =
+              row.status === "accepted"
                 ? "FCM đã chấp nhận"
                 : row.status === "retry"
                   ? "Đang chờ thử lại"
                   : row.status === "unknown"
                     ? "Chưa xác định kết quả"
-                    : `Thất bại (${String(row.errorCode ?? row.status)})`}
-              {row.openedAt ? " · Người dùng đã mở" : ""}
-            </p>
-          ))}
+                    : `Thất bại (${String(row.errorCode ?? row.status)})`;
+            const kind =
+              row.status === "accepted"
+                ? "success"
+                : row.status === "retry" || row.status === "unknown"
+                  ? "warn"
+                  : "danger";
+            return (
+              <p key={String(row.id)}>
+                <strong>{String(row.installationId)}</strong> ·{" "}
+                <span className={`badge badge-${kind}`}>{text}</span>
+                {row.openedAt ? " · Người dùng đã mở" : ""}
+              </p>
+            );
+          })}
         </div>
       )}
       {confirm && (
@@ -607,6 +812,149 @@ function NotificationForm({ api }: { api: ApiClient }) {
         </div>
       )}
     </>
+  );
+}
+// Tổng hợp từ đúng các issue backend đã đọc được — không ước tính phần trăm
+// crash-free vì server không có tổng số phiên để tính đúng số đó.
+function CrashSummary({ groups }: { groups: Json[] }) {
+  const events = groups.reduce(
+    (sum, row) => sum + (Number(row.eventCount) || 0),
+    0,
+  );
+  const impacted = groups.reduce(
+    (sum, row) => sum + (Number(row.impactedUserCount) || 0),
+    0,
+  );
+  return (
+    <div className="metrics crash-summary">
+      <article>
+        <span className="metric-icon" aria-hidden="true">
+          <Icon name="warn" />
+        </span>
+        <p>Tổng sự cố</p>
+        <strong>{groups.length.toLocaleString("vi-VN")}</strong>
+      </article>
+      <article>
+        <span className="metric-icon" aria-hidden="true">
+          <Icon name="chart" />
+        </span>
+        <p>Tổng sự kiện</p>
+        <strong>{events.toLocaleString("vi-VN")}</strong>
+      </article>
+      <article>
+        <span className="metric-icon" aria-hidden="true">
+          <Icon name="users" />
+        </span>
+        <p>Người dùng bị ảnh hưởng</p>
+        <strong>{impacted.toLocaleString("vi-VN")}</strong>
+      </article>
+    </div>
+  );
+}
+const SEVERITY_LABELS: Record<string, string> = {
+  FATAL: "Fatal",
+  NON_FATAL: "Non-fatal",
+  ANR: "ANR",
+};
+const SEVERITY_COLORS: Record<string, string> = {
+  FATAL: "var(--danger)",
+  NON_FATAL: "var(--warn)",
+  ANR: "var(--accent)",
+};
+function severityOf(row: Json) {
+  return (
+    String(object(row.issue).errorType ?? row.errorType ?? "").toUpperCase() ||
+    "KHÁC"
+  );
+}
+// Donut + top-issue theo đúng "groups" đã tải (snapshot đầy đủ, không phải
+// trang phân trang) — không suy diễn thêm số liệu nào backend không trả.
+function CrashBreakdown({ groups }: { groups: Json[] }) {
+  if (groups.length === 0) return null;
+  const counts = new Map<string, number>();
+  for (const row of groups) {
+    const key = severityOf(row);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  const total = groups.length;
+  const r = 54,
+    c = 2 * Math.PI * r;
+  let cumulative = 0;
+  const arcs = [...counts.entries()].map(([key, count]) => {
+    const frac = count / total;
+    const arc = {
+      key,
+      color: SEVERITY_COLORS[key] ?? "var(--ink-faint)",
+      dasharray: `${frac * c} ${c - frac * c}`,
+      dashoffset: -cumulative,
+    };
+    cumulative += frac * c;
+    return arc;
+  });
+  const top = [...groups]
+    .sort((a, b) => (Number(b.eventCount) || 0) - (Number(a.eventCount) || 0))
+    .slice(0, 5);
+  const topMax = Math.max(1, ...top.map((row) => Number(row.eventCount) || 0));
+  return (
+    <div className="crash-breakdown">
+      <div className="donut-card">
+        <h3>Phân loại mức độ</h3>
+        <div className="donut-wrap">
+          <svg viewBox="0 0 140 140" className="donut" aria-hidden="true">
+            <circle cx="70" cy="70" r={r} className="donut-track" />
+            {arcs.map((arc) => (
+              <circle
+                key={arc.key}
+                cx="70"
+                cy="70"
+                r={r}
+                stroke={arc.color}
+                strokeDasharray={arc.dasharray}
+                strokeDashoffset={arc.dashoffset}
+              />
+            ))}
+          </svg>
+          <div className="donut-center">
+            <strong>{total.toLocaleString("vi-VN")}</strong>
+            <span>sự cố</span>
+          </div>
+        </div>
+        <ul className="donut-legend">
+          {arcs.map((arc) => (
+            <li key={arc.key}>
+              <span
+                className="legend-dot"
+                style={{ background: arc.color }}
+                aria-hidden="true"
+              />
+              {SEVERITY_LABELS[arc.key] ?? arc.key} · {counts.get(arc.key)}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="bars top-issues">
+        <h3>Top sự cố theo số sự kiện</h3>
+        {top.map((row, i) => {
+          const issue = object(row.issue);
+          const label = String(issue.title ?? issue.subtitle ?? `Issue ${i + 1}`);
+          const value = Number(row.eventCount) || 0;
+          return (
+            <div className="bar-row" key={String(issue.id ?? i)}>
+              <span className="bar-label" title={label}>
+                {label}
+              </span>
+              <div className="bar-track">
+                <div
+                  className="bar-fill"
+                  style={{ width: `${(value / topMax) * 100}%` }}
+                />
+              </div>
+              <span className="bar-value">{value.toLocaleString("vi-VN")}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 function Crashes({ api }: { api: ApiClient }) {
@@ -654,6 +1002,7 @@ function Crashes({ api }: { api: ApiClient }) {
   return (
     <>
       <Title
+        icon="warn"
         label="Crashlytics"
         description="Báo cáo sự cố được backend đọc từ Firebase Crashlytics. Dữ liệu có độ trễ tiếp nhận và thời điểm cập nhật riêng."
       />
@@ -677,6 +1026,12 @@ function Crashes({ api }: { api: ApiClient }) {
           {new Date(String(data.fetchedAt)).toLocaleString("vi-VN")}
         </p>
       ) : null}
+      {!loading && !error && (
+        <>
+          <CrashSummary groups={groups} />
+          <CrashBreakdown groups={groups} />
+        </>
+      )}
       {actionError && <ErrorBox message={actionError} />}{" "}
       {loading ? (
         <Loading />
@@ -698,14 +1053,23 @@ function Crashes({ api }: { api: ApiClient }) {
               String(issue.name ?? "")
                 .split("/")
                 .at(-1);
+            const severity = String(issue.errorType ?? "");
             return (
-              <article key={String(id ?? index)}>
-                <div>
+              <article key={String(id ?? index)} data-severity={severity}>
+                <div className="issue-main">
+                  <span className="issue-icon" aria-hidden="true">
+                    <Icon name="warn" />
+                  </span>
+                  <div>
                   <h2>
                     {String(issue.title ?? issue.subtitle ?? id ?? "Issue")}
                   </h2>
                   {issue.errorType ? (
-                    <span>{String(issue.errorType)}</span>
+                    <span
+                      className={`badge ${severity === "FATAL" ? "badge-danger" : "badge-warn"}`}
+                    >
+                      {severity}
+                    </span>
                   ) : null}
                   <p>
                     {row.eventCount !== undefined
@@ -715,6 +1079,7 @@ function Crashes({ api }: { api: ApiClient }) {
                       ? ` · ${String(row.impactedUserCount)} người dùng`
                       : ""}
                   </p>
+                  </div>
                 </div>
                 {id ? (
                   <button

@@ -107,7 +107,12 @@ describe("Admin authenticated user journeys", () => {
     expect(
       await screen.findByRole("heading", { name: "Tổng quan" }),
     ).toBeInTheDocument();
-    expect(await screen.findByText("4")).toBeInTheDocument();
+    await waitFor(() =>
+      expect(document.querySelector(".metrics")).toBeInTheDocument(),
+    );
+    const metrics = document.querySelector<HTMLElement>(".metrics")!;
+    const mealsCard = within(metrics).getByText("Bữa ăn").closest("article");
+    expect(within(mealsCard!).getByText("4")).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "Thiết bị" }));
     expect(
       await screen.findByText("Không có dữ liệu phù hợp."),
@@ -162,7 +167,9 @@ describe("Admin authenticated user journeys", () => {
     fixture();
     await screen.findByRole("heading", { name: "Tổng quan" });
     await userEvent.click(screen.getByRole("button", { name: "Crashlytics" }));
-    expect(await screen.findByText("SDK crash")).toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", { name: "SDK crash" }),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Nguồn: firebase-crashlytics/)).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "Xem chi tiết" }));
     expect(await screen.findByRole("dialog")).toHaveTextContent("FATAL");

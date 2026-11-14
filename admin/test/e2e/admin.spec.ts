@@ -70,7 +70,9 @@ test("desktop dashboard, notifications and crash report remain usable", async ({
     page.getByText("FCM đã chấp nhận", { exact: false }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Crashlytics", exact: true }).click();
-  await expect(page.getByText("Test issue", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Test issue", exact: true }),
+  ).toBeVisible();
 });
 test("mobile layout has no document overflow and keeps navigation usable", async ({
   page,
